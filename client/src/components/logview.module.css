@@ -1,0 +1,56 @@
+
+.rating_box {
+    width: 36px;
+    height: 36px;
+    background: #d1d1d1;
+    color: #FFFFFF;
+    font-size: 1.5em;
+    border-radius: 4px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.icon {
+    font-size: 1.3em;
+    margin-right: 8px;
+}
+.top_line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #d1d1d1;
+    padding: 4px;
+    color: #d1d1d1;
+}
+.date {
+    margin-left: 16px;
+    padding: 5px;
+}
+.text {
+    margin-top: 8px;
+}
+.top_panel {
+    width: 100%;
+    color: #3366FF;
+    font-size: 2em;
+    text-align: center;
+    padding: 5px;
+}
+.button_text {
+    opacity: 0;
+    font-size: 0.4em;
+    transition-duration: 1s;
+}
+.back_button {
+    opacity: 0.4;
+    transition-duration: 1s;
+    cursor: pointer;
+}
+.back_button:hover {
+    opacity: 1;
+}
+.back_button:hover .button_text {
+    opacity: 1;
+}

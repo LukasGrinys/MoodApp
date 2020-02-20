@@ -1,0 +1,14 @@
+*, *::before, *::after, body {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body {
+    font-family: 'Lato';
+}
+
+.content_wrapper {
+    margin: 16px;
+    z-index: 0;
+}

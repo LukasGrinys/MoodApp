@@ -1,0 +1,37 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bigLogo {
+    font-size: 5em;
+    color: #3366ff;
+    font-family: "Kaushan Script";
+    text-align: center;
+    margin-bottom:25px;
+}
+
+.text {
+    font-weight: 300;
+    padding: 25px;
+    text-align: center;
+    font-size: 1.2em;
+    margin-bottom: 25px;
+}
+
+.textAlt {
+    font-weight: 300;
+    padding: 25px;
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 25px;
+}
+
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    z-index: 0;
+}

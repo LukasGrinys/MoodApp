@@ -1,0 +1,86 @@
+.header {
+    color: #f2f2f2;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    z-index:996;
+}
+.top {
+    position: relative;
+    background-color: #3366ff;
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+    z-index: 999;
+}
+.logo {
+    position: absolute;
+    top: 4px;
+    font-family: "Kaushan Script";
+    font-size: 1.4em;
+    cursor: default;
+}
+.bars {
+    margin: auto;
+    cursor:pointer;
+}
+.navBar {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    z-index: 998;
+    animation: appearTop 0.5s;
+}
+.navBarDark {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 997;
+    animation: fadeIn 0.5s;
+}
+.navItem {
+    width: 100%;
+    text-align: left;
+    padding: 6px;
+    background-color: #e0ebeb;
+    color: #141f1f;
+    cursor: pointer;
+    z-index: 998;
+}
+.navItem:hover {
+    color: #3366ff;
+}
+.bars {
+    animation: rotateButton 2s;
+    transition: 1s;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0%;}
+    to { opacity: 100%;}
+}
+
+@keyframes appearTop {
+    from { 
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}

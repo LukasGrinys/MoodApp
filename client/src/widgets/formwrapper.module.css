@@ -1,0 +1,24 @@
+.formWrapper {
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.formWrapper h1 {
+    text-align: center;
+    padding: 5px;
+}
+.formWrapper span, .formWrapper div {
+    margin: 5px;
+}
+.formWrapper input {
+    height: 32px;
+    border-radius: 3px;
+    margin: 5px;
+    width: 100%;
+    border: 1px solid black;
+    text-indent: 5px;
+    font-size: 16px;
+    font-weight: 300;
+}

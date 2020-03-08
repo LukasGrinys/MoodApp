@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Loading from './../widgets/loading';
 import styles from './logview.module.css';
 import FontAwesome from 'react-fontawesome';
+import BackButton from './../widgets/backButton';
 
 class LogView extends Component {
     componentWillMount() {
@@ -23,15 +24,7 @@ class LogView extends Component {
                     return (
                         <div>
                             <div className={styles.top_panel}>
-                                <div className={styles.back_button} onClick={ () => {
-                                    window.history.back()
-                                }}>
-                                    <FontAwesome name="arrow-left" className={styles.back}/>
-                                    <div className={styles.button_text}>
-                                        Go back
-                                    </div>
-                                </div>
-                                
+                            <BackButton/>
                             </div>
                             <div className={styles.logWrapper}>
                                 <div className={styles.top_line}>

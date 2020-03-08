@@ -61,6 +61,13 @@ export function canUserLog(currentDate, currentTiming, user) {
     }
 }
 
+export function userCannotLog() {
+    return {
+        type: "CANNOT_LOG",
+        payload: {}
+    }
+}
+
 export function getLastLogs(user) {
     const url = `/api/getLogs?id=${user}&limit=9`;
     const request = axios.get(url);
@@ -89,6 +96,49 @@ export function viewLog(id) {
 export function clearLog() {
     return {
         type: 'CLEAR_LOG',
+        payload: {}
+    }
+}
+
+export function getLogs(user, start, limit, logs) {
+    const request = axios.get(`/api/getLogs?id=${user}&skip=${start}&limit=${limit}`)
+    .then( (response) =>  {
+        if (response.data === "No logs found") {
+            return [...logs, response.data]
+        }
+        if (logs) {
+            return [...logs, ...response.data]
+        } else {
+            return response.data
+        }
+    });
+    return {
+        type: 'GET_LOGS',
+        payload: request
+    }
+}
+
+export function postLog(user, date, timing, rating, text) {
+    const body = {
+        ownerId: user,
+        date,
+        timing,
+        rating,
+        text
+    }
+    const request = axios.post('/api/postLog', body)
+    .then( (response) => {
+        return response.data
+    });
+    return {
+        type: 'POST_LOG',
+        payload: request
+    }
+}
+
+export function clearPostLog() {
+    return {
+        type: 'CLEAR_POST_LOG',
         payload: {}
     }
 }

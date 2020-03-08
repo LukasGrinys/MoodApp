@@ -64,10 +64,14 @@ class LoginForm extends Component {
                     <span>Enter your password:</span><br/>
                     <input type="password" name="password" value={this.state.password} onChange={this.handlePassword}/><br/><br/>
                     {this.renderMessage()}
-                    <div onClick={this.handleForm}>
-                        <Button color={"#fffff2"} background={"#3366ff"}>
-                            Log In
-                        </Button>
+                    <div style={{
+                        width: "100%", display: "flex", alignItems: "center", justifyContent: "center"
+                    }}>
+                        <div onClick={this.handleForm}>
+                            <Button color={"#fffff2"} background={"#3366ff"}>
+                                Log In
+                            </Button>
+                        </div>
                     </div>
                 </form>
             </div>

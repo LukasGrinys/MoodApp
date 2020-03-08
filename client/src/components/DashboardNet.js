@@ -33,12 +33,10 @@ const LastLogsItem = (props) => {
             ) 
         } else {
             return ( 
-            <div> 
+            <div className={styles.flex_between}> 
                 <div className={styles.net_itemHeader}>Last logs</div>
                 {renderLogs(props.lastLogs.data)}
-                <div className={styles.button_logs}>
-                    <Link to="/logs">All Logs</Link>
-                </div>
+                <Link to="/logs"><div className={styles.button_logs}>All Logs</div></Link>
             </div> 
             )  
         }
@@ -49,35 +47,39 @@ const LastLogsItem = (props) => {
 
 const MoodStatus = (props) => {
     const returnRating = (data) => {
-        let total = 0;
-        let quantity = 0;
-        data.map( (item) => {
-            total += parseInt(item.rating);
-            quantity++;
-            return null;
-        });
-        const average = Math.round((total / quantity) * 10) / 10;
-        if (Number.isInteger(average)) {
-            return `${average}.0`
+        if (data !== "No logs found") {
+            let total = 0;
+            let quantity = 0;
+            data.map( (item) => {
+                total += parseInt(item.rating);
+                quantity++;
+                return null;
+            });
+            const average = Math.round((total / quantity) * 10) / 10;
+            if (Number.isInteger(average)) {
+                return `${average}.0`
+            }
+            return average;
+        } else {
+            return "N/A"
         }
-        return average;
     };
     const returnMessage = (rating) => {
         const parsedRating = parseInt(rating);
-        // if (props.lastLogs.data.length < 6) {
-        //     return "";
-        // };
+        if (props.lastLogs.data.length < 9) {
+            return "";
+        };
         if (parsedRating >= 7.5) {
-            return "It seems that you've been doing allright, don't let that change!"
+            return "Great"
         };
         if (parsedRating < 7.5 && parsedRating >= 5) {
-            return "Your mood has been average lately. If theres something on your mind, check our insights below"
+            return "Good"
         };
         if (parsedRating < 5 && parsedRating >= 3) {
-            return "Your mood has been quite down. Check our insights or get psychological help. You can find solutions on the sections below."
+            return "Average"
         };
         if (parsedRating < 3) {
-            return "We strongly recommend you to reach out for psychological help. You can find solutions on the sections below."
+            return "Bad"
         };
     }
     return (
@@ -93,7 +95,7 @@ const MoodStatus = (props) => {
                 {returnMessage(returnRating(props.lastLogs.data))}
             </div>
             <div className={styles.button_logs}>
-                    <Link to="/stats">Stats</Link>
+                    <Link to="">Stats</Link>
             </div>  
         </div>
         :

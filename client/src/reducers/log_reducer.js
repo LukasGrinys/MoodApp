@@ -2,6 +2,8 @@ export default function(state={}, action) {
     switch(action.type) {
         case 'CAN_LOG' :
             return {...state, data: action.payload};
+        case 'CANNOT_LOG' :
+            return {...state, data: action.payload};
         case 'GET_LAST_LOGS' : 
             return {...state, lastLogs: action.lastLogs};
         case 'GET_MOOD_STATUS' :
@@ -10,6 +12,12 @@ export default function(state={}, action) {
             return {...state, logInfo: action.payload}
         case 'CLEAR_LOG' :
             return {...state, logInfo: action.payload}
+        case 'GET_LOGS' :
+            return {...state, list: action.payload}
+        case 'POST_LOG' :
+            return {...state, logPosted: action.payload}
+        case 'CLEAR_POST_LOG' :
+            return {...state, logPosted: action.payload}
         default:
             return state;
     }

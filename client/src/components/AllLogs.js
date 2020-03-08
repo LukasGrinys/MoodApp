@@ -1,13 +1,90 @@
 import React, { Component } from 'react';
+import { getLogs } from './../actions';
+import { connect } from 'react-redux';
 
-class AllLogs extends Component {
+import Loading from './../widgets/loading';
+import LogItem from './../widgets/logItem';
+import styles from './logs.module.css';
+import BackButton from './../widgets/backButton';
+import ButtonWid from './../widgets/Button';
+import LoadingNetItem from './../widgets/loadingNetItem';
+
+class LogList extends Component {
+    state = {
+        skip: 3
+    };
+    UNSAFE_componentWillMount() {
+        this.props.dispatch(getLogs(this.props.user.data.id, 0, 3));
+    }
+    loadMoreLogs = () => {
+        if (this.props.user.data) {
+            let skip = this.state.skip;
+            this.props.dispatch(getLogs(this.props.user.data.id, skip, 3, this.props.logs.list));
+            skip += 3;
+            this.setState({
+                skip: skip
+            });
+        }
+    };
+    returnLogs = (list) => {
+        if (list) {
+            return list.map( (item, i) => {
+                if (item !== "No logs found") {
+                    return <LogItem key={i} rating={item.rating} date={item.date} timing={item.timing} text={item.text}/>
+                } else {
+                    return null;
+                }
+            })
+        } else {
+            return <LoadingNetItem/>
+        }
+    };
+    returnLoadMoreButton = (list) => {
+        if (list && list.length > 0) {
+            const lastElement = list[list.length - 1];
+            if (lastElement !== "No logs found") {
+                return (
+                    <ButtonWid background={'#3366FF'} color={'#FFFFFF'}>Load more</ButtonWid>
+                )
+            } else {
+                return null
+            }
+        } else {
+            return null;
+        }
+    }
     render() {
         return (
             <div>
-                All logs
+                <BackButton/>
+                <div className={styles.header}>All logs</div>
+                <div  className={styles.logs_wrapper}>
+                    {this.returnLogs(this.props.logs.list)}
+                </div>
+                <div className={styles.bottom_panel}>
+                    <div onClick={this.loadMoreLogs}>
+                        {this.returnLoadMoreButton(this.props.logs.list)}
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
-export default AllLogs;
+class AllLogs extends Component {
+    render() {
+        if (this.props.user.data) {
+            return <LogList {...this.props}/>
+        } else {
+            return <Loading/>
+        }
+    }
+}
+
+function mapStateToProps(state) {
+    return {
+        logs: state.logs,
+        user: state.user
+    }
+}
+export default connect(mapStateToProps)(AllLogs);

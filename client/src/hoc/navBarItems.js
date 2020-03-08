@@ -47,18 +47,18 @@ const NavBarItems = (props) => {
     )
 
     const showItems = () => (
-        props.isAuth ?
+        
             items.map( (item, i) => {
-                if (props.isAuth && item.isAuth) {
+                if (props.isAuth === true && item.isAuth) {
                     return itemElement(item,i)     
-                } else if (!props.isAuth && !item.isAuth) {
+                } else if (props.isAuth === false && !item.isAuth) {
                     return itemElement(item,i) 
                 } else if (item.isAuth === null) {
                     return itemElement(item,i)
                 }
                 return null
             })
-        : null
+        
     )
 
     return (

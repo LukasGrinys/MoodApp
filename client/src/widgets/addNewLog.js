@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { canUserLog } from './../actions';
 import styles from './newLog.module.css';
 import LoadingNetItem from './loadingNetItem';
+import { Link } from 'react-router-dom';
 
 class AddNewLog extends Component {
     state = {
@@ -60,10 +61,12 @@ class AddNewLog extends Component {
     renderButton = (canLog) => {
         if (canLog && this.returnDaytime() !== 'night') {
             return (
-                <div className={[styles.logbutton, styles.available].join(' ')}>
-                    <div className={styles.attentionBorder}></div>
-                    <FontAwesome name="fas fa-plus" className={styles.floating}/> ADD LOG
-                </div>
+                <Link to="/addlog">
+                    <div className={[styles.logbutton, styles.available].join(' ')}>
+                        <div className={styles.attentionBorder}></div>
+                        <FontAwesome name="fas fa-plus" className={styles.floating}/> ADD LOG
+                    </div>
+                </Link> 
             )
         } else {
             return (

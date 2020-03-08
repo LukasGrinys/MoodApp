@@ -35,6 +35,12 @@
     text-align: center;;
 }
 /* LOGS */
+.flex_between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+}
 .log_wrapper {
     border-bottom: 1px solid #d1d1d1;
     display: flex;
@@ -84,6 +90,7 @@
 .button_logs {
     width: 100%;
     background: #3366ff;
+    color: #ffffff;
     margin-top: 10px;
     text-align: center;
     padding: 5px;
@@ -115,6 +122,6 @@
     font-weight: bold;
 }
 .status_text {
-    font-size: 0.8em;
-    margin: 15px 5px;
+    font-size: 1.2em;
+    font-weight: bold;
 }

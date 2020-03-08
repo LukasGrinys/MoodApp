@@ -1,7 +1,10 @@
-.logWrapper {
-    max-width: 600px;
+.item {
     width: 100%;
-    margin: 0 auto;
+    max-width: 600px;
+    padding: 10px;
+    border-top: 1.25px solid #d1d1d1;
+    border-radius: 2px;
+    margin-bottom: 40px;
 }
 .rating_box {
     width: 36px;

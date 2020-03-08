@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createUser } from '../actions';
+import { Link } from 'react-router-dom'
 import Button from './../widgets/Button';
 import MessageBox from './../widgets/MessageBox';
+import styles from './register.module.css';
+import BackButton from './../widgets/backButton';
 
 class RegisterForm extends Component {
     state = {
@@ -73,7 +76,7 @@ class RegisterForm extends Component {
                 success: true,
                 message: "Your account has been succesfully created!"
             })
-        } else if (!nextProps.user.success) {
+        } else if (nextProps.user.success === false) {
             this.setState({
                 success: false,
                 message: "Error, try again later"
@@ -88,6 +91,16 @@ class RegisterForm extends Component {
             return ( <MessageBox text={this.state.message} success={this.state.success}/> )
         } else {
             return null
+        }
+    }
+
+    renderLoginButton = () => {
+        if (this.state.success === true) {
+            return ( <Link to="/login">
+                        <Button color={"#fffff2"} background={"#3366ff"}>Log in</Button>
+                    </Link> )
+        } else {
+            return null;
         }
     }
 
@@ -106,12 +119,18 @@ class RegisterForm extends Component {
                     <span>Enter your password:</span><br/>
                     <input type="password" name="password" value={this.state.password} onChange={this.handlePassword}/><br/><br/>
                     {this.renderMessage()}
-                    <div onClick={this.handleForm}>
-                        <Button color={"#fffff2"} background={"#3366ff"}>
-                            Sign Me Up!
-                        </Button>
+                    <div className={styles.center_line}>
+                        <div onClick={this.handleForm}>
+                            <Button color={"#fffff2"} background={"#3366ff"}>
+                                Sign Me Up!
+                            </Button>
+                        </div>
+                    </div><br/>
+                    <div className={styles.center_line}>
+                        {this.renderLoginButton()}
                     </div>
                 </form>
+                <BackButton/>
             </div>
         );
     }

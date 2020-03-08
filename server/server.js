@@ -150,12 +150,13 @@ app.get('/api/getLog', (req, res) => {
 // Get logs from user
 app.get('/api/getLogs', (req, res) => {
     const user = req.query.id;
+    let skip = req.query.skip ? parseInt(req.query.skip) : 0;
     let limit = req.query.limit ? parseInt(req.query.limit) : null;
     Log.find({ownerId : user }, (err, doc) => {
         if (err) return res.status(400).send("There was an error finding logs");
         if (doc.length === 0) return res.status(200).send("No logs found");
         res.status(200).send(doc);
-    }).sort({'createdAt' : -1}).limit(limit);
+    }).sort({'createdAt' : -1}).skip(skip).limit(limit);
 })
 
 
@@ -166,7 +167,7 @@ app.post('/api/canLog', (req, res) => {
     const user = req.body.userId
     Log.findOne({ownerId: user, date: currentDate, timing: currentTiming}, (err, doc) => {
         if (err) return res.status(400).send("Error checking the database");
-        if (doc === null) return res.status(200).send({ canLog: true, message: "Can log"});
+        if (doc === null && user) return res.status(200).send({ canLog: true, message: "Can log"});
         res.status(200).send({canLog : false, message: "Cant post new logs yet"});
     })
 })

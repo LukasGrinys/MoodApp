@@ -4,6 +4,8 @@ import { getLastLogs } from './../actions';
 import styles from './dashboard.module.css';
 import LoadingNetItem from './../widgets/loadingNetItem';
 import { Link } from 'react-router-dom';
+import FontAwesome from 'react-fontawesome';
+import { returnWhite, dashboardButtonStyle } from './../widgets/nightmodeColors';
 
 const LastLogsItem = (props) => {
     const renderLogs = (data) => {
@@ -18,7 +20,7 @@ const LastLogsItem = (props) => {
                     </div>
                 </div>
                 <div className={styles.read_log}>
-                    <Link to={`/logs/${item._id}`} >Read more</Link> 
+                    <Link to={`/logs/${item._id}`} style={returnWhite(props.nightmode)}>Read more</Link> 
                 </div>
             </div>
         ))
@@ -36,7 +38,7 @@ const LastLogsItem = (props) => {
             <div className={styles.flex_between}> 
                 <div className={styles.net_itemHeader}>Last logs</div>
                 {renderLogs(props.lastLogs.data)}
-                <Link to="/logs"><div className={styles.button_logs}>All Logs</div></Link>
+                <Link to="/logs"><div className={styles.button_logs} style={dashboardButtonStyle(props.nightmode)}>All Logs</div></Link>
             </div> 
             )  
         }
@@ -88,28 +90,45 @@ const MoodStatus = (props) => {
             <div className={styles.net_itemHeader}>
                 Latest mood status
             </div>
-            <div className={styles.status_box}>
+            <div className={styles.status_box} style={dashboardButtonStyle(props.nightmode)}>
                 {returnRating(props.lastLogs.data)}
             </div>
             <div className={styles.status_text}>
                 {returnMessage(returnRating(props.lastLogs.data))}
             </div>
-            <div className={styles.button_logs}>
-                    <Link to="">Stats</Link>
-            </div>  
+            <Link to="" style={{width: "100%"}}>
+                <div className={styles.button_logs} style={dashboardButtonStyle(props.nightmode)}>
+                    Stats
+                </div> 
+            </Link>
         </div>
         :
         <LoadingNetItem/>
     );
 }
 
+const SettingsItem = (props) => {
+    return (
+        <div>
+            <div className={styles.net_header}>
+                Settings
+            </div>
+            <div className={styles.flex_container}>
+                <Link to="/settings" className={styles.flex_container}>
+                    <div className={styles.settings_icon_wrapper}> 
+                        <FontAwesome name="cog" className={styles.settings_icon} style={returnWhite(props.nightmode)}/>
+                    </div>
+                    <div style={returnWhite(props.nightmode)}>Edit your account</div>
+                </Link>
+            </div>
+        </div>
+    )
+}
+
 class DashboardNet extends Component {
     UNSAFE_componentWillMount() {
         this.props.dispatch(getLastLogs(this.props.user));
     }
-    // UNSAFE_componentWillReceiveProps(nextProps) {
-    //     console.log(nextProps)
-    // }
     render() {
         return (
             <div className={styles.net}>
@@ -117,13 +136,13 @@ class DashboardNet extends Component {
                     Your dashboard
                 </div>
                 <div className={styles.net_item}>
-                    <LastLogsItem lastLogs={this.props.lastLogs}/>
+                    <LastLogsItem lastLogs={this.props.lastLogs} nightmode={this.props.nightmode}/>
                 </div>
                 <div className={styles.net_item}>
-                    <MoodStatus lastLogs={this.props.lastLogs}/>
+                    <MoodStatus lastLogs={this.props.lastLogs} nightmode={this.props.nightmode}/>
                 </div>
-                <div className={styles.net_item}>
-                    
+                <div className={styles.net_item} nightmode={this.props.nightmode}>
+                    <SettingsItem nightmode={this.props.nightmode}/>
                 </div>
                 <div className={styles.net_item}>
                     This is net item

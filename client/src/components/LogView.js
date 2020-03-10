@@ -13,9 +13,6 @@ class LogView extends Component {
     componentWillUnmount() {
         this.props.dispatch(clearLog())
     }
-    // UNSAFE_componentWillReceiveProps(nextProps){
-    //     console.log(nextProps);
-    // }
     render() {
         if (this.props.logs) {
             if (this.props.logs.logInfo) {
@@ -24,7 +21,7 @@ class LogView extends Component {
                     return (
                         <div>
                             <div className={styles.top_panel}>
-                            <BackButton/>
+                            <BackButton nightmode={this.props.nightmode}/>
                             </div>
                             <div className={styles.logWrapper}>
                                 <div className={styles.top_line}>
@@ -47,11 +44,11 @@ class LogView extends Component {
                         </div>
                     );
                 } else {
-                    return <Loading/>
+                    return <Loading nightmode={this.props.nightmode}/>
                 }
                 
             } else {
-                return <Loading/>
+                return <Loading nightmode={this.props.nightmode}/>
             }     
         } else {
             return <Loading/>

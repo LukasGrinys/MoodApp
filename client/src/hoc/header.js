@@ -9,8 +9,7 @@ class Header extends Component {
         openNav : false
     }
     returnStyle = (nightmode) => {
-        if (nightmode === true) {
-            console.log("Here");
+        if (nightmode === "true") {
             return { backgroundColor: "#2F2F2F"}
         } 
         return null
@@ -66,7 +65,7 @@ class Header extends Component {
 
     showItems = () => (
         this.state.openNav ?
-        <NavBar closeNav={this.closeNav} isAuth={this.props.user.data.isAuth}/>
+        <NavBar closeNav={this.closeNav} isAuth={this.props.user.data.isAuth} nightmode={this.props.nightmode}/>
         : null
     )
 

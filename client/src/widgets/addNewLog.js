@@ -5,6 +5,7 @@ import { canUserLog } from './../actions';
 import styles from './newLog.module.css';
 import LoadingNetItem from './loadingNetItem';
 import { Link } from 'react-router-dom';
+import { returnDarkBackground } from './nightmodeColors';
 
 class AddNewLog extends Component {
     state = {
@@ -62,7 +63,7 @@ class AddNewLog extends Component {
         if (canLog && this.returnDaytime() !== 'night') {
             return (
                 <Link to="/addlog">
-                    <div className={[styles.logbutton, styles.available].join(' ')}>
+                    <div className={[styles.logbutton, styles.available].join(' ')} style={returnDarkBackground(this.props.nightmode)}>
                         <div className={styles.attentionBorder}></div>
                         <FontAwesome name="fas fa-plus" className={styles.floating}/> ADD LOG
                     </div>

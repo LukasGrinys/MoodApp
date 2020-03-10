@@ -8,9 +8,9 @@ const UserBoard = (props) => {
     return (
         <div>
             <div>
-                <AddNewLog userId={props.userId}></AddNewLog>
+                <AddNewLog userId={props.userId} nightmode={props.nightmode}></AddNewLog>
             </div>
-            <DashboardNet user={props.userId}/>
+            <DashboardNet user={props.userId} nightmode={props.nightmode}/>
         </div>
     )
 };
@@ -19,7 +19,7 @@ class Dashboard extends Component {
     state = {
         userLogged : false
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.user.data.isAuth) {
             this.setState({
                 userLogged : true,
@@ -31,13 +31,13 @@ class Dashboard extends Component {
         if (this.state.userLogged) {
             const userId = this.state.userId;
             return (
-                <UserBoard
+                <UserBoard nightmode={this.props.nightmode}
                 userId={userId}
                 />
             )
         }
         return (
-            <Loading/>
+            <Loading nightmode={this.props.nightmode}/>
         );
     }
 }

@@ -8,11 +8,14 @@ import styles from './home.module.css';
 import ButtonWid from './../widgets/Button';
 import Loading from '../widgets/loading';
 
-const DefaultHome = () => {
+import { returnWhite } from './../widgets/nightmodeColors';
+
+const DefaultHome = (props) => {
+    let nightmode = props.nightmode;
     return (
         <div className={styles.wrapper} >
             <ScrollAnimation animateIn="fadeInDown" animateOnce={true}>
-                <div className={styles.bigLogo}>
+                <div className={styles.bigLogo} style={returnWhite(nightmode)}>
                     MoodApp
                 </div>
             </ScrollAnimation>
@@ -25,12 +28,12 @@ const DefaultHome = () => {
             <ScrollAnimation animateIn="fadeInDown" delay={2000} offset={75} animateOnce={true}>
                 <div className={styles.buttons}>
                     <Link to="/login">
-                        <ButtonWid color={"#3366ff"} background={"#fff2f2"}>
+                        <ButtonWid nightmode={nightmode} color={"#3366ff"} background={"#fff2f2"}>
                             Log In
                         </ButtonWid>
                     </Link>
                     <Link to="/register">
-                        <ButtonWid color={"#fffff2"} background={"#3366ff"}>
+                        <ButtonWid nightmode={nightmode} color={"#fffff2"} background={"#3366ff"}>
                             Sign Up
                         </ButtonWid>
                     </Link>
@@ -41,10 +44,11 @@ const DefaultHome = () => {
 }
 
 const UserHome = (props) => {
+    let nightmode = props.nightmode;
     return (
         <div className={styles.wrapper} >
             <ScrollAnimation animateIn="fadeInDown" animateOnce={true}>
-                <div className={styles.bigLogo}>
+                <div className={styles.bigLogo} style={returnWhite(nightmode)}>
                     MoodApp
                 </div>
             </ScrollAnimation>
@@ -57,12 +61,12 @@ const UserHome = (props) => {
             <ScrollAnimation animateIn="fadeInDown" delay={2000} offset={75} animateOnce={true}>
                 <div className={styles.buttons}>
                     <Link to="/dashboard">
-                        <ButtonWid color={"#fffff2"} background={"#3366ff"}>
+                        <ButtonWid nightmode={nightmode} color={"#fffff2"} background={"#3366ff"}>
                             Your Dashboard
                         </ButtonWid>
                     </Link>
                     <Link to="/logout">
-                        <ButtonWid color={"#3366ff"} background={"#fff2f2"}>
+                        <ButtonWid nightmode={nightmode} color={"#3366ff"} background={"#fff2f2"}>
                             Log Out
                         </ButtonWid>
                     </Link>

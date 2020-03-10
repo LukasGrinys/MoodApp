@@ -2,6 +2,13 @@ import React from 'react';
 import styles from './messagebox.module.css';
 
 const MessageBox = (props) => {
+    if (props.nightmode === "true") {
+        return (
+            <div className={styles.messageBox} style={{ color: "#f2f2f2"}}>
+                {props.text}
+            </div>
+        )
+    };
     if (props.success) {
         return (
             <div className={styles.messageBox} style={{

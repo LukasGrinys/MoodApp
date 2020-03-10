@@ -47,9 +47,9 @@ class LoginForm extends Component {
 
     renderMessage = () => {
         if (this.state.success) {
-            return ( <MessageBox text={this.state.message} success={true}/> )
+            return ( <MessageBox nightmode={this.props.nightmode} text={this.state.message} success={true}/> )
         } else if (!this.state.success) {
-            return ( <MessageBox text={this.state.message} success={false}/> )
+            return ( <MessageBox nightmode={this.props.nightmode} text={this.state.message} success={false}/> )
         } else {
             return null
         }
@@ -68,7 +68,7 @@ class LoginForm extends Component {
                         width: "100%", display: "flex", alignItems: "center", justifyContent: "center"
                     }}>
                         <div onClick={this.handleForm}>
-                            <Button color={"#fffff2"} background={"#3366ff"}>
+                            <Button color={"#fffff2"} background={"#3366ff"} nightmode={this.props.nightmode}>
                                 Log In
                             </Button>
                         </div>

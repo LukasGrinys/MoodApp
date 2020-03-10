@@ -2,10 +2,11 @@ import React from 'react';
 import FormWrapper from './../widgets/FormWrapper';
 import LoginForm from './loginForm';
 
-const Login = () => {
+const Login = (props) => {
+    let nightmode = props.nightmode;
     return (
         <FormWrapper>
-            <LoginForm/>
+            <LoginForm nightmode={nightmode}/>
         </FormWrapper>
     );
 };

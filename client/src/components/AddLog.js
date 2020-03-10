@@ -7,6 +7,7 @@ import styles from './addlog.module.css';
 import ButtonWid from './../widgets/Button';
 import FontAwesome from 'react-fontawesome';
 import BackButton from './../widgets/backButton';
+import {returnWhite} from './../widgets/nightmodeColors';
 
 class AddLog extends Component {
     state = {
@@ -130,7 +131,7 @@ class AddLog extends Component {
                         <h1>Add a Log</h1>
                         <label htmlFor="mood">How do you feel at the moment? Rate your mood:</label><br/>
                         <div className={styles.center}>
-                            <div className={styles.moodbox}>
+                            <div className={styles.moodbox} style={returnWhite(this.props.nightmode)}>
                                 {this.state.mood}
                             </div><br/>
                             <div className={styles.inputLine}>
@@ -152,11 +153,11 @@ class AddLog extends Component {
                                 <ButtonWid color="#FFFFFF" background="#3366FF">Submit</ButtonWid>
                             </div>
                         </div>  
-                        <BackButton/>  
+                        <BackButton nightmode={this.props.nightmode}/>  
                     </FormWrapper>
                 );
             } else {
-                return <Loading/>
+                return <Loading nightmode={this.props.nightmode}/>
             }
         } else {
             return <Loading/>

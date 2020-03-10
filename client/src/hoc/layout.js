@@ -1,22 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Header from './header';
 
-const returnBackgroundStyle = (nm) => {
-    if (nm === true) {
-        document.body.style.background = "rgb(51, 51, 51)";
-        document.body.style.color = "rgb(242,242,242";
-    }
-}
-const Layout = (props) => {
-    returnBackgroundStyle(props.nightmode);
-    return (
-        <div>
-            <Header {...props}/>
-            <div className="content_wrapper" {...props}>
-                    {props.children}
+class Layout extends Component {
+    render() {
+        let nightmode = this.props.nightmode;
+        return (
+            <div>
+                <Header nightmode={nightmode}/>
+                <div className="content_wrapper" {...this.props}>
+                        {this.props.children}
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default Layout;

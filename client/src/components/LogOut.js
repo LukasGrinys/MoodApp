@@ -9,7 +9,7 @@ const LogOut = (props) => {
     }, 1000) );
     return (
         <div>
-            <Loading/>
+            <Loading nightmode={props.nightmode}/>
         </div>
     );
 };

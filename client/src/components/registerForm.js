@@ -105,6 +105,7 @@ class RegisterForm extends Component {
     }
 
     render() {
+        console.log(this.props.nightmode)
         return (
             <div>
                 <h1>Sign up</h1>
@@ -121,7 +122,7 @@ class RegisterForm extends Component {
                     {this.renderMessage()}
                     <div className={styles.center_line}>
                         <div onClick={this.handleForm}>
-                            <Button color={"#fffff2"} background={"#3366ff"}>
+                            <Button color={"#fffff2"} background={"#3366ff"} nightmode={this.props.nightmode}>
                                 Sign Me Up!
                             </Button>
                         </div>

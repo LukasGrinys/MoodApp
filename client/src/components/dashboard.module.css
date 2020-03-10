@@ -96,6 +96,10 @@
     padding: 5px;
     font-size: 1.3em;
     border-radius: 4px;
+    transition: 0.5s;
+}
+.button_logs:hover {
+    transform: scale(1.05, 1.05);
 }
 .button_logs a {
     color: #FFFFFF;
@@ -124,4 +128,30 @@
 .status_text {
     font-size: 1.2em;
     font-weight: bold;
+}
+.flex_container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.settings_icon_wrapper {
+    transition: 0.2s;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.settings_icon {
+    color: #3366FF;
+    font-size: 6em;
+    opacity: 0.5;
+}
+.settings_icon:hover {
+    opacity: 1;
+}
+.settings_icon_wrapper:hover {
+    transform: rotate(45deg);
 }

@@ -89,18 +89,29 @@ app.post('/api/editAccount', (req,res) => {
     })
 })
 
+// Get user details for account editing
+app.get('/api/getUser', (req,res) => {
+    User.findById(req.query.id, (err, doc) => {
+        if (err) return res.status(400).send(err);
+        res.json({
+            success: true,
+            doc
+        })
+    })
+})
+
 // Change password
 app.post('/api/changePassword', (req,res) => {
     User.findById(req.body._id, (err, user) => {
         if (!user) return res.status(400).send("User not found");
         user.comparePassword(req.body.oldpassword, (err, isMatch) => {
             if (err) return res.status(400).send('Error comparing the passwords');
-            if (!isMatch) return res.status(403).send('Wrong password');
+            if (!isMatch) return res.status(200).send({error: true, message: 'Wrong password'});
             if (isMatch) {
                 user.password = req.body.newpassword;
                 user.save( (err) => {
                     if (err) return res.status(500).send("Error updating password");
-                    return res.status(200).send("Password was updated");
+                    return res.status(200).send({error: false, message: "Password was updated"});
                 })
             }
         });

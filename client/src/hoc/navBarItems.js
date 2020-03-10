@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
-// import { connect } from 'react-redux';
-
+import { returnNavbarStyle } from './../widgets/nightmodeColors';
 import styles from './css/header.module.css';
 
 const NavBarItems = (props) => {
@@ -40,7 +39,7 @@ const NavBarItems = (props) => {
     ];
     const itemElement = (item, i) => (
         <Link to={item.path} key={i}>
-            <div className={styles.navItem} onClick={props.closeNav}>
+            <div className={styles.navItem} onClick={props.closeNav} style={returnNavbarStyle(props.nightmode)}>
                 <FontAwesome name={item.iconName}/> {item.text}
             </div> 
         </Link>

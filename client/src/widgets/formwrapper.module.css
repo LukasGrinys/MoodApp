@@ -9,6 +9,9 @@
     text-align: center;
     padding: 5px;
 }
+.formWrappe h2 {
+    text-align: center;
+}
 .formWrapper span, .formWrapper div {
     margin: 5px;
 }
@@ -56,4 +59,35 @@ input[type=range]::-ms-track {
     background: transparent; 
     border-color: transparent;
     color: transparent;
+}
+
+input[type=checkbox] {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    width: 40px;
+    height: 20px;
+    border: none;
+    border-radius: 15px;
+    background: #d1d1d1;
+    border:1px solid #cccccc;
+    transition: 0.3s;
+}
+input[type=checkbox]:focus {
+    outline: none;
+}
+input[type=checkbox]::after {
+    content: '';
+    display: block;
+    color: transparent;
+    width: 22px;
+    height: 22px;
+    background-color: #3366FF;
+    border-radius: 50%;
+    transition: 0.3s;
+    transform: translate(-2px, -2px);
+}
+input[type=checkbox]:checked {
+    background-color: #3399FF
+}
+input[type=checkbox]:checked::after {
+    transform: translate(20px, -2px);
 }

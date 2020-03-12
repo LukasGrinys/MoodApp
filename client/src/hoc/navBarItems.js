@@ -35,6 +35,12 @@ const NavBarItems = (props) => {
             path: "/dashboard",
             text: "Your Dashboard",
             isAuth: true
+        },
+        {
+            iconName: "cog",
+            path: "/settings",
+            text: "Settings",
+            isAuth: true
         }
     ];
     const itemElement = (item, i) => (
@@ -46,11 +52,10 @@ const NavBarItems = (props) => {
     )
 
     const showItems = () => (
-        
             items.map( (item, i) => {
-                if (props.isAuth === true && item.isAuth) {
+                if (props.isAuth === true && item.isAuth === true) {
                     return itemElement(item,i)     
-                } else if (props.isAuth === false && !item.isAuth) {
+                } else if (props.isAuth !== true && item.isAuth === false) {
                     return itemElement(item,i) 
                 } else if (item.isAuth === null) {
                     return itemElement(item,i)
@@ -67,11 +72,4 @@ const NavBarItems = (props) => {
     );
 };
 
-// function mapStateToProps(state) {
-//     return {
-//         user: state.user
-//     }
-// }
 export default NavBarItems
-
-// export default connect(mapStateToProps)(NavBarItems);

@@ -10,6 +10,7 @@ mongoose.connect(config.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true 
 });
+mongoose.set('useFindAndModify', false);
 
 const { User } = require('./models/user');
 const { Log } = require('./models/log');

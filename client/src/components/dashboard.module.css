@@ -18,7 +18,7 @@
 }
 .net_item {
     width: 45%;
-    height: 300px;
+    max-height: 300px;
     border: 2px solid #d1d1d175;
     border-radius: 4px;
     margin: 5px;
@@ -154,4 +154,21 @@
 }
 .settings_icon_wrapper:hover {
     transform: rotate(45deg);
+}
+.settings_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.logout_icon_wrapper {
+    transition: 0.2s;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logout_icon_wrapper:hover {
+    transform: translateX(5px);
 }

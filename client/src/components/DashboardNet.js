@@ -118,12 +118,30 @@ const SettingsItem = (props) => {
                     <div className={styles.settings_icon_wrapper}> 
                         <FontAwesome name="cog" className={styles.settings_icon} style={returnWhite(props.nightmode)}/>
                     </div>
-                    <div style={returnWhite(props.nightmode)}>Edit your account</div>
                 </Link>
             </div>
         </div>
     )
 }
+
+const LogoutItem = (props) => {
+    return (
+        <div>
+            <div className={styles.net_header}>
+                Log out
+            </div>
+            <div className={styles.flex_container}>
+                <Link to="/logout" className={styles.flex_container}>
+                    <div className={styles.logout_icon_wrapper}> 
+                        <FontAwesome name="sign-out" className={styles.settings_icon} style={returnWhite(props.nightmode)}/>
+                    </div>
+                </Link>
+            </div>
+        </div>
+    )
+}
+
+
 
 class DashboardNet extends Component {
     UNSAFE_componentWillMount() {
@@ -145,7 +163,7 @@ class DashboardNet extends Component {
                     <SettingsItem nightmode={this.props.nightmode}/>
                 </div>
                 <div className={styles.net_item}>
-                    This is net item
+                    <LogoutItem nightmode={this.props.nightmode}/>
                 </div>
             </div>
         )

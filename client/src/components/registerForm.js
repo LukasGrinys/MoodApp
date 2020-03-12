@@ -131,7 +131,7 @@ class RegisterForm extends Component {
                         {this.renderLoginButton()}
                     </div>
                 </form>
-                <BackButton/>
+                <BackButton nightmode={this.props.nightmode}/>
             </div>
         );
     }

@@ -68,7 +68,6 @@ input[type=checkbox] {
     border: none;
     border-radius: 15px;
     background: #d1d1d1;
-    border:1px solid #cccccc;
     transition: 0.3s;
 }
 input[type=checkbox]:focus {
@@ -83,11 +82,11 @@ input[type=checkbox]::after {
     background-color: #3366FF;
     border-radius: 50%;
     transition: 0.3s;
-    transform: translate(-2px, -2px);
+    transform: translate(-2px, -1px);
 }
 input[type=checkbox]:checked {
     background-color: #3399FF
 }
 input[type=checkbox]:checked::after {
-    transform: translate(20px, -2px);
+    transform: translate(20px, -1px);
 }

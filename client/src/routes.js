@@ -12,6 +12,7 @@ import AllLogs from './components/AllLogs';
 import LogView from './components/LogView';
 import LogOut from './components/LogOut';
 import Settings from './components/Settings';
+import Stats from './components/stats/Stats';
 
 import Auth from './hoc/auth';
 
@@ -52,6 +53,7 @@ class Routes extends Component {
                     <Route path="/logs/:id" exact component={Auth(LogView, true, nightmode, null)}></Route>
                     <Route path="/logout" exact component={Auth(LogOut, true, nightmode, null)}></Route>
                     <Route path="/settings" exact component={Auth(Settings, true, nightmode, this.changeMode)}></Route>
+                    <Route path="/stats" exact component={Auth(Stats, true, nightmode)}></Route>
                 </Switch>
             </Layout>
         )

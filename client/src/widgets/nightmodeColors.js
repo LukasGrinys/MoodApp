@@ -53,3 +53,20 @@ export function dashboardButtonStyle(nm) {
         }
     }
 }
+
+export function ratingButtonStyle(nm) {
+    if (nm === "true") {
+        return {
+            background: "#cccccc",
+            color: "#0d0d0d"
+        }
+    }
+}
+
+export function graphStroke(nm) {
+    if (nm === "true") {
+        return {
+            stroke: "#d2d2d2"
+        }
+    }
+}

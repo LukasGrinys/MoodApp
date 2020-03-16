@@ -142,3 +142,18 @@ export function clearPostLog() {
         payload: {}
     }
 }
+
+export function getAllLogs(user) {
+    const request = axios.get(`/api/getLogs?id=${user}&limit=100`)
+    .then( (response) =>  {
+        if (response.data === "No logs found") {
+            return []
+        } else {
+            return response.data
+        }
+    });
+    return {
+        type: 'GET_LOGS',
+        payload: request
+    }
+}

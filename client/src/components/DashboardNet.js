@@ -96,7 +96,7 @@ const MoodStatus = (props) => {
             <div className={styles.status_text}>
                 {returnMessage(returnRating(props.lastLogs.data))}
             </div>
-            <Link to="" style={{width: "100%"}}>
+            <Link to="/stats" style={{width: "100%"}}>
                 <div className={styles.button_logs} style={dashboardButtonStyle(props.nightmode)}>
                     Stats
                 </div> 

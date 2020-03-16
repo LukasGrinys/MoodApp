@@ -7,10 +7,10 @@ import FontAwesome from 'react-fontawesome';
 import BackButton from './../widgets/backButton';
 
 class LogView extends Component {
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.props.dispatch(viewLog(this.props.match.params.id))
     }
-    componentWillUnmount() {
+    UNSAFE_componentWillUnmount() {
         this.props.dispatch(clearLog())
     }
     render() {

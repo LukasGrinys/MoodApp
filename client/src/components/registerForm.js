@@ -105,7 +105,6 @@ class RegisterForm extends Component {
     }
 
     render() {
-        console.log(this.props.nightmode)
         return (
             <div>
                 <h1>Sign up</h1>

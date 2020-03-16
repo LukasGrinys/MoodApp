@@ -7,7 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server/server.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "start" : "node server/server.js"
+  },
+  "engines" : {
+    "node" : "10.16.3"
   },
   "author": "Lukas Grinys",
   "license": "ISC",

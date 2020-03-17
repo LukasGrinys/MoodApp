@@ -3,9 +3,11 @@ export default function(state={}, action) {
         case 'CREATE_USER':
             return {...state, success:action.payload.success }
         case 'LOGIN_USER' :
-            return {...state, data:action.payload.data }
+            return {...state, data: action.payload.data }
         case 'USER_AUTH' :
-            return {...state, data:action.payload }
+            return {...state, data: action.payload }
+        case 'CLEAN_USER' :
+            return {...state, data: action.payload}
         default:
             return state;
     }

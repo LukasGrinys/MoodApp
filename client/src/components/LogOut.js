@@ -1,17 +1,28 @@
-import React from 'react';
-import axios from 'axios';
+import React, {Component} from 'react';
 import Loading from './../widgets/loading';
+import { connect } from 'react-redux';
+import { logOut, clearLogs } from './../actions';
 
-const LogOut = (props) => {
-    axios.get('/api/logout')
-    .then( setTimeout( () => {
-        props.history.push('/');
-    }, 1000) );
-    return (
-        <div>
-            <Loading nightmode={props.nightmode}/>
-        </div>
-    );
+class LogOut extends Component {
+    UNSAFE_componentWillMount(){
+        this.props.dispatch(logOut());
+    }
+    componentWillUnmount(){
+        this.props.dispatch(clearLogs());
+    }
+    render(){
+        return (
+            <div>
+                <Loading nightmode={this.props.nightmode}/>
+            </div>
+        );
+    }
 };
 
-export default LogOut;
+function mapStateToProps(state) {
+    return {
+        user: state.user,
+        logs: state.logs
+    }
+}
+export default connect(mapStateToProps)(LogOut);

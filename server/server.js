@@ -23,11 +23,6 @@ app.use(express.static(__dirname + '/public'));
 if (process.env.NODE_ENV === 'production') {
     // Exprees will serve up production assets
     app.use(express.static('client/build'));
-    // // Express serve up index.html file if it doesn't recognize route
-    // const path = require('path');
-    // app.get('*', (req, res) => {
-    //   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    // });
 }
 // API routes
 // DEMO get users
@@ -48,12 +43,10 @@ app.get('/api/auth', auth, (req, res) => {
     })
 })
 
-
 // Register
 app.post('/api/users', (req,res) => {
     const user = new User(req.body);
     user.save( (err, doc) => {
-        console.log(err);
         if (err) return res.status(400).send({success: false, error: err});
         res.status(200).send({
             success: true,
@@ -143,7 +136,7 @@ app.delete('/api/deleteAccount', (req,res) => {
 app.post('/api/postLog', (req, res)=> {
     const dateOfLog = req.body.date;
     const timingOfLog = req.body.timing;
-    Log.find({date : dateOfLog, timing: timingOfLog}, (err, doc) => {
+    Log.find({ownerId : req.body.ownerId, date : dateOfLog, timing: timingOfLog}, (err, doc) => {
         if (err) return res.status(400).send("Could not post the log");
         if (doc.length > 0) return res.status(400).send("Cant post new log yet");
         const log = new Log(req.body);

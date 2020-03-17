@@ -8,8 +8,9 @@ import FontAwesome from 'react-fontawesome';
 import { returnWhite, dashboardButtonStyle } from './../widgets/nightmodeColors';
 
 const LastLogsItem = (props) => {
-    const renderLogs = (data) => {
-        const lastThreeLogs = data.slice(0,3);
+    const renderLogs = (arr) => {
+        if (arr.length === 0 || typeof(arr) === String) { return null };
+        const lastThreeLogs = arr.slice(0,3);
         return lastThreeLogs.map( (item, i) => (
             <div key={i} className={styles.log_wrapper}>
                 <div className={styles.log_content}>
@@ -26,7 +27,7 @@ const LastLogsItem = (props) => {
         ))
     }
     if (props.lastLogs) {
-        if (props.lastLogs.data === "No logs found") {
+        if (props.lastLogs === "No logs found") {
             return (
                 <div className={styles.grey_text}>
                     There are no logs at the moment <br/><br/>
@@ -37,7 +38,7 @@ const LastLogsItem = (props) => {
             return ( 
             <div className={styles.flex_between}> 
                 <div className={styles.net_itemHeader}>Last logs</div>
-                {renderLogs(props.lastLogs.data)}
+                {renderLogs(props.lastLogs)}
                 <Link to="/logs"><div className={styles.button_logs} style={dashboardButtonStyle(props.nightmode)}>All Logs</div></Link>
             </div> 
             )  
@@ -68,7 +69,7 @@ const MoodStatus = (props) => {
     };
     const returnMessage = (rating) => {
         const parsedRating = parseInt(rating);
-        if (props.lastLogs.data.length < 9) {
+        if (props.lastLogs.length < 9) {
             return "";
         };
         if (parsedRating >= 7.5) {
@@ -83,28 +84,30 @@ const MoodStatus = (props) => {
         if (parsedRating < 3) {
             return "Bad"
         };
+    };
+
+    if (props.lastLogs) {
+            return (
+                <div className={styles.status_container}>
+                    <div className={styles.net_itemHeader}>
+                        Latest mood status
+                    </div>
+                    <div className={styles.status_box} style={dashboardButtonStyle(props.nightmode)}>
+                        {returnRating(props.lastLogs)}
+                    </div>
+                    <div className={styles.status_text}>
+                        {returnMessage(returnRating(props.lastLogs))}
+                    </div>
+                    <Link to="/stats" style={{width: "100%"}}>
+                        <div className={styles.button_logs} style={dashboardButtonStyle(props.nightmode)}>
+                            Stats
+                        </div> 
+                    </Link>
+                </div>
+            )
+    } else {
+        return <LoadingNetItem/>
     }
-    return (
-        props.lastLogs ?
-        <div className={styles.status_container}>
-            <div className={styles.net_itemHeader}>
-                Latest mood status
-            </div>
-            <div className={styles.status_box} style={dashboardButtonStyle(props.nightmode)}>
-                {returnRating(props.lastLogs.data)}
-            </div>
-            <div className={styles.status_text}>
-                {returnMessage(returnRating(props.lastLogs.data))}
-            </div>
-            <Link to="/stats" style={{width: "100%"}}>
-                <div className={styles.button_logs} style={dashboardButtonStyle(props.nightmode)}>
-                    Stats
-                </div> 
-            </Link>
-        </div>
-        :
-        <LoadingNetItem/>
-    );
 }
 
 const SettingsItem = (props) => {
@@ -148,25 +151,25 @@ class DashboardNet extends Component {
         this.props.dispatch(getLastLogs(this.props.user));
     }
     render() {
-        return (
-            <div className={styles.net}>
-                <div className={styles.net_header}>
-                    Your dashboard
+            return (
+                <div className={styles.net}>
+                    <div className={styles.net_header}>
+                        Your dashboard
+                    </div>
+                    <div className={styles.net_item}>
+                        <LastLogsItem  lastLogs={this.props.lastLogs} nightmode={this.props.nightmode}/>
+                    </div>
+                    <div className={styles.net_item}>
+                        <MoodStatus  lastLogs={this.props.lastLogs} nightmode={this.props.nightmode}/>
+                    </div>
+                    <div className={styles.net_item} nightmode={this.props.nightmode}>
+                        <SettingsItem nightmode={this.props.nightmode}/>
+                    </div>
+                    <div className={styles.net_item}>
+                        <LogoutItem nightmode={this.props.nightmode}/>
+                    </div>
                 </div>
-                <div className={styles.net_item}>
-                    <LastLogsItem lastLogs={this.props.lastLogs} nightmode={this.props.nightmode}/>
-                </div>
-                <div className={styles.net_item}>
-                    <MoodStatus lastLogs={this.props.lastLogs} nightmode={this.props.nightmode}/>
-                </div>
-                <div className={styles.net_item} nightmode={this.props.nightmode}>
-                    <SettingsItem nightmode={this.props.nightmode}/>
-                </div>
-                <div className={styles.net_item}>
-                    <LogoutItem nightmode={this.props.nightmode}/>
-                </div>
-            </div>
-        )
+            )
     }  
 }
 

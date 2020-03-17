@@ -62,6 +62,7 @@ class Stats extends Component {
             } else {
                 return (
                     <div>
+                        <BackButton/>
                         No logs to be found for the statistics
                     </div>
                 )

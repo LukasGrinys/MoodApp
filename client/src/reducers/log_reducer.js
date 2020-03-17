@@ -18,6 +18,8 @@ export default function(state={}, action) {
             return {...state, logPosted: action.payload}
         case 'CLEAR_POST_LOG' :
             return {...state, logPosted: action.payload}
+        case 'CLEAR_LOGS' :
+            return {lastLogs: action.payload, data: action.payload}
         default:
             return state;
     }

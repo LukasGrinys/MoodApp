@@ -30,6 +30,20 @@ export function loginUser(user) {
     }
 }
 
+export function logOut() {
+    const request = axios.get('/api/logout')
+    return (dispatch) => {
+        request.then( (response) => {
+            if (response.status === 200) {
+                dispatch({
+                    type: 'CLEAN_USER',
+                    payload: {}
+                })
+            }
+        })
+    }
+}
+
 export function auth() {
     const request = axios.get('/api/auth')
     .then(response => response.data );
@@ -72,10 +86,10 @@ export function getLastLogs(user) {
     const url = `/api/getLogs?id=${user}&limit=9`;
     const request = axios.get(url);
     return (dispatch) => {
-        request.then( (data) => {
+        request.then( (response) => {
         dispatch({
             type: 'GET_LAST_LOGS',
-            lastLogs: data
+            lastLogs: response.data
             })
         })
     }
@@ -155,5 +169,13 @@ export function getAllLogs(user) {
     return {
         type: 'GET_LOGS',
         payload: request
+    }
+}
+
+
+export function clearLogs() {
+    return {
+        type: 'CLEAR_LOGS',
+        payload: null
     }
 }

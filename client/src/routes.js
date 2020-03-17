@@ -18,10 +18,14 @@ import Auth from './hoc/auth';
 
 class Routes extends Component {
     state = {
-        nightmode: localStorage.nightmode
+        nightmode: "false"
     }
     UNSAFE_componentWillMount(){
-        if (this.state.nightmode === "true") {
+        if (!localStorage.nightmode) {
+            localStorage.nightmode = "false";
+        };
+        if (localStorage.nightmode === "true") {
+            this.setState({nightmode: "true"});
             document.body.style.background = "rgb(51, 51, 51)";
             document.body.style.color = "rgb(242,242,242";
         }
@@ -37,6 +41,7 @@ class Routes extends Component {
             document.body.style.background = "rgb(51, 51, 51)";
             document.body.style.color = "rgb(242,242,242";
         };
+        // Store in local storage
         localStorage.nightmode = this.state.nightmode;
     }
     render(){

@@ -13,6 +13,18 @@ const DaytimeGraph = ({obj, nightmode}) => {
             return `${styles.daytime_icon}`
         }
     }
+
+    const returnBullet = (rating, left) => {
+        if (rating !== "N/A") {
+            return (
+                <div className={styles.daytime_bullet} style={{bottom:`${rating * 30 -10}px`, left:`${left}`}}>
+                    <div className={styles.daytime_bullet_text}>{rating}</div>
+                </div>
+            )
+        } else {
+            return null
+        }
+    }
     return (
         <div className={styles.daytime_canvas}>
             <svg width={"100%"} height={"100%"} overflow={"hidden"}>
@@ -22,15 +34,9 @@ const DaytimeGraph = ({obj, nightmode}) => {
             <polyline points={"1,240 300,240"} style={{fill:"none", stroke:"#cccccc", strokeWidth:"1"}}/>
             <polyline points={"1,300 300,300"} style={{fill:"none", stroke:"#cccccc", strokeWidth:"1"}}/>
             </svg>
-            <div className={styles.daytime_bullet} style={{bottom:`${obj.morningAverage * 30 -10}px`}}>
-                <div className={styles.daytime_bullet_text}>{obj.morningAverage}</div>
-            </div>
-            <div className={styles.daytime_bullet} style={{left:"48%",bottom:`${obj.afternoonAverage * 30 -10}px`}}>
-                <div className={styles.daytime_bullet_text}>{obj.afternoonAverage}</div>
-            </div>
-            <div className={styles.daytime_bullet} style={{left:"82%",bottom:`${obj.eveningAverage * 30 -10}px`}}>
-                <div className={styles.daytime_bullet_text}>{obj.eveningAverage}</div>
-            </div>
+            {returnBullet(obj.morningAverage, null)}
+            {returnBullet(obj.afternoonAverage, "48%")}
+            {returnBullet(obj.eveningAverage, "82%")}
             <div className={styles.y_axis_number_daytime} style={{top:"-12px"}}>10</div>
             <div className={styles.y_axis_number_daytime} style={{top:"48px", left: "-15px"}}>8</div>
             <div className={styles.y_axis_number_daytime} style={{top:"108px", left:"-15px"}}>6</div>

@@ -7,7 +7,7 @@ import styles from './addlog.module.css';
 import ButtonWid from './../widgets/Button';
 import FontAwesome from 'react-fontawesome';
 import BackButton from './../widgets/backButton';
-import {returnWhite} from './../widgets/nightmodeColors';
+import {ratingButtonStyle} from './../widgets/nightmodeColors';
 
 class AddLog extends Component {
     state = {
@@ -87,13 +87,15 @@ class AddLog extends Component {
                     errorMessage: "Log was successfully posted. You will be redirected soon..",
                     logPosted: true
                 });
-                this.props.dispatch(clearPostLog());
                 setTimeout( () => {
                     this.props.dispatch(userCannotLog());
                     this.props.history.push("/dashboard");
                 }, 3000)
             }
         }
+    }
+    componentWillUnmount() {
+        this.props.dispatch(clearPostLog());
     }
     handleFormData = () => {
         if (this.state.mood === 0) {
@@ -131,7 +133,7 @@ class AddLog extends Component {
                         <h1>Add a Log</h1>
                         <label htmlFor="mood">How do you feel at the moment? Rate your mood:</label><br/>
                         <div className={styles.center}>
-                            <div className={styles.moodbox} style={returnWhite(this.props.nightmode)}>
+                            <div className={styles.moodbox} style={ratingButtonStyle(this.props.nightmode)}>
                                 {this.state.mood}
                             </div><br/>
                             <div className={styles.inputLine}>
@@ -150,7 +152,7 @@ class AddLog extends Component {
                         </div>
                         <div className={styles.inputLine}>
                             <div onClick={this.handleFormData}>
-                                <ButtonWid color="#FFFFFF" background="#3366FF">Submit</ButtonWid>
+                                <ButtonWid color="#FFFFFF" background="#3366FF" nightmode={this.props.nightmode}>Submit</ButtonWid>
                             </div>
                         </div>  
                         <BackButton nightmode={this.props.nightmode}/>  
@@ -160,7 +162,7 @@ class AddLog extends Component {
                 return <Loading nightmode={this.props.nightmode}/>
             }
         } else {
-            return <Loading/>
+            return <Loading nightmode={this.props.nightmode}/>
         }
         
     }

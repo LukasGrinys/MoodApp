@@ -15,7 +15,7 @@ class Settings extends Component {
         dataReceived: false,
         firstName: '',
         lastName: '',
-        nightmode: null,
+        nightmode: false,
         currentPassword: '',
         newPassword: '',
         dataSuccess: null,
@@ -29,20 +29,21 @@ class Settings extends Component {
         } else if (this.props.nightmode === "true") {
             this.setState({ nightmode: true})
         }
-        if (this.props.user && !this.state.dataReceived) {
-            if (this.props.user.data) {
-                const id = this.props.user.data.id;
-                axios.get(`/api/getUser?id=${id}`)
-                .then( ({data}) => {
-                    const firstName = data.doc.firstName;
-                    const lastName = data.doc.lastName;
-                    this.setState({
-                        dataReceived: true,
-                        firstName,
-                        lastName
-                    });
+    }
+
+    UNSAFE_componentWillReceiveProps(nextprops) {
+        if (nextprops.user.data) {
+            const id = nextprops.user.data.id;
+            axios.get(`/api/getUser?id=${id}`)
+            .then( ({data}) => {
+                const firstName = data.doc.firstName;
+                const lastName = data.doc.lastName;
+                this.setState({
+                    dataReceived: true,
+                    firstName,
+                    lastName
                 });
-            }
+            });
         }
     }
 

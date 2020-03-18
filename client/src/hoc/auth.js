@@ -9,9 +9,9 @@ export default function(ComposedClass, reload, nightmode, changemode) {
             this.props.dispatch(auth());
         }
         UNSAFE_componentWillReceiveProps(nextProps) {
-            console.log("Component will receive props");
+            console.log(nextProps);
             if (!nextProps.user.data.isAuth) {
-                if (reload) {
+                if (reload === true) {
                     this.props.history.push('/login');
                 }
             } else {

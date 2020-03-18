@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config').get(process.env.NODE_ENV);
+const path = require('path');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.DATABASE, {
@@ -22,14 +23,13 @@ app.use(express.static(__dirname + '/public'))
 
 if (process.env.NODE_ENV === 'production') {    
     app.use(express.static(__dirname + '/../client/build'));
-    // app.get('/*', function(req, res) {
-    //     res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
-    //       if (err) {
-    //         console.log(err);
-    //         res.status(500).send(err);
-    //       }s
-    //     })
-    //   })
+    app.get('/*', function(req, res) {
+        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        })
+      })
 }
 // API routes
 // DEMO get users

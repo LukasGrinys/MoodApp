@@ -25,7 +25,8 @@ if (process.env.NODE_ENV === 'production') {
     app.get('/*', function(req, res) {
         res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
           if (err) {
-            res.status(500).send(err)
+            console.log(err);
+            res.status(500).send(err);
           }
         })
       })

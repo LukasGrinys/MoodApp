@@ -18,12 +18,12 @@ const { auth } = require('./middleware/auth');
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(express.static(__dirname + '/public'));
-app.use(express.static(__dirname + '/../client/build'));
+app.use(express.static(__dirname + '/public'))
 
 if (process.env.NODE_ENV === 'production') {    
+    // app.use(express.static(__dirname + '/../client/build'));
     app.get('/*', function(req, res) {
-        res.sendFile(path.join(__dirname, '/client/build/index.html'), function(err) {
+        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
           if (err) {
             res.status(500).send(err)
           }

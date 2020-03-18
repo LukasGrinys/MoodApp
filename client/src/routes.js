@@ -45,6 +45,7 @@ class Routes extends Component {
         localStorage.nightmode = this.state.nightmode;
     }
     render(){
+        console.log("Routes object is rendered");
         let nightmode = this.state.nightmode;
         return (
             <Layout nightmode={nightmode}>

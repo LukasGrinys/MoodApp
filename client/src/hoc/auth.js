@@ -5,16 +5,15 @@ import { auth } from './../actions';
 export default function(ComposedClass, reload, nightmode, changemode) {
     class AuthenticationCheck extends Component {
         UNSAFE_componentWillMount() {
-            console.log("Component will mount");
             this.props.dispatch(auth());
         }
         UNSAFE_componentWillReceiveProps(nextProps) {
-            console.log(nextProps);
+            console.log(nextProps.user);
             if (!nextProps.user.data.isAuth) {
                 if (reload === true) {
                     this.props.history.push('/login');
                 }
-            } else {
+            } else if (nextProps.user.data.isAuth === true) {
                 if (reload === false) {
                     this.props.history.push('/dashboard')
                 }

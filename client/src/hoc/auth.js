@@ -8,7 +8,6 @@ export default function(ComposedClass, reload, nightmode, changemode) {
             this.props.dispatch(auth());
         }
         UNSAFE_componentWillReceiveProps(nextProps) {
-            console.log(nextProps.user.data);
             if (!nextProps.user.data.isAuth) {
                 if (reload === true && typeof(data) !== String) {
                     this.props.history.push('/login');

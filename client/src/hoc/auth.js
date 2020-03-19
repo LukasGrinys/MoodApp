@@ -10,7 +10,7 @@ export default function(ComposedClass, reload, nightmode, changemode) {
         UNSAFE_componentWillReceiveProps(nextProps) {
             console.log(nextProps.user.data);
             if (!nextProps.user.data.isAuth) {
-                if (reload === true && nextProps.user.data.length < 100) {
+                if (reload === true && typeof(data) !== String) {
                     this.props.history.push('/login');
                 }
             } else if (nextProps.user.data.isAuth === true) {

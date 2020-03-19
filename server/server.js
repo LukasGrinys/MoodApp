@@ -20,16 +20,72 @@ const { auth } = require('./middleware/auth');
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(__dirname + '/public'))
-app.use(express.static(__dirname + '/../client/build'));
+app.use(express.static(__dirname + '/../client/build')); 
 
-if (process.env.NODE_ENV === 'production') {    
-    app.get('/*', function(req, res) {
+if (process.env.NODE_ENV === 'production') {  
+    app.get('/login', function(req, res) {
         res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
           if (err) {
             res.status(500).send(err);
           }
         })
-      })
+    })
+    app.get('/register', function(req, res) {
+        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        })
+    })
+    app.get('/dashboard', function(req, res) {
+        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        })
+    })
+    app.get('/addlog', function(req, res) {
+        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        })
+    })
+    app.get('/logs', function(req, res) {
+        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        })
+    })
+    app.get('/logs/:id', function(req, res) {
+        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        })
+    })
+    app.get('/logout', function(req, res) {
+        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        })
+    })
+    app.get('/settings', function(req, res) {
+        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        })
+    })
+    app.get('/stats', function(req, res) {
+        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+          if (err) {
+            res.status(500).send(err);
+          }
+        })
+    })
 }
 // API routes
 // DEMO get users

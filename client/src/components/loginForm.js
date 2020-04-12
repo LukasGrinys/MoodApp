@@ -7,8 +7,8 @@ import MessageBox from './../widgets/MessageBox';
 
 class LoginForm extends Component {
     state = {
-        email: "mail@mail.com",
-        password: "password",
+        email: "",
+        password: "",
         success: false,
         message: ''
     }

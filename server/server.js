@@ -110,12 +110,11 @@ app.get('/api/auth', auth, (req, res) => {
 app.post('/api/users', (req,res) => {
     const user = new User(req.body);
     user.save( (err, doc) => {
-        if (err) return res.status(400).send({success: false, error: err});
+        if (err) return res.send({success: false, error: err});
         res.status(200).send({
             success: true,
             user:doc
         })
-
     })
 })
 

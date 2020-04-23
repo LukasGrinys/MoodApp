@@ -5,7 +5,8 @@ export function createUser(user) {
     return (dispatch) => {
         request.then( ( {data} ) => {
             let response = {
-                success: data.success
+                success: data.success,
+                error: data.error
             }
             dispatch({
                 type: 'CREATE_USER',

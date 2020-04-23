@@ -58,12 +58,17 @@ class RegisterForm extends Component {
         };
         if (fname && lname && email && password) {
             this.props.dispatch(createUser(payload));
+        } else if (this.state.password.trim().length < 6) {
+            this.setState({
+                success: false,
+                message: "The password needs to be atleast 6 characters long"
+            })
         } else {
             this.setState({
                 success: false,
-                message: "Required fields are missing"
+                message: "Fill out the missing fields"
             })
-        };
+        }
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
@@ -77,10 +82,18 @@ class RegisterForm extends Component {
                 message: "Your account has been succesfully created!"
             })
         } else if (nextProps.user.success === false) {
-            this.setState({
-                success: false,
-                message: "Error, try again later"
-            })
+            if (nextProps.user.error.code === 11000) {
+                this.setState({
+                    success: false,
+                    message: "User with the e-mail listed already exists"
+                })
+            } else {
+                this.setState({
+                    success: false,
+                    message: "Error, try again later"
+                })
+            }
+            
         }
     }
 
@@ -97,7 +110,7 @@ class RegisterForm extends Component {
     renderLoginButton = () => {
         if (this.state.success === true) {
             return ( <Link to="/login">
-                        <Button color={"#fffff2"} background={"#3366ff"}>Log in</Button>
+                        <Button color={"#fffff2"} background={"#3366ff"} nightmode={this.props.nightmode}>Log in</Button>
                     </Link> )
         } else {
             return null;
@@ -124,11 +137,9 @@ class RegisterForm extends Component {
                             <Button color={"#fffff2"} background={"#3366ff"} nightmode={this.props.nightmode}>
                                 Sign Me Up!
                             </Button>
+                            {this.renderLoginButton()}
                         </div>
                     </div><br/>
-                    <div className={styles.center_line}>
-                        {this.renderLoginButton()}
-                    </div>
                 </form>
                 <BackButton nightmode={this.props.nightmode}/>
             </div>

@@ -3,6 +3,9 @@ import styles from './css/header.module.css';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 import NavBar from './navBar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
+// import { library } from '@fortawesome/fontawesome-svg-core'
 
 class Header extends Component {
     state = {
@@ -69,6 +72,22 @@ class Header extends Component {
         : null
     )
 
+    changeMode = () => { 
+        this.props.changemode();
+    };
+
+    showNightmodeButton = () => (
+        this.props.nightmode === "true" ? 
+        <div className={styles.nightmode_button} onClick={this.changeMode}>
+            <FontAwesomeIcon icon={faSun} style={{fontSize:"1.5rem"}}></FontAwesomeIcon>
+            <div className={styles.nightmode_button_caption}>Day mode</div>
+        </div> :
+        <div className={styles.nightmode_button} onClick={this.changeMode}>
+            <FontAwesomeIcon icon={faMoon} style={{fontSize:"1.5rem"}}></FontAwesomeIcon>
+            <div className={styles.nightmode_button_caption}>Night mode</div>
+        </div>
+    )
+
     render() {
         return (
             <div className={styles.header}>
@@ -77,6 +96,7 @@ class Header extends Component {
                     <div className={styles.bars} style={this.makeInvisible()}>
                         {this.returnButton()}
                     </div>
+                    {this.showNightmodeButton()}
                 </div>
                 {this.showItems()}
             </div>

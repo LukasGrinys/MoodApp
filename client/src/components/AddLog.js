@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FormWrapper from './../widgets/FormWrapper';
 import { connect } from 'react-redux';
-import { canUserLog, postLog, clearPostLog, userCannotLog } from './../actions';
+import { canUserLog, postLog, clearPostLog, userCannotLog, clearLastLogs } from './../actions';
 import Loading from './../widgets/loading';
 import styles from './addlog.module.css';
 import ButtonWid from './../widgets/Button';
@@ -83,7 +83,7 @@ class AddLog extends Component {
         if (nextprops.logs.logPosted) {
             if (nextprops.logs.logPosted.success) {
                 this.setState({
-                    error: true,
+                    error: false,
                     errorMessage: "Log was successfully posted. You will be redirected soon..",
                     logPosted: true
                 });
@@ -96,6 +96,7 @@ class AddLog extends Component {
     }
     componentWillUnmount() {
         this.props.dispatch(clearPostLog());
+        this.props.dispatch(clearLastLogs());
     }
     handleFormData = () => {
         if (this.state.mood === 0) {
@@ -116,11 +117,20 @@ class AddLog extends Component {
                 }
             }
         }
-
     }
+
+    handleKeyUp = (event) => {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            this.handleFormData();
+        }
+    }
+
     renderErrorMessage = () => {
         if (this.state.error) {
             return <span style={{color:"#800000"}}>{this.state.errorMessage}</span>
+        } else if (this.state.logPosted) {
+            return <span style={{color:"#16774f"}}>{this.state.errorMessage}</span>
         } else {
             return null
         }
@@ -146,7 +156,7 @@ class AddLog extends Component {
                             </div>
                         </div><br/>
                         <label htmlFor="logtext">Describe your thoughts: (optional)</label><br/>
-                        <textarea id="logtext" name="logtext" onChange={this.handleTextInput} value={this.state.text} placeholder="What made your day better? Was there any specific situations or thoughts that changed your mood? If you don't want to write anything, leave this field empty."></textarea><br/>
+                        <textarea id="logtext" name="logtext" onKeyUp={this.handleKeyUp} onChange={this.handleTextInput} value={this.state.text} placeholder="What made your day better? Was there any specific situations or thoughts that changed your mood? If you don't want to write anything, leave this field empty."></textarea><br/>
                         <div className={styles.inputLine}>
                             {this.renderErrorMessage()}
                         </div>

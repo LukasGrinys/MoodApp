@@ -21,14 +21,19 @@ class GraphCanvas extends Component {
     }
     componentDidMount () {
         window.addEventListener('resize', () => {
-            let newWidth = this.myInput.current.offsetWidth;
+            let newWidth = 0;
+            if (this.myInput.current) {
+                newWidth = this.myInput.current.offsetWidth;
+            } else {
+                newWidth = 490;
+            };
             if (newWidth !== this.state.width) {
                 this.setState({
                     width: newWidth
                 })
             };
         });
-        if (this.state.width === 0) {
+        if (this.state.width === 0 && this.myInput !== null) {
             this.setState({
                 width: this.myInput.current.offsetWidth
             })

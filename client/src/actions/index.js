@@ -96,6 +96,13 @@ export function getLastLogs(user) {
     }
 }
 
+export function clearLastLogs() {
+    return {
+        type: "CLEAR_LAST_LOGS",
+        lastLogs: null
+    }
+}
+
 export function viewLog(id) {
     const request = axios.get(`/api/getLog?id=${id}`);
     return (dispatch) => {

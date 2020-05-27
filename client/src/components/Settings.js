@@ -64,16 +64,16 @@ class Settings extends Component {
         this.setState({newPassword, passwordChanged : null})
     }
 
-    handleSwitch = (event) => {
-        this.props.changemode();
-        if (event.target.checked === true) {
-            this.setState({ nightmode: true });
-            localStorage.nightmode = true;
-        } else if (event.target.checked === false) {
-            this.setState({ nightmode: false});
-            localStorage.nightmode = false;
-        }
-    }
+    // handleSwitch = (event) => {
+    //     this.props.changemode();
+    //     if (event.target.checked === true) {
+    //         this.setState({ nightmode: true });
+    //         localStorage.nightmode = true;
+    //     } else if (event.target.checked === false) {
+    //         this.setState({ nightmode: false});
+    //         localStorage.nightmode = false;
+    //     }
+    // }
     saveChanges = () => {
         const body = {
             _id : this.props.user.data.id,
@@ -186,12 +186,12 @@ class Settings extends Component {
                             </div>
                         </div>
                     </FormWrapper>
-                    <FormWrapper>
+                    {/* <FormWrapper>
                         <div className={styles.center}>
                             <label htmlFor="nightmode">Nightmode:</label>
                             <input type="checkbox" name="nightmode" checked={this.state.nightmode} onChange={this.handleSwitch}/>
                         </div>
-                    </FormWrapper>
+                    </FormWrapper> */}
                 </div>
             )
         } else {

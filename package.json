@@ -4,22 +4,27 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "node server/server.js",
+    "start": "node server/server.js",
     "server": "nodemon server/server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
-  "engines" : {
-    "node" : "10.16.3"
+  "engines": {
+    "node": "10.16.3"
   },
   "author": "Lukas Grinys",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-brands-svg-icons": "^5.13.0",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.2",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
+    "font-awesome": "^4.7.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.1",
     "react-fontawesome": "^1.7.1"

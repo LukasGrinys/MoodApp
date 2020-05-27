@@ -175,8 +175,7 @@ class DashboardNet extends Component {
 
 function mapStateToProps(state) {
     return {
-        lastLogs: state.logs.lastLogs,
-        lastNineLogs: state.logs.lastNineLogs
+        lastLogs: state.logs.lastLogs
     }
 }
 export default connect(mapStateToProps)(DashboardNet);

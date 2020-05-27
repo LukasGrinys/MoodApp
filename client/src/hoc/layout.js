@@ -6,8 +6,8 @@ class Layout extends Component {
         let nightmode = this.props.nightmode;
         return (
             <div>
-                <Header nightmode={nightmode}/>
-                <div className="content_wrapper" {...this.props}>
+                <Header nightmode={nightmode} changemode={this.props.changemode}/>
+                <div className="content_wrapper" nightmode={this.props.nightmode}>
                         {this.props.children}
                 </div>
             </div>

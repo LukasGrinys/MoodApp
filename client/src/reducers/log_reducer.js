@@ -20,6 +20,8 @@ export default function(state={}, action) {
             return {...state, logPosted: action.payload}
         case 'CLEAR_LOGS' :
             return {lastLogs: action.payload, data: action.payload}
+        case 'CLEAR_LAST_LOGS' :
+            return {...state, lastLogs: action.lastLogs}
         default:
             return state;
     }

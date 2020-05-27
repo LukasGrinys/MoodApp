@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from './../actions';
 
-export default function(ComposedClass, reload, nightmode, changemode) {
+export default function(ComposedClass, reload, nightmode) {
     class AuthenticationCheck extends Component {
         UNSAFE_componentWillMount() {
             this.props.dispatch(auth());
@@ -20,7 +20,7 @@ export default function(ComposedClass, reload, nightmode, changemode) {
         }
         render() {
             return (
-                <ComposedClass {...this.props} user={this.props.user} nightmode={nightmode} changemode={changemode}/>
+                <ComposedClass {...this.props} user={this.props.user} nightmode={nightmode}/>
             )
         }
     }

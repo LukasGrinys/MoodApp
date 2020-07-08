@@ -15,7 +15,6 @@ class Settings extends Component {
         dataReceived: false,
         firstName: '',
         lastName: '',
-        nightmode: false,
         currentPassword: '',
         newPassword: '',
         dataSuccess: null,
@@ -64,16 +63,6 @@ class Settings extends Component {
         this.setState({newPassword, passwordChanged : null})
     }
 
-    // handleSwitch = (event) => {
-    //     this.props.changemode();
-    //     if (event.target.checked === true) {
-    //         this.setState({ nightmode: true });
-    //         localStorage.nightmode = true;
-    //     } else if (event.target.checked === false) {
-    //         this.setState({ nightmode: false});
-    //         localStorage.nightmode = false;
-    //     }
-    // }
     saveChanges = () => {
         const body = {
             _id : this.props.user.data.id,

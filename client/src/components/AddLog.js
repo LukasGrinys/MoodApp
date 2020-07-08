@@ -17,7 +17,8 @@ class AddLog extends Component {
         moodText: '',
         error: false,
         errorMessage: '',
-        logPosted: false
+        logPosted: false,
+        disabled: false
     }
     returnDate = () => {
         const date = new Date();
@@ -91,6 +92,13 @@ class AddLog extends Component {
                     this.props.dispatch(userCannotLog());
                     this.props.history.push("/dashboard");
                 }, 3000)
+            } else {
+                this.setState({
+                    error: true,
+                    errorMessage: "Something went wrong, try again later",
+                    disabled: false,
+                    logPosted: false
+                })
             }
         }
     }
@@ -112,7 +120,10 @@ class AddLog extends Component {
                     errorMessage: "Can't post new logs right now. Next log will be available on 7:00"
                 })
             } else {
-                if (!this.state.logPosted) {
+                if (!this.state.logPosted && !this.state.disabled) {
+                    this.setState({
+                        disabled: true
+                    });
                     this.props.dispatch(postLog(this.props.user.data.id, this.returnDate(), timing, this.state.mood, this.state.text));
                 }
             }
@@ -162,7 +173,7 @@ class AddLog extends Component {
                         </div>
                         <div className={styles.inputLine}>
                             <div onClick={this.handleFormData}>
-                                <ButtonWid color="#FFFFFF" background="#3366FF" nightmode={this.props.nightmode}>Submit</ButtonWid>
+                                <ButtonWid color="#FFFFFF" background="#3366FF" disabled={this.state.disabled} nightmode={this.props.nightmode}>Submit</ButtonWid>
                             </div>
                         </div>  
                         <BackButton nightmode={this.props.nightmode}/>  

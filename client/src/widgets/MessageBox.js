@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './messagebox.module.css';
+import { useTheme } from './../hoc/ThemeContext';
 
 const MessageBox = (props) => {
-    if (props.nightmode === "true") {
+    const darkTheme = useTheme();
+
+    if (darkTheme === true) {
         return (
             <div className={styles.messageBox} style={{ color: "#f2f2f2"}}>
                 {props.text}

@@ -45,6 +45,19 @@ export function logOut() {
     }
 }
 
+export function deleteUser() {
+    return (dispatch) => {
+        dispatch({
+            type: 'CLEAN_USER',
+            payload: {}
+        });
+        dispatch({
+            type: 'CLEAN_LOGS',
+            payload: {}
+        });
+    }
+}
+
 export function auth() {
     const request = axios.get('/api/auth')
     .then(response => response.data );

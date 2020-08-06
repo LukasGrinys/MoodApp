@@ -4,14 +4,18 @@
     flex-direction: column;
 }
 
-.bigLogo {
-    font-size: 5em;
-    color: #3366ff;
-    font-family: "Kaushan Script";
-    text-align: center;
+.bigLogo_container {
     margin-bottom:25px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.bigLogo {
+    width: 300px;
+    height: auto;
+    margin: 0 auto;
+}
 .text {
     font-weight: 300;
     padding: 25px;
@@ -32,6 +36,8 @@
 .buttons {
     display: flex;
     flex-direction: row;
+    align-items: normal;
     justify-content: space-around;
+    flex-wrap: wrap;
     z-index: 0;
 }

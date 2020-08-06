@@ -1,5 +1,5 @@
 export function returnWhite(nightmode) {
-    if (nightmode === "true") {
+    if (nightmode === true) {
         return {
             color: "#f2f2f2"
         }
@@ -9,7 +9,7 @@ export function returnWhite(nightmode) {
 }
 
 export function returnBarStyle(nm) {
-    if (nm === "true") {
+    if (nm === true) {
         return {  border: '1px solid #f2f2f2',
                 backgroundColor: '#f2f2f2'}
     }
@@ -17,7 +17,7 @@ export function returnBarStyle(nm) {
 }
 
 export function returnLightGrey (nm) {
-    if (nm === "true") {
+    if (nm === true) {
         return {
             color: '#f2f2f2'
         }
@@ -26,7 +26,7 @@ export function returnLightGrey (nm) {
 }
 
 export function returnNavbarStyle(nm) {
-    if (nm === "true") {
+    if (nm === true) {
         return {
             backgroundColor: "#404040",
             color: "#ffffff"
@@ -36,7 +36,7 @@ export function returnNavbarStyle(nm) {
 }
 
 export function returnDarkBackground(nm) {
-    if (nm === "true") {
+    if (nm === true) {
         return {
             backgroundColor: "#404040"
         }
@@ -45,7 +45,7 @@ export function returnDarkBackground(nm) {
 }
 
 export function dashboardButtonStyle(nm) {
-    if (nm === "true") {
+    if (nm === true) {
         return {
             background: "#cccccc",
             color: "#0d0d0d",
@@ -55,7 +55,7 @@ export function dashboardButtonStyle(nm) {
 }
 //
 export function ratingButtonStyle(nm) {
-    if (nm === "true") {
+    if (nm === true) {
         return {
             background: "#cccccc",
             color: "#0d0d0d"
@@ -64,7 +64,7 @@ export function ratingButtonStyle(nm) {
 }
 
 export function graphStroke(nm) {
-    if (nm === "true") {
+    if (nm === true) {
         return {
             stroke: "#d2d2d2"
         }

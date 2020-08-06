@@ -7,7 +7,7 @@ import styles from './addlog.module.css';
 import ButtonWid from './../widgets/Button';
 import FontAwesome from 'react-fontawesome';
 import BackButton from './../widgets/backButton';
-import {ratingButtonStyle} from './../widgets/nightmodeColors';
+import MoodBox from './../widgets/moodBox';
 
 class AddLog extends Component {
     state = {
@@ -154,9 +154,9 @@ class AddLog extends Component {
                         <h1>Add a Log</h1>
                         <label htmlFor="mood">How do you feel at the moment? Rate your mood:</label><br/>
                         <div className={styles.center}>
-                            <div className={styles.moodbox} style={ratingButtonStyle(this.props.nightmode)}>
+                            <MoodBox>
                                 {this.state.mood}
-                            </div><br/>
+                            </MoodBox><br/>
                             <div className={styles.inputLine}>
                                 <FontAwesome className={styles.thumb} name="thumbs-down" style={{color: "#800000"}}/>
                                 <input onChange={this.handleMoodInput} type="range" id="mood" name="mood" min="1" max="10" value={this.state.mood}/>

@@ -10,7 +10,8 @@ class LoginForm extends Component {
         email: "",
         password: "",
         success: false,
-        message: ''
+        message: '',
+        isDisabled: false
     }
     handleEmail = (event) => {
         this.setState({
@@ -25,11 +26,30 @@ class LoginForm extends Component {
         })
     }
     handleForm = () => {
-        let payload = {
-            email: this.state.email,
-            password: this.state.password
+        if (!this.state.isDisabled) {
+            if (this.state.email === "") {
+                this.showErrorMessage("Empty e-mail field!");
+                return;
+            };
+            if (this.state.password === "") {
+                this.showErrorMessage("Please enter your password");
+                return;
+            };
+            let payload = {
+                email: this.state.email,
+                password: this.state.password
+            }
+            this.props.dispatch(loginUser(payload));
+            this.setState({
+                isDisabled: true
+            })
         }
-        this.props.dispatch(loginUser(payload));
+        
+    }
+    showErrorMessage = (message) => {
+        this.setState({
+            message: message
+        })
     }
     UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.user.data.isAuth) {
@@ -40,7 +60,8 @@ class LoginForm extends Component {
         } else {
             this.setState({
                 message: nextProps.user.data.message,
-                success: false
+                success: false,
+                isDisabled: false
             })
         }
     }
@@ -68,7 +89,7 @@ class LoginForm extends Component {
                         width: "100%", display: "flex", alignItems: "center", justifyContent: "center"
                     }}>
                         <div onClick={this.handleForm}>
-                            <Button color={"#fffff2"} background={"#3366ff"} nightmode={this.props.nightmode}>
+                            <Button color={"#fffff2"} background={"#3366ff"} disabled={this.state.isDisabled} nightmode={this.props.nightmode}>
                                 Log In
                             </Button>
                         </div>

@@ -6,8 +6,10 @@ import LoadingNetItem from './../widgets/loadingNetItem';
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import { returnWhite, dashboardButtonStyle } from './../widgets/nightmodeColors';
+import { useTheme } from './../hoc/ThemeContext';
 
 const LastLogsItem = (props) => {
+    const darkTheme = useTheme();
     const renderLogs = (arr) => {
         if (arr.length === 0 || typeof(arr) === String) { return null };
         const lastThreeLogs = arr.slice(0,3);
@@ -21,7 +23,7 @@ const LastLogsItem = (props) => {
                     </div>
                 </div>
                 <div className={styles.read_log}>
-                    <Link to={`/logs/${item._id}`} style={returnWhite(props.nightmode)}>Read more</Link> 
+                    <Link to={`/logs/${item._id}`} style={returnWhite(darkTheme)}>Read more</Link> 
                 </div>
             </div>
         ))
@@ -39,7 +41,7 @@ const LastLogsItem = (props) => {
             <div className={styles.flex_between}> 
                 <div className={styles.net_itemHeader}>Last logs</div>
                 {renderLogs(props.lastLogs)}
-                <Link to="/logs"><div className={styles.button_logs} style={dashboardButtonStyle(props.nightmode)}>All Logs</div></Link>
+                <Link to="/logs"><div className={styles.button_logs} style={dashboardButtonStyle(darkTheme)}>All Logs</div></Link>
             </div> 
             )  
         }
@@ -49,6 +51,8 @@ const LastLogsItem = (props) => {
 }
 
 const MoodStatus = (props) => {
+    const darkTheme = useTheme();
+
     const returnRating = (data) => {
         if (data !== "No logs found") {
             let total = 0;
@@ -67,6 +71,7 @@ const MoodStatus = (props) => {
             return "N/A"
         }
     };
+    
     const returnMessage = (rating) => {
         const parsedRating = parseInt(rating);
         if (props.lastLogs.length < 9) {
@@ -92,14 +97,14 @@ const MoodStatus = (props) => {
                     <div className={styles.net_itemHeader}>
                         Latest mood status
                     </div>
-                    <div className={styles.status_box} style={dashboardButtonStyle(props.nightmode)}>
+                    <div className={styles.status_box} style={dashboardButtonStyle(darkTheme)}>
                         {returnRating(props.lastLogs)}
                     </div>
                     <div className={styles.status_text}>
                         {returnMessage(returnRating(props.lastLogs))}
                     </div>
                     <Link to="/stats" style={{width: "100%"}}>
-                        <div className={styles.button_logs} style={dashboardButtonStyle(props.nightmode)}>
+                        <div className={styles.button_logs} style={dashboardButtonStyle(darkTheme)}>
                             Stats
                         </div> 
                     </Link>
@@ -111,6 +116,7 @@ const MoodStatus = (props) => {
 }
 
 const SettingsItem = (props) => {
+    const darkTheme = useTheme();
     return (
         <div>
             <div className={styles.net_header}>
@@ -119,7 +125,7 @@ const SettingsItem = (props) => {
             <div className={styles.flex_container}>
                 <Link to="/settings" className={styles.flex_container}>
                     <div className={styles.settings_icon_wrapper}> 
-                        <FontAwesome name="cog" className={styles.settings_icon} style={returnWhite(props.nightmode)}/>
+                        <FontAwesome name="cog" className={styles.settings_icon} style={returnWhite(darkTheme)}/>
                     </div>
                 </Link>
             </div>
@@ -128,6 +134,7 @@ const SettingsItem = (props) => {
 }
 
 const LogoutItem = (props) => {
+    const darkTheme = useTheme();
     return (
         <div>
             <div className={styles.net_header}>
@@ -136,7 +143,7 @@ const LogoutItem = (props) => {
             <div className={styles.flex_container}>
                 <Link to="/logout" className={styles.flex_container}>
                     <div className={styles.logout_icon_wrapper}> 
-                        <FontAwesome name="sign-out" className={styles.settings_icon} style={returnWhite(props.nightmode)}/>
+                        <FontAwesome name="sign-out" className={styles.settings_icon} style={returnWhite(darkTheme)}/>
                     </div>
                 </Link>
             </div>
@@ -157,16 +164,16 @@ class DashboardNet extends Component {
                         Your dashboard
                     </div>
                     <div className={styles.net_item}>
-                        <LastLogsItem  lastLogs={this.props.lastLogs} nightmode={this.props.nightmode}/>
+                        <LastLogsItem lastLogs={this.props.lastLogs}/>
                     </div>
                     <div className={styles.net_item}>
-                        <MoodStatus  lastLogs={this.props.lastLogs} nightmode={this.props.nightmode}/>
+                        <MoodStatus lastLogs={this.props.lastLogs}/>
                     </div>
-                    <div className={styles.net_item} nightmode={this.props.nightmode}>
-                        <SettingsItem nightmode={this.props.nightmode}/>
+                    <div className={styles.net_item} >
+                        <SettingsItem/>
                     </div>
                     <div className={styles.net_item}>
-                        <LogoutItem nightmode={this.props.nightmode}/>
+                        <LogoutItem/>
                     </div>
                 </div>
             )

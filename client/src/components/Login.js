@@ -1,12 +1,13 @@
 import React from 'react';
 import FormWrapper from './../widgets/FormWrapper';
 import LoginForm from './loginForm';
+import { useTheme } from './../hoc/ThemeContext';
 
-const Login = (props) => {
-    let nightmode = props.nightmode;
+const Login = () => {
+    const darkTheme = useTheme();
     return (
         <FormWrapper>
-            <LoginForm nightmode={nightmode}/>
+            <LoginForm nightmode={darkTheme}/>
         </FormWrapper>
     );
 };

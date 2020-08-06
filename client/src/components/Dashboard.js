@@ -3,14 +3,17 @@ import { connect } from 'react-redux';
 import DashboardNet from './DashboardNet';
 import AddNewLog from './../widgets/addNewLog';
 import Loading from './../widgets/loading';
+import { useTheme } from './../hoc/ThemeContext';
+
 
 const UserBoard = (props) => {
+    const darkTheme = useTheme();
     return (
         <div>
             <div>
-                <AddNewLog userId={props.userId} nightmode={props.nightmode}></AddNewLog>
+                <AddNewLog userId={props.userId} nightmode={darkTheme}></AddNewLog>
             </div>
-            <DashboardNet user={props.userId} nightmode={props.nightmode}/>
+            <DashboardNet user={props.userId} nightmode={darkTheme}/>
         </div>
     )
 };
@@ -37,7 +40,7 @@ class Dashboard extends Component {
             )
         }
         return (
-            <Loading nightmode={this.props.nightmode}/>
+            <Loading/>
         );
     }
 }

@@ -11,6 +11,16 @@ import styles from './stats.module.css';
 // Functions
 import { countAverage, lastSevenDaysAverage, listToArray, returnDaytimeStats} from './statsFunctions';
 import { ratingButtonStyle } from './../../widgets/nightmodeColors';
+import { useTheme } from './../../hoc/ThemeContext';
+
+const AverageBox = ( {children }) => {
+    const darkTheme = useTheme();
+    return (
+        <div className={styles.average_box} style={ratingButtonStyle(darkTheme)}>
+            {children}
+        </div>
+    )
+}
 
 class Stats extends Component {
     state = {
@@ -30,32 +40,31 @@ class Stats extends Component {
                 const sevenDayAverageObject = lastSevenDaysAverage(this.props.logs.list);
                 const listToArrayObject = listToArray(this.props.logs.list);
                 const daytimeAverageObject = returnDaytimeStats(this.props.logs.list);
-                let nightmode = this.props.nightmode;
                 return (
                     <div className={styles.container}>
-                        <BackButton nightmode={nightmode}/>
+                        <BackButton/>
                         <h1>User stats</h1>
                         <div className={styles.first_block}>
                             <div className={styles.average_block}>
                                 <b>Your average mood:</b>
-                                <div className={styles.average_box} style={ratingButtonStyle(nightmode)}>{countAverage(this.props.logs.list)}</div>
+                                <AverageBox>{countAverage(this.props.logs.list)}</AverageBox>
                                 <div className={styles.small_text_box}>Retrieved from the last 100 logs</div>
                             </div>
                             <div className={styles.average_block}>
                                 <b>7 day mood:</b>
-                                <div className={styles.average_box} style={ratingButtonStyle(nightmode)}>{sevenDayAverageObject.average}</div>
+                                <AverageBox>{sevenDayAverageObject.average}</AverageBox>
                                 <div className={styles.small_text_box}>Counted from the last 7 active days from <br/>
                                 {sevenDayAverageObject.firstDay} to {sevenDayAverageObject.lastDay}</div>
                             </div>
                         </div>
                         <div className={styles.graph_container}>
                             <b>Your mood graph</b>
-                            <GraphCanvas list={listToArrayObject.arr} nightmode={nightmode}/>
+                            <GraphCanvas list={listToArrayObject.arr}/>
                             <div> From {listToArrayObject.firstDay} to {listToArrayObject.lastDay}</div>
                         </div>
                         <div className={styles.daytime_container}>
                             <b>Your mood throughout the day:</b><br/>
-                            <DaytimeGraph obj={daytimeAverageObject} nightmode={nightmode}/>
+                            <DaytimeGraph obj={daytimeAverageObject}/>
                         </div>
                     </div>
                 )
@@ -68,7 +77,7 @@ class Stats extends Component {
                 )
             }
         } else {
-            return <Loading nightmode={this.props.nightmode}/>
+            return <Loading/>
         }
         
     }

@@ -36,5 +36,9 @@
     ],
     "development": []
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "brotli-webpack-plugin": "^1.1.0",
+    "compression-webpack-plugin": "^4.0.0"
+  }
 }

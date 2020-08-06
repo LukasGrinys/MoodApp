@@ -185,12 +185,22 @@ app.post('/api/changePassword', (req,res) => {
 });
 
 // Delete account 
-app.delete('/api/deleteAccount', (req,res) => {
-    const id = req.query.id
-    User.findByIdAndRemove(id, (err,doc) => {
-        if (err) return res.status(500).send(err);
-        res.json("User was deleted");
+app.post('/api/deleteAccount', (req,res) => {
+    const id = req.body.userId;
+    User.findById(id, (err, user) => {
+        if (!user) return res.status(400).send("User not found");
+        user.comparePassword(req.body.password, (err, isMatch) => {
+            if (err) return res.status(400).send({error: true, message: 'Error comparing the passwords'});
+            if (!isMatch) { 
+                return res.status(200).send({error: true, message: 'Wrong password'});
+            }
+            User.findByIdAndRemove(id, (err,doc) => {
+                if (err) return res.status(500).send(err);
+                return res.status(200).send({error: false, message : "User was deleted"});
+            })
+        });
     })
+    
 });
 
 // LOG ROUTES

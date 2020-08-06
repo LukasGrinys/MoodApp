@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import styles from './stats.module.css';
 import { graphStroke } from './../../widgets/nightmodeColors';
+import { useTheme } from './../../hoc/ThemeContext';
+
+const ReturnGraph = ( {points} ) => {
+    const darkTheme = useTheme();
+    return (
+        <polyline points={points} className={styles.graph_stroke} 
+        style={graphStroke(darkTheme)}/>
+    )
+}
 
 class GraphCanvas extends Component {
     state = {
@@ -57,8 +66,7 @@ class GraphCanvas extends Component {
                     <polyline points={"1,160 490,160"} style={{fill:"none", stroke:"#cccccc", strokeWidth:"1"}}/>
                     <polyline points={"1,180 490,180"} style={{fill:"none", stroke:"#cccccc", strokeWidth:"1"}}/>
                     <polyline points={"1,200 490,200"} style={{fill:"none", stroke:"#cccccc", strokeWidth:"1"}}/>
-                    <polyline points={this.returnPolylinePoints(this.props.list)}
-                    className={styles.graph_stroke} style={graphStroke(this.props.nightmode)}/>
+                    <ReturnGraph points={this.returnPolylinePoints(this.props.list)} />
                 </svg>
             </div>
         )

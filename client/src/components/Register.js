@@ -1,12 +1,12 @@
 import React from 'react';
 import FormWrapper from './../widgets/FormWrapper';
 import RegisterForm from './registerForm';
-const Register = (props) => {
-    let nightmode = props.nightmode;
+
+const Register = () => {
     return (
         <div>
             <FormWrapper>
-                <RegisterForm nightmode={nightmode}/>
+                <RegisterForm/>
             </FormWrapper>
         </div>
     );

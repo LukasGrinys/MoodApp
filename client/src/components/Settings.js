@@ -20,7 +20,8 @@ class Settings extends Component {
         dataSuccess: null,
         dataSuccessMessage: '',
         passwordChanged: null,
-        passwordChangedMessage: ''   
+        passwordChangedMessage: '',
+        isDisabled: false   
     }
     UNSAFE_componentWillMount(){
         if (this.props.nightmode === "false") {
@@ -64,24 +65,34 @@ class Settings extends Component {
     }
 
     saveChanges = () => {
+        if (this.state.isDisabled) return;
+        this.setState({isDisabled: true})
         const body = {
             _id : this.props.user.data.id,
             firstName: this.state.firstName,
             lastName: this.state.lastName
         };
         axios.post('/api/editAccount/', body)
-        .then( ({data}) => {
+        .then( ( {data} ) => {
             if (data.success) {
                 this.setState({
                     dataSuccess: true,
-                    dataSuccessMessage: 'Data changed successfully'
+                    dataSuccessMessage: 'Data changed successfully',
+                    isDisabled: false
                 })
             } else {
                 this.setState({
                     dataSuccess: false,
-                    dataSuccessMessage: 'Something went wrong, try again later'
+                    dataSuccessMessage: 'Something went wrong, try again later',
+                    isDisabled: false
                 })
             }
+        })
+        .catch( (err) => {
+            this.setState({
+                dataSuccess: false,
+                dataSuccessMessage: err.data
+            })
         })
     }
 
@@ -102,6 +113,7 @@ class Settings extends Component {
     }
 
     saveNewPassword = () => {
+        if (this.state.isDisabled) return;
         const oldpassword = this.state.currentPassword;
         const newpassword = this.state.newPassword;
         const _id = this.props.user.data.id;
@@ -115,12 +127,14 @@ class Settings extends Component {
             })
             return;
         } else {
+            this.setState({isDisabled: true})
             axios.post('/api/changePassword', body)
             .then( ({data}) => {
                 if (data.error === true) {
                     this.setState({
                         passwordChanged: false,
-                        passwordChangedMessage: data.message
+                        passwordChangedMessage: data.message,
+                        isDisabled: false
                     })
                 };
                 if (data.error === false) {
@@ -128,17 +142,23 @@ class Settings extends Component {
                         passwordChanged: true,
                         passwordChangedMessage: data.message,
                         currentPassword: '',
-                        newPassword: ''
+                        newPassword: '',
+                        isDisabled: false
                     });
                 }
                 if (!data) {
                     this.setState({
                         passwordChanged: false,
-                        passwordChangedMessage: "An error occured. Try again later"
+                        passwordChangedMessage: "An error occured. Try again later",
+                        isDisabled: false
                     })
                 }
             })
         }
+    }
+
+    redirectToDeleteAccount = () => {
+        window.location = "/delete"
     }
 
     render() {
@@ -157,11 +177,13 @@ class Settings extends Component {
                         {this.renderDataChangedMessage()}
                         <div className={styles.center}>
                             <div onClick={this.saveChanges}>
-                                <ButtonWid background="#3366FF" color="#FFFFFF" nightmode={this.props.nightmode}>Save changes</ButtonWid>
+                                <ButtonWid background="#3366FF" color="#FFFFFF" disabled={this.state.isDisabled} 
+                                nightmode={this.props.nightmode}>Save changes</ButtonWid>
                             </div>
                             
                         </div>
                     </FormWrapper><br/>
+
                     <FormWrapper>
                         <h2>Edit password:</h2>
                         <label htmlFor="password1">Enter your current password:</label>
@@ -171,16 +193,22 @@ class Settings extends Component {
                         {this.renderPasswordChangedMessage()}
                         <div className={styles.center}>
                             <div onClick={this.saveNewPassword}>
-                                <ButtonWid background="#3366FF" color="#FFFFFF" nightmode={this.props.nightmode}>Change password</ButtonWid>
+                                <ButtonWid background="#3366FF" color="#FFFFFF" disabled={this.state.isDisabled} 
+                                nightmode={this.props.nightmode}>Change password</ButtonWid>
                             </div>
                         </div>
                     </FormWrapper>
-                    {/* <FormWrapper>
+
+                    <FormWrapper>
+                        <h2>Delete account:</h2>
                         <div className={styles.center}>
-                            <label htmlFor="nightmode">Nightmode:</label>
-                            <input type="checkbox" name="nightmode" checked={this.state.nightmode} onChange={this.handleSwitch}/>
+                            <div onClick={this.redirectToDeleteAccount}>
+                                <ButtonWid background="#3366FF" color="#FFFFFF" nightmode={this.props.nightmode}>Delete account</ButtonWid>
+                            </div>
                         </div>
-                    </FormWrapper> */}
+                    </FormWrapper>
+                    
+
                 </div>
             )
         } else {

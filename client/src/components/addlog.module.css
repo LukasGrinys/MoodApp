@@ -1,16 +1,4 @@
-.moodbox {
-    font-weight: bold;
-    font-size: 2.5em;
-    background: #3366FF;
-    border-radius: 4px;
-    width: 80px;
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FFFFFF;
-    border: 1px solid black;
-}
+
 .center {
     font-weight: bold;
     font-size: 1em;

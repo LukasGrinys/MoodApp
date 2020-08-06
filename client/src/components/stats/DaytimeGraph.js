@@ -5,9 +5,13 @@ import morningIcon from './morning.svg';
 import afternoonIcon from './afternoon.svg';
 import eveningIcon from './evening.svg';
 
+import { useTheme } from './../../hoc/ThemeContext';
+
 const DaytimeGraph = ({obj, nightmode}) => {
+    const darkTheme = useTheme();
+
     const returnIconClass = (nm) => {
-        if (nm === "true") {
+        if (nm === true) {
             return `${styles.daytime_icon_nightmode}`
         } else {
             return `${styles.daytime_icon}`
@@ -47,9 +51,9 @@ const DaytimeGraph = ({obj, nightmode}) => {
             <div className={styles.daytime_time} style={{left:"33%"}}>13:00</div>
             <div className={styles.daytime_time} style={{left:"66%"}}>20:00</div>
             <div className={styles.daytime_time} style={{left:"100%"}}>00:00</div>
-            <img src={morningIcon} className={returnIconClass(nightmode)} style={{left:"13%", padding: "2px"}} alt="none"/>
-            <img src={afternoonIcon} className={returnIconClass(nightmode)} style={{left:"48%"}} alt="none"/>
-            <img src={eveningIcon} className={returnIconClass(nightmode)} style={{left:"82%"}} alt="none"/>
+            <img src={morningIcon} className={returnIconClass(darkTheme)} style={{left:"13%", padding: "2px"}} alt="none"/>
+            <img src={afternoonIcon} className={returnIconClass(darkTheme)} style={{left:"48%"}} alt="none"/>
+            <img src={eveningIcon} className={returnIconClass(darkTheme)} style={{left:"82%"}} alt="none"/>
             </div>    
         </div>
     );

@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import { returnNavbarStyle } from './../widgets/nightmodeColors';
 import styles from './css/header.module.css';
+import { useTheme } from './ThemeContext';
 
 const NavBarItems = (props) => {
+    const darkTheme = useTheme();
     const items = [
         {
             iconName: "home",
@@ -45,7 +47,7 @@ const NavBarItems = (props) => {
     ];
     const itemElement = (item, i) => (
         <Link to={item.path} key={i}>
-            <div className={styles.navItem} onClick={props.closeNav} style={returnNavbarStyle(props.nightmode)}>
+            <div className={styles.navItem} onClick={props.toggleNav} style={returnNavbarStyle(darkTheme)}>
                 <FontAwesome name={item.iconName}/> {item.text}
             </div> 
         </Link>

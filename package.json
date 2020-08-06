@@ -30,6 +30,7 @@
     "react-fontawesome": "^1.7.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.2",
+    "webpack-bundle-analyzer": "^3.8.0"
   }
 }

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import Header from './header';
+import { ThemeProvider } from './ThemeContext';
 
 class Layout extends Component {
     render() {
-        let nightmode = this.props.nightmode;
         return (
-            <div>
-                <Header nightmode={nightmode} changemode={this.props.changemode}/>
-                <div className="content_wrapper" nightmode={this.props.nightmode}>
+            <ThemeProvider>
+                <Header/>
+                <div className="content_wrapper">
                         {this.props.children}
                 </div>
-            </div>
+            </ThemeProvider>
         );
     }
 }

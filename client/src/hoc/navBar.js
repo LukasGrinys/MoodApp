@@ -8,7 +8,7 @@ const NavBar = (props) => {
     return (
         <div>
             <div className={styles.navBar}>
-                <NavBarItems {...props}/>
+                <NavBarItems toggleNav={props.toggleNav}/>
             </div>
             <NavModal closeNav={props.closeNav}/>
         </div> 

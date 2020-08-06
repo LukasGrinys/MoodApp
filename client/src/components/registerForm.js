@@ -14,7 +14,8 @@ class RegisterForm extends Component {
         email: "",
         password: "",
         message: null,
-        success: null
+        success: null,
+        isDisabled: false
     }
     
     handleFName = (event) => {
@@ -46,6 +47,7 @@ class RegisterForm extends Component {
     }
 
     handleForm = () => {
+        if (this.state.isDisabled) { return; };
         let fname = this.state.fname.trim().length > 0 ? this.state.fname.trim() : null;
         let lname = this.state.lname.trim().length > 0 ? this.state.lname.trim() : null;
         let email = this.state.email.trim().length > 0 ? this.state.email.trim() : null;
@@ -57,16 +59,19 @@ class RegisterForm extends Component {
             lastName : lname
         };
         if (fname && lname && email && password) {
+            this.setState({isDisabled: true})
             this.props.dispatch(createUser(payload));
         } else if (this.state.password.trim().length < 6) {
             this.setState({
                 success: false,
-                message: "The password needs to be atleast 6 characters long"
+                message: "The password needs to be at least 6 characters long",
+                isDisabled: false
             })
         } else {
             this.setState({
                 success: false,
-                message: "Fill out the missing fields"
+                message: "Fill out the missing fields",
+                isDisabled: false
             })
         }
     }
@@ -85,12 +90,14 @@ class RegisterForm extends Component {
             if (nextProps.user.error.code === 11000) {
                 this.setState({
                     success: false,
-                    message: "User with the e-mail listed already exists"
+                    message: "User with the e-mail listed already exists",
+                    isDisabled: false
                 })
             } else {
                 this.setState({
                     success: false,
-                    message: "Error, try again later"
+                    message: "Error, try again later",
+                    isDisabled: false
                 })
             }
             
@@ -110,7 +117,7 @@ class RegisterForm extends Component {
     renderLoginButton = () => {
         if (this.state.success === true) {
             return ( <Link to="/login">
-                        <Button color={"#fffff2"} background={"#3366ff"} nightmode={this.props.nightmode}>Log in</Button>
+                        <Button color={"#fffff2"} background={"#3366ff"}>Log in</Button>
                     </Link> )
         } else {
             return null;
@@ -121,7 +128,7 @@ class RegisterForm extends Component {
         return (
             <div>
                 <h1>Sign up</h1>
-                <div>Signing up is easy ant takes only a few minutes</div><br/>
+                <div>Signing up is easy and takes only a few minutes!</div><br/>
                 <form>
                     <span>Enter your first name: </span><br/>
                     <input type="text" name="fname" value={this.state.fname} onChange={this.handleFName}/><br/>
@@ -134,14 +141,14 @@ class RegisterForm extends Component {
                     {this.renderMessage()}
                     <div className={styles.center_line}>
                         <div onClick={this.handleForm}>
-                            <Button color={"#fffff2"} background={"#3366ff"} nightmode={this.props.nightmode}>
+                            <Button color={"#fffff2"} disabled={this.state.isDisabled} background={"#3366ff"}>
                                 Sign Me Up!
                             </Button>
                             {this.renderLoginButton()}
                         </div>
                     </div><br/>
                 </form>
-                <BackButton nightmode={this.props.nightmode}/>
+                <BackButton/>
             </div>
         );
     }

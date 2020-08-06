@@ -44,7 +44,7 @@ class LogList extends Component {
             const lastElement = list[list.length - 1];
             if (lastElement !== "No logs found") {
                 return (
-                    <ButtonWid nightmode={this.props.nightmode} background={'#3366FF'} color={'#FFFFFF'}>Load more</ButtonWid>
+                    <ButtonWid background={'#3366FF'} color={'#FFFFFF'}>Load more</ButtonWid>
                 )
             } else {
                 return null
@@ -56,7 +56,7 @@ class LogList extends Component {
     render() {
         return (
             <div>
-                <BackButton nightmode={this.props.nightmode}/>
+                <BackButton/>
                 <div className={styles.header}>All logs</div>
                 <div  className={styles.logs_wrapper}>
                     {this.returnLogs(this.props.logs.list)}
@@ -76,7 +76,7 @@ class AllLogs extends Component {
         if (this.props.user.data) {
             return <LogList {...this.props}/>
         } else {
-            return <Loading nightmode={this.props.nightmode}/>
+            return <Loading/>
         }
     }
 }

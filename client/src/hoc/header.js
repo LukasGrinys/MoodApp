@@ -1,50 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styles from './css/header.module.css';
 import FontAwesome from 'react-fontawesome';
 import { connect } from 'react-redux';
 import NavBar from './navBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
-// import { library } from '@fortawesome/fontawesome-svg-core'
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { ReactComponent as Logo } from './logo_white.svg';
 
-class Header extends Component {
-    state = {
-        openNav : false
-    }
-    returnStyle = (nightmode) => {
-        if (nightmode === "true") {
+import { useThemeUpdate, useTheme } from './ThemeContext';
+
+const Header = ( props ) => {
+    const [ openNav, changeNavState ] = useState(false);
+    const darkTheme = useTheme();
+
+    const returnStyle = () => {
+        if (darkTheme === true) {
             return { backgroundColor: "#2F2F2F"}
         } 
         return null
     }
-    showNav = () => {
-        if (this.state.openNav) {
-            this.setState({
-                openNav : false
-            })
-        } else {
-            this.setState({
-                openNav: true
-            })
-        }
+
+    const toggleNav = () => {
+        changeNavState( !openNav );
     }
-    closeNav = () => {
-        if (this.state.openNav) {
-            this.setState({
-                openNav: false
-            })
-        }
-    }
-    makeInvisible = () => (
-        this.props.user.data ?
+
+
+    const makeInvisible = () => (
+        props.user.data ?
         {opacity : "1"} :
         {opacity : "0"}
     )
-    returnButton = () => (
-        this.state.openNav ?
+
+    const returnButton = () => (
+        openNav ?
             <FontAwesome
             name="close"
-            onClick={this.showNav}
+            onClick={toggleNav}
             style={{
                     fontSize: '1.5em',
                     padding: "2px",
@@ -55,7 +46,7 @@ class Header extends Component {
          :
             <FontAwesome
             name="bars"
-            onClick={this.showNav}
+            onClick={toggleNav}
             style={
                 {
                     fontSize: '1.5em',
@@ -66,42 +57,35 @@ class Header extends Component {
             }}/>
     )
 
-    showItems = () => (
-        this.state.openNav ?
-        <NavBar closeNav={this.closeNav} isAuth={this.props.user.data.isAuth} nightmode={this.props.nightmode}/>
+    const showItems = () => (
+        openNav ?
+        <NavBar toggleNav={toggleNav} isAuth={props.user.data.isAuth}/>
         : null
     )
 
-    changeMode = () => { 
-        this.props.changemode();
-    };
+    const updateTheme = useThemeUpdate();
 
-    showNightmodeButton = () => (
-        this.props.nightmode === "true" ? 
-        <div className={styles.nightmode_button} onClick={this.changeMode}>
-            <FontAwesomeIcon icon={faSun} style={{fontSize:"1.5rem"}}></FontAwesomeIcon>
-            <div className={styles.nightmode_button_caption}>Day mode</div>
-        </div> :
-        <div className={styles.nightmode_button} onClick={this.changeMode}>
-            <FontAwesomeIcon icon={faMoon} style={{fontSize:"1.5rem"}}></FontAwesomeIcon>
-            <div className={styles.nightmode_button_caption}>Night mode</div>
+    const showNightmodeButton = () => (
+        <div className={styles.nightmode_button} onClick={updateTheme}>
+            <FontAwesomeIcon icon={darkTheme === true ? faSun : faMoon} style={{fontSize:"1.5rem"}}></FontAwesomeIcon>
+            <div className={styles.nightmode_button_caption}> {darkTheme === true ? `Day mode` : `Night mode`}</div>
         </div>
     )
 
-    render() {
-        return (
+    return (
             <div className={styles.header}>
-                <div className={styles.top} style={this.returnStyle(this.props.nightmode)}>
-                    <div className={styles.logo}>MoodApp</div>
-                    <div className={styles.bars} style={this.makeInvisible()}>
-                        {this.returnButton()}
+                <div className={styles.top} style={returnStyle()}>
+                    <div className={styles.logo_box}>
+                        <Logo className={styles.logo}/>
                     </div>
-                    {this.showNightmodeButton()}
+                    <div className={styles.bars} style={makeInvisible()}>
+                        {returnButton()}
+                    </div>
+                    {showNightmodeButton()}
                 </div>
-                {this.showItems()}
+                {showItems()}
             </div>
-        );
-    }
+    );
 }
 
 function mapStateToProps(state) {

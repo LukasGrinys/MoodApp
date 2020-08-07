@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import ScrollAnimation from 'react-animate-on-scroll';
 import "animate.css/animate.min.css";
 
-import { ReactComponent as LogoWhite} from './../hoc/logo_white.svg';
-import { ReactComponent as LogoBlue} from './../hoc/logo_blue.svg';
-
 import styles from './home.module.css';
 import ButtonWid from './../widgets/Button';
 import Loading from '../widgets/loading';
@@ -64,8 +61,8 @@ const Home = ({user, nightmode}) => {
         return  (
         <div className={styles.wrapper} >
             <ScrollAnimation animateIn="fadeInDown" animateOnce={true}>
-                <div className={styles.bigLogo_container} style={returnWhite(darkTheme)}>
-                    { darkTheme === true ? <LogoWhite className={styles.bigLogo}/> : <LogoBlue className={styles.bigLogo}/> }
+                <div className={styles.bigLogo} style={returnWhite(darkTheme)}>
+                    MoodApp
                 </div>
             </ScrollAnimation>
             <ScrollAnimation animateIn="fadeInDown" delay={1000} offset={75} animateOnce={true}>

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import NavBar from './navBar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
-import { ReactComponent as Logo } from './logo_white.svg';
 
 import { useThemeUpdate, useTheme } from './ThemeContext';
 
@@ -75,8 +74,8 @@ const Header = ( props ) => {
     return (
             <div className={styles.header}>
                 <div className={styles.top} style={returnStyle()}>
-                    <div className={styles.logo_box}>
-                        <Logo className={styles.logo}/>
+                    <div className={styles.logo}>
+                        Moodapp
                     </div>
                     <div className={styles.bars} style={makeInvisible()}>
                         {returnButton()}

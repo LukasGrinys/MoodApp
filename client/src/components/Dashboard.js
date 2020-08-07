@@ -32,11 +32,8 @@ class Dashboard extends Component {
     }
     render() {
         if (this.state.userLogged) {
-            const userId = this.state.userId;
             return (
-                <UserBoard nightmode={this.props.nightmode}
-                userId={userId}
-                />
+                <UserBoard userId={this.state.userId}/>
             )
         }
         return (

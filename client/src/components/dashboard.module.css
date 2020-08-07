@@ -113,7 +113,8 @@
     align-items: center;
 }
 .status_box {
-    width: 130px;
+    width: 100%;
+    max-width: 130px;
     height: 75px;
     background: #3366FF;
     color: #FFFFFF;

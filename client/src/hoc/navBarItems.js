@@ -52,7 +52,7 @@ const NavBarItems = (props) => {
             </div> 
         </Link>
     )
-
+    
     const showItems = () => (
             items.map( (item, i) => {
                 if (props.isAuth === true && item.isAuth === true) {

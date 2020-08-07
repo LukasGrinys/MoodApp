@@ -48,8 +48,7 @@ export function dashboardButtonStyle(nm) {
     if (nm === true) {
         return {
             background: "#cccccc",
-            color: "#0d0d0d",
-            width: "100%"
+            color: "#0d0d0d"
         }
     }
 }

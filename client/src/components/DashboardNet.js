@@ -52,7 +52,6 @@ const LastLogsItem = (props) => {
 
 const MoodStatus = (props) => {
     const darkTheme = useTheme();
-
     const returnRating = (data) => {
         if (data !== "No logs found") {
             let total = 0;

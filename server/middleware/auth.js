@@ -1,16 +1,18 @@
-const { User } = require('./../models/user');
+const { findUserByToken } = require('../util/helpers');
 
-let auth = (req, res, next) => {
+let auth = async (req, res, next) => {
     let token = req.cookies.auth;
-    User.findByToken(token, (err,user) => {
-        if (err) throw err;
-        if (!user) return res.json({
-            error: true
+    const {data, error} = await findUserByToken(token);
+
+    if (error || !data) {
+        return res.send({
+            error: 'Authentication error'
         })
-        req.token = token;
-        req.user = user;
-        next();
-    })
+    };
+
+    req.token = token;
+    req.user = data;
+    next();
 }
 
 module.exports = { auth };

@@ -11,7 +11,8 @@ import { useTheme } from './../hoc/ThemeContext';
 const LastLogsItem = (props) => {
     const darkTheme = useTheme();
     const renderLogs = (arr) => {
-        if (arr.length === 0 || typeof(arr) === String) { return null };
+        if (!arr || !arr.length) { return null };
+
         const lastThreeLogs = arr.slice(0,3);
         return lastThreeLogs.map( (item, i) => (
             <div key={i} className={styles.log_wrapper}>
@@ -53,7 +54,7 @@ const LastLogsItem = (props) => {
 const MoodStatus = (props) => {
     const darkTheme = useTheme();
     const returnRating = (data) => {
-        if (data !== "No logs found") {
+        if (data && Array.isArray(data)) {
             let total = 0;
             let quantity = 0;
             data.map( (item) => {

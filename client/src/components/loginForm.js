@@ -52,17 +52,23 @@ class LoginForm extends Component {
         })
     }
     UNSAFE_componentWillReceiveProps(nextProps) {
+        const { user } = nextProps;
+
+        if (user && user.data && user.data.error) {
+            this.setState({
+                message: user.data.error,
+                success: false,
+                isDisabled: false
+            })
+
+            return
+        }
+
         if (nextProps.user.data.isAuth) {
             this.setState({
                 message: "Logged in successfully!",
                 success: true
             });
-        } else {
-            this.setState({
-                message: nextProps.user.data.message,
-                success: false,
-                isDisabled: false
-            })
         }
     }
 

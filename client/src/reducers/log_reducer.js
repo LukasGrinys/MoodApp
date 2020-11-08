@@ -1,7 +1,11 @@
 export default function(state={}, action) {
+    const { payload } = action;
     switch(action.type) {
         case 'CAN_LOG' :
-            return {...state, data: action.payload};
+            return {
+                ...state, 
+                canLog: payload
+            };
         case 'CANNOT_LOG' :
             return {...state, data: action.payload};
         case 'GET_LAST_LOGS' : 

@@ -77,7 +77,25 @@ class RegisterForm extends Component {
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
-        if (nextProps.user.success) {
+        const { user } = nextProps;
+
+        if (!user) {
+            return
+        }
+        
+        const { error, success} = user;
+
+        if (error) {
+            this.setState({
+                success: false,
+                message: error,
+                isDisabled: false
+            })
+
+            return
+        }
+
+        if (success) {
             this.setState({
                 fname: "",
                 lname: "",
@@ -85,22 +103,7 @@ class RegisterForm extends Component {
                 password: "",
                 success: true,
                 message: "Your account has been succesfully created!"
-            })
-        } else if (nextProps.user.success === false) {
-            if (nextProps.user.error.code === 11000) {
-                this.setState({
-                    success: false,
-                    message: "User with the e-mail listed already exists",
-                    isDisabled: false
-                })
-            } else {
-                this.setState({
-                    success: false,
-                    message: "Error, try again later",
-                    isDisabled: false
-                })
-            }
-            
+            });
         }
     }
 

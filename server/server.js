@@ -1,27 +1,35 @@
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const config = require('./config').get(process.env.NODE_ENV);
 const path = require('path');
-
-mongoose.Promise = global.Promise;
-mongoose.connect(config.DATABASE, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true 
-});
-mongoose.set('useFindAndModify', false);
-
-const { User } = require('./models/user');
-const { Log } = require('./models/log');
-const { auth } = require('./middleware/auth');
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(__dirname + '/public'))
 app.use(express.static(__dirname + '/../client/build')); 
 
+const { auth } = require('./middleware/auth');
+
+const { 
+    registerNewUser,
+    loginUser,
+    logOutUser,
+    editAccount,
+    getUser,
+    changePassword,
+    deleteUser
+} = require('./actions/user');
+
+const {
+  postLog,
+  getLog,
+  getLogs,
+  canLog
+} = require('./actions/log')
+
+// Routes
 if (process.env.NODE_ENV === 'production') {  
     app.get('/login', function(req, res) {
         res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
@@ -87,176 +95,111 @@ if (process.env.NODE_ENV === 'production') {
         })
     })
 }
-// API routes
-// DEMO get users
-app.get('/api/users', (req,res) => {
-    User.find({}, (err, users) => {
-        if (err) return res.status(400).send({ message : 'Error has occured'});
-        res.status(200).send(users)
-    })
-})
-// User authentication
+
+// API routes //
+// USER ROUTES //
+
+// API AUTH
+
 app.get('/api/auth', auth, (req, res) => {
-    res.json({
+  res.json({
+      isAuth: true,
+      id: req.user.id,
+      email: req.user.email,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName
+  })
+})
+
+// REGISTER
+app.post('/api/users', async (req,res) => {
+    const { error, success } = await registerNewUser(req.body);
+    if (error || !success) return res.send({error : error || 'Error : Could not create account'});
+    return res.status(200).send({ success, message : "User was successfully created" })
+});
+
+// LOGIN
+app.post('/api/login', async (req,res) => {
+    const { error, data } = await loginUser(req.body.email, req.body.password);
+    if (error || !data) return res.send({error: error || 'Error : Could not log in'});
+    return res.status(200).cookie('auth', data.token).send({
         isAuth: true,
-        id: req.user._id,
-        email: req.user.email,
-        firstName: req.user.firstName,
-        lastName: req.user.lastName
+        id: data.id,
+        email: data.email
     })
 })
 
-// Register
-app.post('/api/users', (req,res) => {
-    const user = new User(req.body);
-    user.save( (err, doc) => {
-        if (err) return res.send({success: false, error: err});
-        res.status(200).send({
-            success: true,
-            user:doc
-        })
-    })
+// LOGOUT
+app.get('/api/logout', auth, async (req,res)=> {
+    const { error } = await logOutUser(req.token);
+    if (error) return res.send({error});
+    return res.status(200).send({success : true, message : 'User has signed out'});
 })
 
-// Login
-app.post('/api/login', (req,res) => {
-    User.findOne({'email': req.body.email}, (err, user) => {
-        if (!user) return res.send({isAuth: false, message: "User not found"});
-        user.comparePassword( req.body.password, (err, isMatch) => {
-            if (err || !isMatch) return res.send({isAuth: false, message: "Wrong password"});
-            user.generateToken( (err,user) => {
-                if (err) return res.status(400).send(err);
-                res.cookie('auth',user.token).send({
-                    isAuth: true,
-                    id: user._id,
-                    email: user.email
-                });
-            }) 
-        })
-    })
+// EDIT ACCOUNT
+app.post('/api/editAccount', auth, async (req,res) => {
+    const { error, success } = await editAccount(req.body.id, req.body);
+    if (error || !success) return res.send({error : error || 'Error: Could not edit account details'});
+    return res.status(200).send({success: true, message: 'Account was edited successfully'});
 })
 
-// Logout
-app.get('/api/logout', auth, (req,res)=> {
-    req.user.deleteToken(req.token, (err,user) => {
-        if (err) return res.status(400).send(err);
-        res.sendStatus(200)
-    })
+// GET USER DETAILS
+app.get('/api/getUser', auth, async (req,res) => {
+    const { error, data } = await getUser(req.query.id);
+    if (error || !data) return res.send({error: error || 'Error: Could not get user details'});
+    return res.send({data});
 })
 
-// Edit account
-app.post('/api/editAccount', (req,res) => {
-    User.findByIdAndUpdate(req.body._id, req.body, {new: true}, (err, doc) => {
-        if (err) return res.status(400).send(err);
-        res.json({
-            success: true,
-            doc
-        })
-    })
-})
-
-// Get user details for account editing
-app.get('/api/getUser', (req,res) => {
-    User.findById(req.query.id, (err, doc) => {
-        if (err) return res.status(400).send(err);
-        res.json({
-            success: true,
-            doc
-        })
-    })
-})
-
-// Change password
-app.post('/api/changePassword', (req,res) => {
-    User.findById(req.body._id, (err, user) => {
-        if (!user) return res.status(400).send("User not found");
-        user.comparePassword(req.body.oldpassword, (err, isMatch) => {
-            if (err) return res.status(400).send('Error comparing the passwords');
-            if (!isMatch) return res.status(200).send({error: true, message: 'Wrong password'});
-            if (isMatch) {
-                user.password = req.body.newpassword;
-                user.save( (err) => {
-                    if (err) return res.status(500).send("Error updating password");
-                    return res.status(200).send({error: false, message: "Password was updated"});
-                })
-            }
-        });
-    })
+// CHANGE PASSWORD
+app.post('/api/changePassword', async (req,res) => {
+    const { error, success } = await changePassword(req.body.id, req.body.oldPassword, req.body.newPassword);
+    if (error || !success) return res.send({error: error || 'Error: Could not change password'});
+    return res.send({success: true, message : 'Password was changed'});
 });
 
-// Delete account 
-app.post('/api/deleteAccount', (req,res) => {
-    const id = req.body.userId;
-    User.findById(id, (err, user) => {
-        if (!user) return res.status(400).send("User not found");
-        user.comparePassword(req.body.password, (err, isMatch) => {
-            if (err) return res.status(400).send({error: true, message: 'Error comparing the passwords'});
-            if (!isMatch) { 
-                return res.status(200).send({error: true, message: 'Wrong password'});
-            }
-            User.findByIdAndRemove(id, (err,doc) => {
-                if (err) return res.status(500).send(err);
-                return res.status(200).send({error: false, message : "User was deleted"});
-            })
-        });
-    })
-    
+// DELETE ACCOUNT
+app.post('/api/deleteAccount', async (req,res) => {
+    const { error, success } = await deleteUser(req.query.id, req.body.password);
+    if (error || !success) return res.send({error : error || 'Error: Could not delete user'});
+    return res.send({success: true, message : 'User was deleted'});
 });
+
 
 // LOG ROUTES
-// Post Log
-app.post('/api/postLog', (req, res)=> {
-    const dateOfLog = req.body.date;
-    const timingOfLog = req.body.timing;
-    Log.find({ownerId : req.body.ownerId, date : dateOfLog, timing: timingOfLog}, (err, doc) => {
-        if (err) return res.status(400).send("Could not post the log");
-        if (doc.length > 0) return res.status(400).send("Cant post new log yet");
-        const log = new Log(req.body);
-        log.save( (err, doc) => {
-            if (err) return res.status(400).send({success: false, error: err});
-            res.status(200).send({
-                success: true,
-                log: doc
-            })
-        })
-    })
+
+// POST LOG
+app.post('/api/postLog', auth, async (req, res)=> {
+    const { error, success } = await postLog({ body: req.body});
+    if (error || !success) return res.send({error : error || 'Could not post new log'})
+    return res.status(200).send({success: true, message : 'Log posted successfully'})
 });
 
-// Get log
-app.get('/api/getLog', (req, res) => {
-    const id = req.query.id;
-    Log.findById(id, (err, doc) => {
-        if (err) return res.status(400).send("Error finding log");
-        if (doc.length > 0) return res.status(404).send("Log was not found");
-        res.status(200).send({
-            log: doc
-        })
-    })
+// GET SINGLE LOG
+app.get('/api/getLog', auth, async (req, res) => {
+    const { error, data } = await getLog({id: req.query.id, userId: req.user.id});
+    if (error || !data) return res.send({ error : error || 'Could not get log data'});
+    return res.status(200).send({success : true, data })
 })
 
-// Get logs from user
-app.get('/api/getLogs', (req, res) => {
-    const user = req.query.id;
-    let skip = req.query.skip ? parseInt(req.query.skip) : 0;
-    let limit = req.query.limit ? parseInt(req.query.limit) : null;
-    Log.find({ownerId : user }, (err, doc) => {
-        if (err) return res.status(400).send("There was an error finding logs");
-        if (doc.length === 0) return res.status(200).send("No logs found");
-        res.status(200).send(doc);
-    }).sort({'createdAt' : -1}).skip(skip).limit(limit);
+// GET LOGS
+app.get('/api/getLogs', auth, async (req, res) => {
+    const { error, data } = await getLogs({
+      userId : req.query.id,
+      skip: req.query.skip ? parseInt(req.query.skip) : 0,
+      limit: req.query.limit ? parseInt(req.query.limit) : null
+    })
+
+    if (error || !data) return res.send({error : error || 'Error : Could not get log data'});
+    return res.status(200).send({success : true, data});
 })
 
 
-// Check if it is available to log
-app.post('/api/canLog', (req, res) => {
-    const currentDate = req.body.date;
-    const currentTiming = req.body.timing;
-    const user = req.body.userId
-    Log.findOne({ownerId: user, date: currentDate, timing: currentTiming}, (err, doc) => {
-        if (err) return res.status(400).send("Error checking the database");
-        if (doc === null && user) return res.status(200).send({ canLog: true, message: "Can log"});
-        res.status(200).send({canLog : false, message: "Cant post new logs yet"});
-    })
+// CAN USER LOG
+app.post('/api/canLog', auth, async(req, res) => {
+    const { date, timing, userId } = req.body;
+    const { error, data } = await canLog({date, timing, userId});
+    if (error || !data) return res.send({error : error || 'Error : Could not check if user can log' })
+    res.status(200).send({data});
 })
 
 app.listen(config.PORT, () => {

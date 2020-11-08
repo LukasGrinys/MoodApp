@@ -36,8 +36,8 @@ class Settings extends Component {
             const id = nextprops.user.data.id;
             axios.get(`/api/getUser?id=${id}`)
             .then( ({data}) => {
-                const firstName = data.doc.firstName;
-                const lastName = data.doc.lastName;
+                const { firstName, lastName } = data.data;
+
                 this.setState({
                     dataReceived: true,
                     firstName,
@@ -68,7 +68,7 @@ class Settings extends Component {
         if (this.state.isDisabled) return;
         this.setState({isDisabled: true})
         const body = {
-            _id : this.props.user.data.id,
+            id : this.props.user.data.id,
             firstName: this.state.firstName,
             lastName: this.state.lastName
         };
@@ -114,13 +114,13 @@ class Settings extends Component {
 
     saveNewPassword = () => {
         if (this.state.isDisabled) return;
-        const oldpassword = this.state.currentPassword;
-        const newpassword = this.state.newPassword;
-        const _id = this.props.user.data.id;
+        const oldPassword = this.state.currentPassword;
+        const newPassword = this.state.newPassword;
+        const id = this.props.user.data.id;
         const body = {
-            _id, oldpassword, newpassword
+            id, oldPassword, newPassword
         };
-        if (newpassword.trim().length < 6) {
+        if (newPassword.trim().length < 6) {
             this.setState({
                 passwordChanged: false,
                 passwordChangedMessage: "The password is too short. You must pick a password longer than 6 characters"
@@ -130,14 +130,14 @@ class Settings extends Component {
             this.setState({isDisabled: true})
             axios.post('/api/changePassword', body)
             .then( ({data}) => {
-                if (data.error === true) {
+                if (data.error) {
                     this.setState({
                         passwordChanged: false,
                         passwordChangedMessage: data.message,
                         isDisabled: false
                     })
                 };
-                if (data.error === false) {
+                if (data.success) {
                     this.setState({
                         passwordChanged: true,
                         passwordChangedMessage: data.message,
@@ -160,8 +160,9 @@ class Settings extends Component {
     redirectToDeleteAccount = () => {
         window.location = "/delete"
     }
-
+    
     render() {
+        console.log(this.state)
         if (this.props.user && this.state.dataReceived) {
             return (
                 <div>

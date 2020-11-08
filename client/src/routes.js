@@ -12,7 +12,7 @@ import AllLogs from './components/AllLogs';
 import LogView from './components/LogView';
 import LogOut from './components/LogOut';
 import Settings from './components/Settings';
-import Stats from './components/stats/Stats';
+import Stats from './components/Stats/Stats';
 import DeleteAccount from './components/DeleteAccount';
 
 import Auth from './hoc/auth';

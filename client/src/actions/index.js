@@ -1,4 +1,6 @@
 import axios from 'axios';
+import Cookie from 'universal-cookie';
+const cookie = new Cookie();
 
 export function createUser(user) {
     const request = axios.post('/api/users', user)
@@ -36,6 +38,7 @@ export function logOut() {
     return (dispatch) => {
         request.then( (response) => {
             if (response.status === 200) {
+                cookie.remove('auth');
                 dispatch({
                     type: 'CLEAN_USER',
                     payload: {}
@@ -78,12 +81,9 @@ export function canUserLog(currentDate, currentTiming, user) {
     const request = axios.post('/api/canLog', body);
     return (dispatch) => {
         request.then( ({data}) => {
-            let response = {
-                canLog: data.canLog
-            }
             dispatch({
                 type: 'CAN_LOG',
-                payload: response
+                payload: data.data.canLog
             })
         })
     }
@@ -155,7 +155,7 @@ export function getLogs(user, start, limit, logs) {
 
 export function postLog(user, date, timing, rating, text) {
     const body = {
-        ownerId: user,
+        userId: user,
         date,
         timing,
         rating,

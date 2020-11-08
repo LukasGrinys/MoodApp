@@ -72,16 +72,16 @@ class AddLog extends Component {
         })
     }
     UNSAFE_componentWillReceiveProps(nextprops) {
-        if (nextprops.user.data.id && !this.state.dataReceived) {
+        const { user, logs } = nextprops;
+
+        if (user && user.data && user.data.id && !this.state.dataReceived) {
             let timing = this.returnDaytime();
             let date = this.returnDate();
             this.props.dispatch(canUserLog(date, timing, nextprops.user.data.id));
             this.setState({dataReceived: true});
         }
-        if (nextprops.user.data && !nextprops.logs.data) {
-            this.props.history.push("/dashboard");
-        }
-        if (nextprops.logs.logPosted) {
+
+        if (logs && logs.logPosted) {
             if (nextprops.logs.logPosted.success) {
                 this.setState({
                     error: false,
@@ -124,7 +124,7 @@ class AddLog extends Component {
                     this.setState({
                         disabled: true
                     });
-                    this.props.dispatch(postLog(this.props.user.data.id, this.returnDate(), timing, this.state.mood, this.state.text));
+                    this.props.dispatch(postLog(this.props.user.data.id, this.returnDate(), timing, parseInt(this.state.mood), this.state.text));
                 }
             }
         }
@@ -147,51 +147,52 @@ class AddLog extends Component {
         }
     }
     render() {
-        if (this.props.logs.data && this.props.user) {
-            if (this.props.logs.data.canLog === true) {
-                return (
-                    <FormWrapper>
-                        <h1>Add a Log</h1>
-                        <label htmlFor="mood">How do you feel at the moment? Rate your mood:</label><br/>
-                        <div className={styles.center}>
-                            <MoodBox>
-                                {this.state.mood}
-                            </MoodBox><br/>
-                            <div className={styles.inputLine}>
-                                <FontAwesome className={styles.thumb} name="thumbs-down" style={{color: "#800000"}}/>
-                                <input onChange={this.handleMoodInput} type="range" id="mood" name="mood" min="1" max="10" value={this.state.mood}/>
-                                <FontAwesome className={styles.thumb} name="thumbs-up" style={{color: "#16774f"}}/>
-                            </div><br/>
-                            <div>
-                                {this.state.moodText}
-                            </div>
+        const { canLog } = this.props;
+
+        if (canLog) {
+            return (
+                <FormWrapper>
+                    <h1>Add a Log</h1>
+                    <label htmlFor="mood">How do you feel at the moment? Rate your mood:</label><br/>
+                    <div className={styles.center}>
+                        <MoodBox>
+                            {this.state.mood}
+                        </MoodBox><br/>
+                        <div className={styles.inputLine}>
+                            <FontAwesome className={styles.thumb} name="thumbs-down" style={{color: "#800000"}}/>
+                            <input onChange={this.handleMoodInput} type="range" id="mood" name="mood" min="1" max="10" value={this.state.mood}/>
+                            <FontAwesome className={styles.thumb} name="thumbs-up" style={{color: "#16774f"}}/>
                         </div><br/>
-                        <label htmlFor="logtext">Describe your thoughts: (optional)</label><br/>
-                        <textarea id="logtext" name="logtext" onKeyUp={this.handleKeyUp} onChange={this.handleTextInput} value={this.state.text} placeholder="What made your day better? Was there any specific situations or thoughts that changed your mood? If you don't want to write anything, leave this field empty."></textarea><br/>
-                        <div className={styles.inputLine}>
-                            {this.renderErrorMessage()}
+                        <div>
+                            {this.state.moodText}
                         </div>
-                        <div className={styles.inputLine}>
-                            <div onClick={this.handleFormData}>
-                                <ButtonWid color="#FFFFFF" background="#3366FF" disabled={this.state.disabled} nightmode={this.props.nightmode}>Submit</ButtonWid>
-                            </div>
-                        </div>  
-                        <BackButton nightmode={this.props.nightmode}/>  
-                    </FormWrapper>
-                );
-            } else {
-                return <Loading nightmode={this.props.nightmode}/>
-            }
+                    </div><br/>
+                    <label htmlFor="logtext">Describe your thoughts: (optional)</label><br/>
+                    <textarea id="logtext" name="logtext" onKeyUp={this.handleKeyUp} onChange={this.handleTextInput} value={this.state.text} placeholder="What made your day better? Was there any specific situations or thoughts that changed your mood? If you don't want to write anything, leave this field empty."></textarea><br/>
+                    <div className={styles.inputLine}>
+                        {this.renderErrorMessage()}
+                    </div>
+                    <div className={styles.inputLine}>
+                        <div onClick={this.handleFormData}>
+                            <ButtonWid color="#FFFFFF" background="#3366FF" disabled={this.state.disabled} nightmode={this.props.nightmode}>Submit</ButtonWid>
+                        </div>
+                    </div>  
+                    <BackButton nightmode={this.props.nightmode}/>  
+                </FormWrapper>
+            );
         } else {
             return <Loading nightmode={this.props.nightmode}/>
         }
-        
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps({logs, user}) {
+    const { canLog } = logs; 
+    
     return {
-        logs: state.logs
+        canLog,
+        user,
+        logs
     }
 }
 

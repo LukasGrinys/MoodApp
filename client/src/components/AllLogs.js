@@ -26,14 +26,22 @@ class LogList extends Component {
             });
         }
     };
-    returnLogs = (list) => {
-        if (list) {
+    returnLogs = (data) => {
+        if (!data) return null;
+
+        const list = data.data;
+        
+        if (list && Array.isArray(list) && list.length) {
             return list.map( (item, i) => {
-                if (item !== "No logs found") {
-                    return <LogItem key={i} rating={item.rating} date={item.date} timing={item.timing} text={item.text}/>
-                } else {
-                    return null;
-                }
+                return (
+                    <LogItem 
+                        key={i} 
+                        rating={item.rating} 
+                        date={item.date} 
+                        timing={item.timing} 
+                        text={item.text}
+                    />
+                ) 
             })
         } else {
             return <LoadingNetItem/>
@@ -58,7 +66,7 @@ class LogList extends Component {
             <div>
                 <BackButton/>
                 <div className={styles.header}>All logs</div>
-                <div  className={styles.logs_wrapper}>
+                <div className={styles.logs_wrapper}>
                     {this.returnLogs(this.props.logs.list)}
                 </div>
                 <div className={styles.bottom_panel}>

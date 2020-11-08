@@ -78,10 +78,12 @@ class AddNewLog extends Component {
         }
     }
     render(){
-        if (this.props.canLog) {
+        const { canLog } = this.props;
+
+        if (canLog !== undefined) {
             return (
                 <div>
-                    {this.renderButton(this.props.canLog.canLog)}
+                    {this.renderButton(canLog)}
                 </div>
             )
         } else {
@@ -95,10 +97,10 @@ class AddNewLog extends Component {
     }
 };
 
-function mapStateToProps(state) {
-    return { 
-        canLog: state.logs.data
-    }
+function mapStateToProps({logs}) {
+    const { canLog } = logs; 
+
+    return { canLog }
 }
 
 export default connect(mapStateToProps)(AddNewLog);

@@ -63,7 +63,8 @@ export function deleteUser() {
 
 export function auth() {
     const request = axios.get('/api/auth')
-    .then(response => response.data );
+    .then( ({data}) => data);
+
     return {
         type: 'USER_AUTH',
         payload: request

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './loading.module.css';
 import { returnBarStyle, returnLightGrey } from './nightmodeColors';
-import { useTheme } from './../hoc/ThemeContext';
+import { useTheme } from './../contexts/ThemeContext';
 
 const Loading = () => {
     const darkTheme = useTheme();

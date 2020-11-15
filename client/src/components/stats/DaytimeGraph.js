@@ -5,7 +5,7 @@ import morningIcon from './morning.svg';
 import afternoonIcon from './afternoon.svg';
 import eveningIcon from './evening.svg';
 
-import { useTheme } from './../../hoc/ThemeContext';
+import { useTheme } from './../../contexts/ThemeContext';
 
 const DaytimeGraph = ({obj, nightmode}) => {
     const darkTheme = useTheme();

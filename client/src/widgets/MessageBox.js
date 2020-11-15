@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './messagebox.module.css';
-import { useTheme } from './../hoc/ThemeContext';
+import { useTheme } from './../contexts/ThemeContext';
 
 const MessageBox = (props) => {
     const darkTheme = useTheme();

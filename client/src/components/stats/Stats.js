@@ -11,7 +11,7 @@ import styles from './stats.module.css';
 // Functions
 import { countAverage, lastSevenDaysAverage, listToArray, returnDaytimeStats} from './statsFunctions';
 import { ratingButtonStyle } from './../../widgets/nightmodeColors';
-import { useTheme } from './../../hoc/ThemeContext';
+import { useTheme } from './../../contexts/ThemeContext';
 
 const AverageBox = ( {children }) => {
     const darkTheme = useTheme();

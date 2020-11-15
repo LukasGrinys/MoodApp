@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './stats.module.css';
 import { graphStroke } from './../../widgets/nightmodeColors';
-import { useTheme } from './../../hoc/ThemeContext';
+import { useTheme } from './../../contexts/ThemeContext';
 
 const ReturnGraph = ( {points} ) => {
     const darkTheme = useTheme();

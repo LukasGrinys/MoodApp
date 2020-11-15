@@ -6,7 +6,7 @@ import LoadingNetItem from './../widgets/loadingNetItem';
 import { Link } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
 import { returnWhite, dashboardButtonStyle } from './../widgets/nightmodeColors';
-import { useTheme } from './../hoc/ThemeContext';
+import { useTheme } from './../contexts/ThemeContext';
 
 const LastLogsItem = (props) => {
     const darkTheme = useTheme();

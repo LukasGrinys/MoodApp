@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './backButton.module.css';
 import FontAwesome from 'react-fontawesome';
 import { returnWhite} from './nightmodeColors';
-import { useTheme } from './../hoc/ThemeContext';
+import { useTheme } from './../contexts/ThemeContext';
 
 const BackButton = (props) => {
     const darkTheme = useTheme();

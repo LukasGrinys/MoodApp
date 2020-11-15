@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DashboardNet from './DashboardNet';
 import AddNewLog from './../widgets/addNewLog';
 import Loading from './../widgets/loading';
-import { useTheme } from './../hoc/ThemeContext';
+import { useTheme } from './../contexts/ThemeContext';
 
 
 const UserBoard = (props) => {
@@ -23,7 +23,7 @@ class Dashboard extends Component {
         userLogged : false
     }
     UNSAFE_componentWillReceiveProps(nextProps) {
-        if (nextProps.user.data.isAuth) {
+        if (nextProps.user.isAuth) {
             this.setState({
                 userLogged : true,
                 userId: nextProps.user.data.id

@@ -1,0 +1,46 @@
+@import '../../styles/config/variables';
+
+.button {
+    border-radius: 4px;
+    font-size: 1.1em;
+    font-family: $font-primary;
+    width: 150px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: $shadow-button;
+    transition-duration: 0.2s;
+    outline: none;
+    border: 0;
+
+    &:hover {
+        transform: scale(1.02);
+    }
+
+    &.btnPrimary {
+        color: $color-ivory-white;
+        background: $color-primary;
+    }
+
+    &.btnWhite {
+        background: $color-ivory-white;
+        color: $color-primary;
+    }
+
+    &.btnDark {
+        color: $color-night-dark;
+        background: $color-night-lightgrey;
+    }
+
+    &:disabled {
+        background: $color-disabled-background;
+        color: $color-disabled;
+        cursor: not-allowed;
+    }
+}
+
+@media (max-width: 400px) {
+    .button {
+        width: 120px;
+    }
+}

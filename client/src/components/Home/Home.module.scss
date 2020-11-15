@@ -1,0 +1,37 @@
+@import '../../styles/config/variables';
+
+.wrapper {
+    text-align: center;
+
+    .bigLogo {
+        font-size: 4.5em;
+        color: $color-primary;
+        font-family: "Kaushan Script";
+        text-align: center;
+        margin-bottom:25px;
+
+        &.dark {
+            color: $color-night-white;
+        }
+    }
+    
+    .text {
+        font-weight: 300;
+        padding: 25px;
+        text-align: center;
+        font-size: 1.5em;
+        margin-bottom: 25px;
+
+        & > span {
+            color: $color-primary;
+        }
+    }
+
+    .buttonWrapper {
+        display: flex;
+        flex-direction: row;
+        align-items: normal;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+}

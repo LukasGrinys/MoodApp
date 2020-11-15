@@ -1,13 +1,28 @@
-export default function(state={}, action) {
-    switch(action.type) {
+export default function(state={}, {type, payload}) {
+    switch(type) {
         case 'CREATE_USER':
-            return {...state, success:action.payload.success, error:action.payload.error }
+            return {...state, success:payload.success, error:payload.error }
         case 'LOGIN_USER' :
-            return {...state, data: action.payload.data }
+            return {...state, data: payload.data }
         case 'USER_AUTH' :
-            return {...state, data: action.payload }
+            const { error } = payload;
+
+            if (error) {
+                return {
+                    ...state, 
+                    authError: error,
+                    isAuth: false
+                }
+            }
+
+            return {
+                ...state,
+                authError: null,
+                isAuth: true
+            }
+            
         case 'CLEAN_USER' :
-            return {...state, data: action.payload}
+            return {...state, data: payload}
         default:
             return state;
     }

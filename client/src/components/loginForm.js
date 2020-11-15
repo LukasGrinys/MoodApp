@@ -64,7 +64,7 @@ class LoginForm extends Component {
             return
         }
 
-        if (nextProps.user.data.isAuth) {
+        if (nextProps.user.isAuth) {
             this.setState({
                 message: "Logged in successfully!",
                 success: true

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from './../hoc/ThemeContext';
+import { useTheme } from './../contexts/ThemeContext';
 import { ratingButtonStyle } from './nightmodeColors';
 import styles from './moodbox.module.css';
 

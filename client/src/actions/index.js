@@ -18,18 +18,51 @@ export function createUser(user) {
     }
 }
 
-export function loginUser(user) {
-    const request = axios.post('/api/login', user)
-    return (dispatch) => {
-        request.then( ({data}) => {
-            let response = {
-                data: data
-            }
+export const loginUser = async (payload) => {
+    return async dispatch => {
+        try {
             dispatch({
                 type: 'LOGIN_USER',
-                payload: response
+                payload: {
+                    isAuth: false,
+                    error: null
+                }
+            });
+
+            const { data } = await axios.post('/api/login', payload);
+
+            const { isAuth, error } = data;
+
+            if (error) {
+                dispatch({
+                    type: 'LOGIN_USER',
+                    payload: {
+                        isAuth: false,
+                        error
+                    }
+                });
+
+                return;
+            }
+
+            if (isAuth) {
+                dispatch({
+                    type: 'LOGIN_USER',
+                    payload: {
+                        isAuth,
+                        error: null
+                    }
+                })
+            }
+        } catch (error) {
+            dispatch({
+                type: 'LOGIN_USER',
+                payload: {
+                    isAuth: false,
+                    error
+                }
             })
-        })
+        }
     }
 }
 

@@ -3,14 +3,16 @@ export default function(state={}, {type, payload}) {
         case 'CREATE_USER':
             return {...state, success:payload.success, error:payload.error }
         case 'LOGIN_USER' :
-            return {...state, data: payload.data }
+            return {
+                ...state, 
+                isAuth: payload.isAuth,
+                loginError: payload.error
+             }
         case 'USER_AUTH' :
-            const { error } = payload;
-
-            if (error) {
+            if (payload.error) {
                 return {
                     ...state, 
-                    authError: error,
+                    authError: payload.error,
                     isAuth: false
                 }
             }
@@ -20,7 +22,6 @@ export default function(state={}, {type, payload}) {
                 authError: null,
                 isAuth: true
             }
-            
         case 'CLEAN_USER' :
             return {...state, data: payload}
         default:

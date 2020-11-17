@@ -1,0 +1,48 @@
+@import '../../styles/config/variables';
+
+.formWrapper {
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.heading {
+    text-align: center;
+    padding: 5px;
+}
+
+.label {
+    margin: 5px 0;
+    width: 100%;
+}
+
+.textInput {
+    height: 32px;
+    border-radius: 3px;
+    margin: 5px 0;
+    width: 100%;
+    border: 1px solid black;
+    text-indent: 5px;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.errorMessage {
+    color: $color-error;
+    font-size: 12px;
+    padding: 4px 2px 8px;
+}
+
+.formFooter {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 8px 12px;
+}

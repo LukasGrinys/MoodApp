@@ -37,6 +37,7 @@ const Button = ({
             )}
             onClick={handleClick}
             disabled={disabled}
+            type="button"
         >
             {children}
         </button>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { viewLog, clearLog } from './../actions';
 import { connect } from 'react-redux';
-import Loading from './../widgets/loading';
+import Loading from './Loading/loading';
 import styles from './logview.module.css';
 import FontAwesome from 'react-fontawesome';
 import BackButton from './../widgets/backButton';

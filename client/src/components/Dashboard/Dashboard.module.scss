@@ -1,0 +1,52 @@
+@import '../../styles/config/variables';
+
+.grid {
+    border: 2px solid #d1d1d105;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: space-around;
+    margin: 8px auto;
+
+    .gridTop {
+        font-weight: bold;
+        font-size: 1.4em;
+        text-align: center;
+        width: 100%;
+    }
+
+    .gridItem {
+        width: 45%;
+        height: 300px;
+        border: 2px solid $color-grid-border;
+        border-radius: 4px;
+        margin: 5px;
+        padding: 5px;
+        position: relative;
+
+        .gridItemHeader {
+            font-size: 22px;
+            text-align: center;
+            font-weight: bold;
+        }
+    }
+}
+
+.flexCenter {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 24px 36px;
+}
+
+.settingsIcon {
+    color: $color-primary;
+    font-size: 6em;
+    opacity: 0.5;
+    transition: 0.2s;
+}

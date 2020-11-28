@@ -1,0 +1,68 @@
+@import '../../styles/config/variables';
+
+.topSection {
+    font-size: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .moodBox {
+        font-weight: bold;
+        font-size: 2.5em;
+        background: $color-primary;
+        border-radius: 4px;
+        width: 120px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-primary-white;
+        border: 1px solid $color-black;
+        margin: 12px auto;
+    }
+
+    .inputLine {
+        align-items: center;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+
+        .thumb {
+            width: 24px;
+            height: 24px;
+
+            &:last-child {
+                margin-left: 4px;
+            }
+        }
+
+        input[type=range] {
+            -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+            width: 100%;
+            max-width: 600px;
+            background: #d1d1d1;
+            height: 8px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border: 2px solid #FFFFFF;
+            background: #3366FF;
+            border-radius: 50%;
+            height: 24px;
+            width: 24px;
+            box-shadow: 0 0 1pt 1pt #000000;
+        }
+        input[type=range]:focus {
+            outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+        }
+        input[type=range]::-ms-track {
+            width: 100%;
+            cursor: pointer;
+            /* Hides the slider so custom styles can be added */
+            background: transparent; 
+            border-color: transparent;
+            color: transparent;
+        }
+    }
+}

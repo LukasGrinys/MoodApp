@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { getLogs } from './../actions';
 import { connect } from 'react-redux';
 
-import Loading from './../widgets/loading';
+import Loading from './Loading/loading';
 import LogItem from './../widgets/logItem';
 import styles from './logs.module.css';
 import BackButton from './../widgets/backButton';
 import ButtonWid from './../widgets/Button';
-import LoadingNetItem from './../widgets/loadingNetItem';
+import LoadingNetItem from './Loading/loadingNetItem';
 
 class LogList extends Component {
     state = {

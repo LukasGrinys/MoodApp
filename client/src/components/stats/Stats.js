@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getAllLogs } from './../../actions';
 
 // Widgets
-import Loading from './../../widgets/loading';
+import Loading from '../Loading/loading';
 import BackButton from './../../widgets/backButton';
 import GraphCanvas from './GraphCanvas';
 import DaytimeGraph from './DaytimeGraph';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import FormWrapper from './../widgets/FormWrapper';
-import Loading from './../widgets/loading';
+import Loading from './Loading/loading';
 import ButtonWid from './../widgets/Button';
 import MessageBox from './../widgets/MessageBox';
 import BackButton from './../widgets/backButton';

@@ -1,4 +1,7 @@
 export const initialFormValues = {
     email: '',
-    password: ''
+    password: '',
+    firstName: '',
+    lastName: '',
+    confirmPassword: ''
 }

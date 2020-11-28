@@ -2,19 +2,63 @@ import axios from 'axios';
 import Cookie from 'universal-cookie';
 const cookie = new Cookie();
 
-export function createUser(user) {
-    const request = axios.post('/api/users', user)
-    return (dispatch) => {
-        request.then( ( {data} ) => {
-            let response = {
-                success: data.success,
-                error: data.error
+export const createUser = async (user) => {
+    return async dispatch => {
+        dispatch({
+            type: 'CREATE_USER',
+            payload: {
+                createUserSuccess: null,
+                createUserError: null
             }
+        });
+
+        try {
+            const { data } = await axios.post('/api/users', user)
+        
+            if (!data) {
+                dispatch({
+                    type: 'CREATE_USER',
+                    payload: {
+                        createUserSuccess: false,
+                        createUserError: 'Unknown error'
+                    }
+                });
+
+                return;
+            }
+
+            const { success, error } = data;
+
+            if (error || !success) {
+                dispatch({
+                    type: 'CREATE_USER',
+                    payload: {
+                        createUserSuccess: false,
+                        createUserError: error || 'Could not create user'
+                    }
+                });
+
+                return;
+            }
+            
+            if (success) {
+                dispatch({
+                    type: 'CREATE_USER',
+                    payload: {
+                        createUserSuccess: true,
+                        createUserError: null
+                    }
+                });
+            }
+        } catch (error) {
             dispatch({
                 type: 'CREATE_USER',
-                payload: response
-            })
-        })
+                payload: {
+                    createUserSuccess: false,
+                    createUserError: error || 'Could not create user'
+                }
+            });
+        }
     }
 }
 
@@ -31,7 +75,7 @@ export const loginUser = async (payload) => {
 
             const { data } = await axios.post('/api/login', payload);
 
-            const { isAuth, error } = data;
+            const { isAuth, error, id, email } = data;
 
             if (error) {
                 dispatch({
@@ -50,9 +94,11 @@ export const loginUser = async (payload) => {
                     type: 'LOGIN_USER',
                     payload: {
                         isAuth,
-                        error: null
+                        error: null,
+                        id,
+                        email
                     }
-                })
+                });
             }
         } catch (error) {
             dispatch({
@@ -106,40 +152,86 @@ export function auth() {
 
 // LOGS //
 
-export function canUserLog(currentDate, currentTiming, user) {
+export const canUserLog = async (currentDate, currentTiming, user) => {
     const body = {
         userId: user,
         date: currentDate,
         timing: currentTiming
     };
-    const request = axios.post('/api/canLog', body);
-    return (dispatch) => {
-        request.then( ({data}) => {
+
+    return async dispatch => {
+        const { data } = await axios.post('/api/canLog', body);
+        
+        if (data && data.data) {
             dispatch({
                 type: 'CAN_LOG',
                 payload: data.data.canLog
             })
+
+            return;
+        }
+
+        dispatch({
+            type: 'CAN_LOG',
+            payload: false
         })
     }
 }
 
-export function userCannotLog() {
-    return {
-        type: "CANNOT_LOG",
-        payload: {}
-    }
-}
+export const getLastLogs = async ({
+    userId,
+    limit = 9
+}) => {
+    const url = `/api/getLogs?id=${userId}&limit=${limit}`;
 
-export function getLastLogs(user) {
-    const url = `/api/getLogs?id=${user}&limit=9`;
-    const request = axios.get(url);
-    return (dispatch) => {
-        request.then( (response) => {
+    return async dispatch => {
         dispatch({
             type: 'GET_LAST_LOGS',
-            lastLogs: response.data
-            })
-        })
+            payload: {
+                lastLogs: [],
+                logFetchError: null,
+                isFetchingLogs: true
+            }
+        });
+
+        const { data } = await axios.get(url);
+
+        const { success, error } = data;
+
+        if (error) {
+            dispatch({
+                type: 'GET_LAST_LOGS',
+                payload: {
+                    lastLogs: [],
+                    logFetchError: error,
+                    isFetchingLogs: false
+                }
+            });
+
+            return;
+        }
+
+        if (success && data.data) {
+            dispatch({
+                type: 'GET_LAST_LOGS',
+                payload: {
+                    lastLogs: data.data,
+                    logFetchError: null,
+                    isFetchingLogs: false
+                }
+            });
+
+            return;
+        }
+
+        dispatch({
+            type: 'GET_LAST_LOGS',
+            payload: {
+                lastLogs: [],
+                logFetchError: null,
+                isFetchingLogs: false
+            }
+        });
     }
 }
 
@@ -187,28 +279,80 @@ export function getLogs(user, start, limit, logs) {
     }
 }
 
-export function postLog(user, date, timing, rating, text) {
+export const postLog = async ({
+    userId,
+    date,
+    timing,
+    rating,
+    text
+}) => {
     const body = {
-        userId: user,
+        userId,
         date,
         timing,
         rating,
         text
     }
-    const request = axios.post('/api/postLog', body)
-    .then( (response) => {
-        return response.data
-    });
-    return {
-        type: 'POST_LOG',
-        payload: request
-    }
+
+    return async dispatch => {
+        try {
+            dispatch( {
+                type: 'POST_LOG',
+                payload: {
+                    isPostingLog : true,
+                    postLogSuccess : null,
+                    postLogError : null
+                }
+            });
+    
+            const { data } = await axios.post('/api/postLog', body);
+            const { error , success } = data;
+
+            if (error || !success) {
+                dispatch({
+                    type: 'POST_LOG',
+                    payload: {
+                        isPostingLog : false,
+                        postLogSuccess : false,
+                        postLogError : error || 'Unknown error occured'
+                    }
+                });
+
+                return;
+            }
+
+            dispatch({
+                type: 'POST_LOG',
+                payload: {
+                    isPostingLog : false,
+                    postLogSuccess : true,
+                    postLogError : null,
+                    canLog : false
+                }
+            })
+        } catch (error) {
+            console.error(error);
+
+            dispatch({
+                type: 'POST_LOG',
+                payload: {
+                    isPostingLog : false,
+                    postLogSuccess : false,
+                    postLogError : error
+                }
+            })
+        }
+    }  
 }
 
-export function clearPostLog() {
+export function clearLogPost() {
     return {
-        type: 'CLEAR_POST_LOG',
-        payload: {}
+        type: 'POST_LOG',
+        payload: {
+            isPostingLog : false,
+            postLogSuccess : null,
+            postLogError : null
+        }
     }
 }
 

@@ -14,7 +14,7 @@ export default function(ComposedClass, redirect) {
                     this.props.history.push('/login');
                 }
             } else if (user.isAuth) {
-                if (!redirect) {
+                if (redirect === false) {
                     this.props.history.push('/dashboard')
                 }
             }

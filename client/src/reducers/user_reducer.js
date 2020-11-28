@@ -1,7 +1,11 @@
 export default function(state={}, {type, payload}) {
     switch(type) {
         case 'CREATE_USER':
-            return {...state, success:payload.success, error:payload.error }
+            return {
+                ...state, 
+                createUserSuccess: payload.createUserSuccess,
+                createUserError: payload.createUserError
+            }
         case 'LOGIN_USER' :
             return {
                 ...state, 
@@ -20,7 +24,9 @@ export default function(state={}, {type, payload}) {
             return {
                 ...state,
                 authError: null,
-                isAuth: true
+                isAuth: true,
+                id: payload.id || null,
+                email: payload.email || null 
             }
         case 'CLEAN_USER' :
             return {...state, data: payload}

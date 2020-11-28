@@ -5,6 +5,7 @@
     height: 100%;
     width: 100%;
 }
+
 .barContainer {
     width: 50px;
     height: 40px;
@@ -12,8 +13,8 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
-
 }
+
 .bar {
     border: 1px solid #d1d1d1;
     background-color: #d1d1d1;
@@ -35,6 +36,7 @@
 .delay1 {
     animation-delay: 0.2s;
 }
+
 .delay2 {
     animation-delay: 0.5s;
 }

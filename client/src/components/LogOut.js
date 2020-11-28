@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Loading from './../widgets/loading';
+import Loading from './Loading/loading';
 import { connect } from 'react-redux';
 import { logOut, clearLogs } from './../actions';
 

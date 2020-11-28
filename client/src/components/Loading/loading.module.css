@@ -14,11 +14,17 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
-
 }
-.bar {
-    border: 1px solid #3366ff;
+
+.barContainer > div {
     background-color: #3366ff;
+}
+
+.barContainer.dark > div {
+    background-color: #d2d2d2;
+}
+
+.bar {
     border-radius: 2px;
     width: 15px;
     height: 40px;

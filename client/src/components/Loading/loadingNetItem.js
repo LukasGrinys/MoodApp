@@ -9,7 +9,7 @@ const LoadingNetItem = () => {
                 <div className={[styles.bar, styles.delay1].join(' ')}></div>
                 <div className={[styles.bar, styles.delay2].join(' ')}></div>
             </div>
-    </div>
+        </div>
     );
 };
 

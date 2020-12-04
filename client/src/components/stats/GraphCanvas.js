@@ -1,57 +1,75 @@
-import React, { Component } from 'react';
-import styles from './stats.module.css';
-import { graphStroke } from './../../widgets/nightmodeColors';
+import React, { useState, useEffect, useRef } from 'react';
+import styles from './GraphCanvas.module.scss';
 import { useTheme } from './../../contexts/ThemeContext';
+import classNames from 'classnames';
+import { mapLogsToGraphData } from '../../util/statsHelpers';
 
 const ReturnGraph = ( {points} ) => {
     const darkTheme = useTheme();
+
     return (
-        <polyline points={points} className={styles.graph_stroke} 
-        style={graphStroke(darkTheme)}/>
+        <polyline points={points} className={classNames(
+            styles.graph_stroke,
+            darkTheme && styles.dark
+        )}/>
     )
 }
 
-class GraphCanvas extends Component {
-    state = {
-        width: 0
-    }
-    constructor(props){
-        super(props);
-        this.myInput = React.createRef()
-    };
-    returnPolylinePoints = (list) => {
+const GraphCanvas = ({logs}) => {
+    const [ width, setWidth ] = useState(0);
+    const graphRef = useRef(null);
+
+    const returnPolylinePoints = (list) => {
         let pointsString = '';
-        const elementWidth = this.state.width;
+
         for (let i = 0; i < list.length; i++) {
-            let ratingYpos = 220 - (list[i] * 20);
-            pointsString += (Math.floor((elementWidth / 21) * (list.length - i - 1))) + "," + ratingYpos + " "; 
+            let ratingYpos = 220 - (Number(list[i].rating) * 20);
+            pointsString += (Math.floor((width / 21) * (list.length - i - 1))) + "," + ratingYpos + " "; 
         }
+
         return pointsString
     }
-    componentDidMount () {
-        window.addEventListener('resize', () => {
-            let newWidth = 0;
-            if (this.myInput.current) {
-                newWidth = this.myInput.current.offsetWidth;
-            } else {
-                newWidth = 490;
-            };
-            if (newWidth !== this.state.width) {
-                this.setState({
-                    width: newWidth
-                })
-            };
-        });
-        if (this.state.width === 0 && this.myInput !== null) {
-            this.setState({
-                width: this.myInput.current.offsetWidth
-            })
+
+    const handleResize = () => {
+        let newWidth = 0;
+
+        if (graphRef.current && graphRef.current.offsetWidth) {
+            newWidth = graphRef.current.offsetWidth;
+        } else {
+            newWidth = 490;
         };
+
+        if (newWidth !== width) {
+            setWidth(newWidth);
+        };
+    };
+
+    useEffect( () => {
+        window.addEventListener('resize', handleResize);
+
+        if (!width && graphRef.current && graphRef.current.offsetWidth) {
+            setWidth(graphRef.current.offsetWidth)
+        }
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+        // eslint-disable-next-line
+    }, []);
+
+    const graphData = mapLogsToGraphData(logs);
+
+    if (!graphData || !graphData.length) {
+        return null;
     }
 
-    render() {
-        return (
-            <div className={styles.graph_canvas} ref={this.myInput} >
+    const firstDate = graphData[0].date;
+    const lastDate = graphData[graphData.length - 1].date;
+
+    return (
+        <div className={styles.graph_container}>
+            <p><strong>Your mood graph</strong></p>
+            <div className={styles.graph_canvas} ref={graphRef} >
                 <div className={styles.y_axis_number}>10</div>
                 <div className={styles.y_axis_number} style={{transform: "translate(10px, 100px)"}}>5</div>
                 <div className={styles.y_axis_number} style={{transform: "translate(10px, 200px)"}}>0</div>
@@ -66,11 +84,12 @@ class GraphCanvas extends Component {
                     <polyline points={"1,160 490,160"} style={{fill:"none", stroke:"#cccccc", strokeWidth:"1"}}/>
                     <polyline points={"1,180 490,180"} style={{fill:"none", stroke:"#cccccc", strokeWidth:"1"}}/>
                     <polyline points={"1,200 490,200"} style={{fill:"none", stroke:"#cccccc", strokeWidth:"1"}}/>
-                    <ReturnGraph points={this.returnPolylinePoints(this.props.list)} />
+                    <ReturnGraph points={returnPolylinePoints(graphData)} />
                 </svg>
             </div>
-        )
-    }
+            <div>From {lastDate} to {firstDate}</div>
+        </div>
+    )
 }
 
 export default GraphCanvas;

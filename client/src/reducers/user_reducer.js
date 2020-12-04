@@ -26,10 +26,30 @@ export default function(state={}, {type, payload}) {
                 authError: null,
                 isAuth: true,
                 id: payload.id || null,
-                email: payload.email || null 
+                email: payload.email || null, 
+                firstName: payload.firstName || '',
+                lastName: payload.lastName || ''
             }
-        case 'CLEAN_USER' :
-            return {...state, data: payload}
+        case 'CLEAR_USER' :
+            return {
+                ...state, 
+                authError: null,
+                isAuth: false,
+                id: null,
+                email: null, 
+                firstName: '',
+                lastName: ''
+            }
+        case 'EDIT_USER':
+            return {
+                ...state,
+                ...payload
+            }
+        case 'CHANGE_PASSWORD' :
+            return {
+                ...state,
+                ...payload
+            }
         default:
             return state;
     }

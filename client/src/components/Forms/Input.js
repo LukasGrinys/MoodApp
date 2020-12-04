@@ -32,4 +32,15 @@ const Input = ({type, name, value, controlEvents, placeholder}) => {
 
 };
 
+Input.defaultProps = {
+    type : 'text',
+    name : '',
+    value : '',
+    controlEvents : {
+        handleBlur : () => {},
+        handleChange : () => {}
+    },
+    placeholder: ''
+}
+
 export default Input;

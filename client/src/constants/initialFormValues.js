@@ -3,5 +3,6 @@ export const initialFormValues = {
     password: '',
     firstName: '',
     lastName: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    currentPassword: ''
 }

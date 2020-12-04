@@ -1,0 +1,20 @@
+@import '../../styles/config/variables';
+
+.averageBox {
+    width: 130px;
+    height: 75px;
+    background: $color-primary;
+    color: $color-primary-white;
+    border-radius: 5px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.2em;
+    font-weight: bold;
+
+    &.dark {
+        background: $color-night-lightgrey;
+        color: $color-night-darkgrey;
+    }
+}

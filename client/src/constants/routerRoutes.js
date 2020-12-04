@@ -5,5 +5,9 @@ export const routerRoutes = {
     dashboard: '/dashboard',
     addNewLog: '/addlog',
     register: '/register',
-    settings: '/settings'
+    settings: '/settings',
+    allLogs: '/logs',
+    viewLog: '/logs/:id',
+    delete: '/delete',
+    stats: '/stats'
 }

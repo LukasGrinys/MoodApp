@@ -150,8 +150,158 @@ export function auth() {
     }
 }
 
-// LOGS //
+export const editUserDetails = async ({userId, details}) => {
+    return async dispatch => {
+        const endpoint = '/api/editAccount';
+        const body = {
+            id : userId,
+            ...details
+        }
 
+        dispatch({
+            type: 'EDIT_USER',
+            payload: {
+                isEditingUser: true,
+                editUserSuccess: null,
+                editUserError: null
+            }
+        });
+
+        try {
+            const { error } = await axios.post(endpoint, body);
+
+            if (error) {
+                dispatch({
+                    type: 'EDIT_USER',
+                    payload: {
+                        isEditingUser: false,
+                        editUserSuccess: false,
+                        editUserError: error
+                    }
+                });
+
+                return
+            }
+
+            dispatch({
+                type: 'EDIT_USER',
+                payload: {
+                    isEditingUser: false,
+                    editUserSuccess: true,
+                    editUserError: null
+                }
+            });
+        } catch (error) {
+            console.error(error);
+
+            dispatch({
+                type: 'EDIT_USER',
+                payload: {
+                    isEditingUser: false,
+                    editUserSuccess: false,
+                    editUserError: error
+                }
+            });
+        }
+    }
+}
+
+export const clearEditUser = () => {
+    return dispatch => {
+        dispatch({
+            type: 'EDIT_USER',
+            payload: {
+                isEditingUser: false,
+                editUserSuccess: null,
+                editUserError: null
+            }
+        });
+    }
+}
+
+// CHANGE PASSWORD
+
+export const changePassword = async ({
+    userId,
+    currentPassword,
+    newPassword
+}) => {
+    return async dispatch => {
+        if (!userId || !currentPassword || !newPassword) {
+            return;
+        }
+
+        const endpoint = '/api/changePassword';
+        const body = {
+            id : userId,
+            oldPassword : currentPassword,
+            newPassword
+        }
+
+        await clearChangePassword();
+
+        try {
+            const { error } = await axios.post(endpoint, body);
+
+            if (error) {
+                dispatch({
+                    type: 'CHANGE_PASSWORD',
+                    payload: {
+                        isChangingPassword : false,
+                        changePasswordError : error,
+                        changePasswordSuccess : false
+                    }
+                });
+
+                return;
+            }
+
+            dispatch({
+                type: 'CHANGE_PASSWORD',
+                payload: {
+                    isChangingPassword : false,
+                    changePasswordError : null,
+                    changePasswordSuccess : true
+                }
+            });
+        } catch (error) {
+            console.error(error);
+
+            dispatch({
+                type: 'CHANGE_PASSWORD',
+                payload: {
+                    isChangingPassword : false,
+                    changePasswordError : error,
+                    changePasswordSuccess : false
+                }
+            });
+        }
+    }
+}
+
+export const clearChangePassword = async () => {
+    return dispatch => {
+        dispatch({
+            type: 'CHANGE_PASSWORD',
+            payload: {
+                isChangingPassword: false,
+                changePasswordError: null,
+                changePasswordSuccess: null
+            }
+        })
+    }
+}
+
+export const clearUserData = async () => {
+    return dispatch => {
+        dispatch({
+            type: 'CLEAR_USER',
+            payload: {}
+        })
+    }
+}
+
+// LOGS //
 export const canUserLog = async (currentDate, currentTiming, user) => {
     const body = {
         userId: user,
@@ -242,40 +392,133 @@ export function clearLastLogs() {
     }
 }
 
-export function viewLog(id) {
-    const request = axios.get(`/api/getLog?id=${id}`);
-    return (dispatch) => {
-        request.then(( {data} ) => {
+export const getLog = async logId => {
+    return async dispatch => {
+        const endpoint = `/api/getLog?id=${logId}`;
+
+        dispatch({
+            type: 'GET_LOG',
+            payload: {
+                isFetchingLog : true,
+                getLogError : null,
+                logData : {}
+            }
+        });
+
+        try {
+            const { data, error } = await axios.get(endpoint);
+            
+            if (error) {
+                dispatch({
+                    type: 'GET_LOG',
+                    payload: {
+                        isFetchingLog : false,
+                        getLogError : error,
+                        logData : {}
+                    }
+                });
+
+                return
+            }
+            
             dispatch({
                 type: 'GET_LOG',
-                payload: data
-            })
+                payload: {
+                    isFetchingLog : false,
+                    getLogError : false,
+                    logData : (data && data.data) ? data.data : {}
+                }
+            });
+        } catch (error) {
+            console.error(error);
+
+            dispatch({
+                type: 'GET_LOG',
+                payload: {
+                    isFetchingLog : false,
+                    getLogError : error,
+                    logData : {}
+                }
+            });
+        }
+    }
+}
+
+export const clearLog = () => {
+    return dispatch => {
+        dispatch({
+            type: 'GET_LOG',
+            payload: {
+                isFetchingLog : false,
+                getLogError : null,
+                logData : {}
+            }
+        });
+    }
+}
+
+export const getLogs = async ({userId, start, limit, currentLogs}) => {
+    return async dispatch => {
+        const endpoint = `/api/getLogs?id=${userId}${start ? `&skip=${start}` : ''}&limit=${limit}`;
+
+        dispatch({
+            type: 'GET_LOGS',
+            payload: {
+                isFetchingAllLogs: true,
+                fetchAllLogsError: null
+            }
+        });
+
+        try {
+            const { data, error } = await axios.get(endpoint);
+
+            if (error) {
+                dispatch({
+                    type: 'GET_LOGS',
+                    payload: {
+                        isFetchingAllLogs: false,
+                        fetchAllLogsError: error
+                    }
+                });
+
+                return;
+            }
+
+            if (data && data.data) {
+                dispatch({
+                    type: 'GET_LOGS',
+                    payload: {
+                        isFetchingAllLogs: false,
+                        fetchAllLogsError: false,
+                        allLogs: currentLogs ? [...currentLogs, ...data.data] : data.data,
+                        noLogsLeft: !data.data.length ? true : false
+                    }
+                });
+            }
+        } catch (error) {
+            dispatch({
+                type: 'GET_LOGS',
+                payload: {
+                    isFetchingAllLogs: false,
+                    fetchAllLogsError: error
+                }
+            });
+        }
+
+    }
+}
+
+export const clearLogs = () => {
+    return dispatch => {
+        dispatch({
+            type: 'GET_LOGS',
+            payload: {
+                isFetchingAllLogs: false,
+                fetchAllLogsError: null,
+                allLogs: null,
+                noLogsLeft: false
+            }
         })
-    }
-}
-
-export function clearLog() {
-    return {
-        type: 'CLEAR_LOG',
-        payload: {}
-    }
-}
-
-export function getLogs(user, start, limit, logs) {
-    const request = axios.get(`/api/getLogs?id=${user}&skip=${start}&limit=${limit}`)
-    .then( (response) =>  {
-        if (response.data === "No logs found") {
-            return [...logs, response.data]
-        }
-        if (logs) {
-            return [...logs, ...response.data]
-        } else {
-            return response.data
-        }
-    });
-    return {
-        type: 'GET_LOGS',
-        payload: request
     }
 }
 
@@ -353,28 +596,5 @@ export function clearLogPost() {
             postLogSuccess : null,
             postLogError : null
         }
-    }
-}
-
-export function getAllLogs(user) {
-    const request = axios.get(`/api/getLogs?id=${user}&limit=100`)
-    .then( (response) =>  {
-        if (response.data === "No logs found") {
-            return []
-        } else {
-            return response.data
-        }
-    });
-    return {
-        type: 'GET_LOGS',
-        payload: request
-    }
-}
-
-
-export function clearLogs() {
-    return {
-        type: 'CLEAR_LOGS',
-        payload: null
     }
 }

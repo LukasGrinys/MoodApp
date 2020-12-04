@@ -1,6 +1,6 @@
 export default function(state={}, action) {
     const { payload, type } = action;
-
+    /* TODO : Create initial state object */
     switch(type) {
         case 'CAN_LOG' :
             return {
@@ -12,15 +12,16 @@ export default function(state={}, action) {
                 ...state, 
                 ...payload
             };
-        case 'GET_MOOD_STATUS' :
-            return {...state, lastNineLogs: action.payload}
         case 'GET_LOG' :
-            return {...state, logInfo: action.payload}
-        case 'CLEAR_LOG' :
-            return {...state, logInfo: action.payload}
+            return {
+                ...state, 
+                ...payload
+            }
         case 'GET_LOGS' :
             return {
-                ...state, list: action.payload}
+                ...state,
+                ...payload
+            }
         case 'POST_LOG' :
             return {
                 ...state, 

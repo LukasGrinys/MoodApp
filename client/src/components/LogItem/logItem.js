@@ -2,11 +2,7 @@ import React from 'react';
 import styles from './logItem.module.css';
 import FontAwesome from 'react-fontawesome';
 
-const LogItem = (props) => {
-    const date = props.date;
-    const timing = props.timing;
-    const text = props.text;
-    const rating = props.rating;
+const LogItem = ({date, timing, text, rating}) => {
     return (
         <div className={styles.item}>
             <div className={styles.top_line}>
@@ -26,7 +22,6 @@ const LogItem = (props) => {
                 {text}
             </div>
         </div>
-   
    );
 };
 

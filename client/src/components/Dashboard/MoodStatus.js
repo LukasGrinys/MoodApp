@@ -26,14 +26,16 @@ const MoodStatus = () => {
                 !isFetchingLogs ? (
                     <Fragment>
                         <h3 className={parentClasses.gridItemHeader}>Latest mood status</h3>
-                        <div className={classNames(
-                            styles.statusBox,
-                            darkTheme && styles.dark
-                        )}>{rating}</div>
-                        <div className={styles.statusText}>{ratingText}</div>
-                        <Link to="/stats">
-                            <Button>Stats</Button> 
-                        </Link>
+                        <div className={parentClasses.gridItemContent}>
+                            <div className={classNames(
+                                styles.statusBox,
+                                darkTheme && styles.dark
+                            )}>{rating}</div>
+                            <div className={styles.statusText}>{ratingText}</div>
+                            <Link to="/stats">
+                                <Button>Stats</Button> 
+                            </Link>
+                        </div>
                     </Fragment>
                 ) : (
                     <LoadingNetItem/>

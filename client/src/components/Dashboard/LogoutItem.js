@@ -11,7 +11,10 @@ const LogoutItem = () => {
     const darkTheme = useTheme();
 
     return (
-        <div className={parentClasses.gridItem}>
+        <div className={classNames(
+            parentClasses.gridItem,
+            parentClasses.shrink
+            )}>
             <h3 className={parentClasses.gridItemHeader}>Log out</h3>
             <div className={parentClasses.flexCenter}>
                 <Link to={routerRoutes.logout}>

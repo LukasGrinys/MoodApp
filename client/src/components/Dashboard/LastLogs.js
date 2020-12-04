@@ -29,7 +29,10 @@ const LastLogs = () => {
                             Write Your first one, by pressing the green button at the top
                         </div> 
                     ) : (
-                        <div className={styles.logSection}> 
+                        <div className={classNames(
+                            styles.logSection, 
+                            parentStyles.gridItemContent
+                        )}> 
                             <div className={styles.logContainer}>
                                 { lastLogs.slice(0,3).map( (log, index) => {
                                     return (

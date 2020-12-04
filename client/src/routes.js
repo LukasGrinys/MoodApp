@@ -10,7 +10,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import AddLogPage from './components/AddLog/AddLogPage';
 import AllLogs from './components/Logs/AllLogs';
 import LogView from './components/ViewLog/LogView';
-import LogOut from './components/LogOut';
+import LogOut from './components/LogOut/LogOut';
 import Settings from './components/Settings/Settings';
 import Stats from './components/Stats/Stats';
 import DeleteAccount from './components/DeleteAccount/DeleteAccount';

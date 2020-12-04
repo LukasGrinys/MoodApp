@@ -113,30 +113,19 @@ export const loginUser = async (payload) => {
 }
 
 export function logOut() {
-    const request = axios.get('/api/logout')
+    const request = axios.get('/api/logout');
+
     return (dispatch) => {
         request.then( (response) => {
             if (response.status === 200) {
                 cookie.remove('auth');
+                
                 dispatch({
-                    type: 'CLEAN_USER',
+                    type: 'CLEAR_USER',
                     payload: {}
                 })
             }
         })
-    }
-}
-
-export function deleteUser() {
-    return (dispatch) => {
-        dispatch({
-            type: 'CLEAN_USER',
-            payload: {}
-        });
-        dispatch({
-            type: 'CLEAN_LOGS',
-            payload: {}
-        });
     }
 }
 

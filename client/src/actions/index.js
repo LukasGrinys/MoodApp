@@ -123,6 +123,14 @@ export function logOut() {
                 dispatch({
                     type: 'CLEAR_USER',
                     payload: {}
+                });
+                
+                clearLogs();
+                clearLastLogs();
+
+                dispatch({
+                    type: 'CAN_LOG',
+                    payload: null
                 })
             }
         })
@@ -375,9 +383,15 @@ export const getLastLogs = async ({
 }
 
 export function clearLastLogs() {
-    return {
-        type: "CLEAR_LAST_LOGS",
-        lastLogs: null
+    return dispatch => {
+        dispatch({
+            type: 'GET_LAST_LOGS',
+            payload: {
+                lastLogs: [],
+                logFetchError: null,
+                isFetchingLogs: true
+            }
+        });
     }
 }
 
@@ -504,7 +518,7 @@ export const clearLogs = () => {
             payload: {
                 isFetchingAllLogs: false,
                 fetchAllLogsError: null,
-                allLogs: null,
+                allLogs: [],
                 noLogsLeft: false
             }
         })

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Loading from '../Loading/loading';
 import { connect } from 'react-redux';
-import { logOut, clearLogs } from '../../actions';
+import { logOut } from '../../actions';
 
 class LogOut extends Component {
     UNSAFE_componentWillMount(){

@@ -1,9 +1,0 @@
-.messageBox {
-    padding-bottom: 15px;
-    animation: animate 1s;
-}
-
-@keyframes animate {
-    from { opacity: 0}
-    to {opacity : 1}
-};

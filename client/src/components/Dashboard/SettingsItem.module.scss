@@ -1,0 +1,24 @@
+@import '../../styles/config/variables';
+
+.settingsIconWrapper {
+    transition-duration: 0.4s;
+
+    &:hover {    
+        transform: rotate(60deg);
+    }
+
+    .settingsIcon {
+        color: $color-primary;
+        font-size: 120px;
+        opacity: 0.5;
+    
+        &:hover {
+            opacity: 1;
+        }
+
+        &.dark {
+            color: $color-night-white;
+        }
+    }
+}
+

@@ -1,0 +1,37 @@
+.graph_container {
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .graph_canvas {
+        border-left: 2px solid black;
+        border-bottom: 2px solid black;
+        height: 220px;
+        max-width: 490px;
+        width: 100%;
+        position: relative;
+    
+        .graph_stroke {
+            fill:none;
+            stroke:#3366FF;
+            stroke-width: 3;
+            position: relative;
+            top:0;
+            left:0;
+            z-index: 99;
+    
+            &.dark {
+                stroke: #d2d2d2;
+            }
+        }
+        
+        .y_axis_number {
+            position: absolute;
+            top: 10px;
+            left: -25px;
+        }
+    }
+}
+

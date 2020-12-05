@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './button.module.css';
-import { useTheme } from './../hoc/ThemeContext';
+import { useTheme } from './../contexts/ThemeContext';
 
 
 const ButtonWid = (props) => {

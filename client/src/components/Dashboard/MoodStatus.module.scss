@@ -1,0 +1,34 @@
+@import '../../styles/config/variables';
+
+.statusContainer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statusBox {
+    width: 100%;
+    max-width: 130px;
+    height: 75px;
+    background: $color-primary;
+    color: $color-primary-white;
+    border-radius: 5px;
+    margin: 8px auto 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    font-weight: bold;
+
+    &.dark {
+        background: $color-night-lightgrey;
+        color: $color-night-darkgrey;
+    }
+}
+
+.statusText {
+    font-size: 1.2em;
+    font-weight: bold;
+}

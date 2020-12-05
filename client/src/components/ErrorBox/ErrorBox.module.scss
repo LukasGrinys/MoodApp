@@ -1,0 +1,20 @@
+@import '../../styles/config/variables';
+
+.container {
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    background: $color-error-background;
+    border: 1px solid $color-error;
+    border-radius: 2px;
+    color: $color-error;
+    font-size: 12px;
+    margin-top: 8px;
+    opacity: 1;
+    padding: 8px 12px;
+    text-align: center;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0 };
+    100% { opacity: 1};
+}

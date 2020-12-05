@@ -9,10 +9,7 @@ import Button from '../Button/Button';
 import Loading from '../Loading/loading';
 import { useTheme } from '../../contexts/ThemeContext';
 
-const Home = ({isAuth}) => {
-    /* TODO : Return first name from database and display
-    it on home page */
-    
+const Home = ({isAuth, firstName}) => {    
     const darkTheme = useTheme();
 
     if (isAuth === undefined) {
@@ -29,7 +26,7 @@ const Home = ({isAuth}) => {
         <ScrollAnimation animateIn="fadeInDown" delay={1000} offset={75} animateOnce={true}>
             {   isAuth ? (
                     <div className={styles.text}>
-                        Hello <span>name</span>  
+                        Hello <span>{firstName}</span>  
                     </div>
                 ) : ( <div className={styles.text}>Your daily mood tracker</div> )
             }
@@ -67,10 +64,11 @@ const Home = ({isAuth}) => {
 };
 
 const mapStateToProps = ({user}) => {
-    const { isAuth } = user;
+    const { isAuth, firstName } = user;
 
     return {
-        isAuth
+        isAuth,
+        firstName
     }
 }
 export default connect(mapStateToProps)(Home);

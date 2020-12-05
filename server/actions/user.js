@@ -129,10 +129,13 @@ const getUser = async (id) => {
             return {error : "User not found"}
         }
 
+        const data = userRef.data();
+        delete data.password;
+
         return {
             data : {
                 id,
-                ...userRef.data()
+                ...data
             }
         }
     } catch (error) {

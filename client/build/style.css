@@ -12,3 +12,7 @@ body {
     margin: 16px;
     z-index: 0;
 }
+
+a {
+    text-decoration: none;
+}

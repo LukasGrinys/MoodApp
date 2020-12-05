@@ -28,7 +28,11 @@ export default function(state={}, action) {
                 ...payload
             }
         case 'CLEAR_LOGS' :
-            return {lastLogs: action.payload, data: action.payload}
+            return {
+                ...state,
+                lastLogs: [],
+                allLogs: []
+            }
         case 'CLEAR_LAST_LOGS' :
             return {...state, lastLogs: action.lastLogs}
         default:

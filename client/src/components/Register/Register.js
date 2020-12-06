@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { Heading, Wrapper, Label, Input, Footer, ErrorMessage } from '../Forms/Forms';
-import Button from '../Button/Button';
-import BackButton from '../Back/BackButton';
-import ErrorBox from '../ErrorBox/ErrorBox';
+import Button from '../Button';
+import BackButton from '../Back';
+import ErrorBox from '../ErrorBox';
 import { useRegisterForm } from '../../hooks/Register/useRegisterForm';
 
 const Register = () => {

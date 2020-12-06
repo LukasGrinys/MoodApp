@@ -18,7 +18,11 @@
         cursor: pointer;
 
         &:hover {
-            color: #3366ff;
+            color: $color-primary;
+
+            &.nightmode {
+                color: $color-black;
+            }
         }
         
         & > a {

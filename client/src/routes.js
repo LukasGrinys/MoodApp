@@ -3,18 +3,18 @@ import { Switch, Route } from 'react-router-dom';
 import { routerRoutes } from './constants/routerRoutes';
 
 // Components
-import Home from './components/Home/Home';
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
-import Dashboard from './components/Dashboard/Dashboard';
-import AddLogPage from './components/AddLog/AddLogPage';
-import AllLogs from './components/Logs/AllLogs';
-import LogView from './components/ViewLog/LogView';
-import LogOut from './components/LogOut/LogOut';
-import Settings from './components/Settings/Settings';
-import Stats from './components/Stats/Stats';
-import DeleteAccount from './components/DeleteAccount/DeleteAccount';
-import Header from './components/Header/Header';
+import Home from './components/Home';
+import Login from './components/Login';
+import Register from './components/Register';
+import Dashboard from './components/Dashboard';
+import AddLogPage from './components/AddLog';
+import AllLogs from './components/Logs';
+import LogView from './components/ViewLog';
+import LogOut from './components/LogOut';
+import Settings from './components/Settings';
+import Stats from './components/Stats';
+import DeleteAccount from './components/DeleteAccount';
+import Header from './components/Header';
 
 import Auth from './hoc/auth';
 

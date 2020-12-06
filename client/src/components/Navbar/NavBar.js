@@ -11,7 +11,10 @@ const NavBar = ({isAuth, toggleNav}) => {
 
     const itemElement = (item, i) => (
         <Link to={item.path} key={i}>
-            <div className={styles.navItem} onClick={toggleNav}>
+            <div className={classNames(
+                styles.navItem,
+                darkTheme && styles.nightmode
+                )} onClick={toggleNav}>
                 <FontAwesome name={item.iconName}/> {item.text}
             </div> 
         </Link>

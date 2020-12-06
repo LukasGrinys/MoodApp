@@ -1,11 +1,11 @@
 import React from 'react';
 import Loading from '../Loading/loading';
-import BackButton from '../Back/BackButton';
+import BackButton from '../Back';
 import styles from './AllLogs.module.scss';
-import Button from '../Button/Button';
+import Button from '../Button';
 import LogItem from '../LogItem/logItem';
 import LoadingNetItem from '../Loading/loadingNetItem';
-import ErrorBox from '../ErrorBox/ErrorBox';
+import ErrorBox from '../ErrorBox';
 import { useAllLogs } from '../../hooks/AllLogs/useAllLogs';
 
 const AllLogs = () => {

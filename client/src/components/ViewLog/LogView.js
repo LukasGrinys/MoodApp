@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { getLog, clearLog } from '../../actions/logs/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../Loading/loading';
-import BackButton from '../Back/BackButton';
+import BackButton from '../Back';
 import LogItem from '../LogItem/logItem';
-import ErrorBox from '../ErrorBox/ErrorBox';
+import ErrorBox from '../ErrorBox';
 import styles from './logview.module.css';
 
 const LogView = (props) => {

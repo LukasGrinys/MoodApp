@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../Button/Button';
 import { Heading, Wrapper, Label, Input, Footer, ErrorMessage } from '../Forms/Forms';
-import ErrorBox from '../ErrorBox/ErrorBox';
+import ErrorBox from '../ErrorBox';
 import { useLoginForm } from '../../hooks/Login/useLoginForm';
 
 const Login = () => {

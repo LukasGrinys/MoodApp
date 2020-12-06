@@ -5,7 +5,7 @@ import ScrollAnimation from 'react-animate-on-scroll';
 import "animate.css/animate.min.css";
 import classNames from 'classnames';
 import styles from './Home.module.scss';
-import Button from '../Button/Button';
+import Button from '../Button';
 import Loading from '../Loading/loading';
 import { useTheme } from '../../contexts/ThemeContext';
 

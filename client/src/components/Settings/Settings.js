@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import BackButton from '../Back/BackButton';
+import BackButton from '../Back';
 import { Wrapper, Heading, Footer } from '../Forms/Forms';
 import AccountDetails from './AccountDetails';
 import ChangePassword from './ChangePassword';
-import Button from '../Button/Button';
+import Button from '../Button';
 import Loading from '../Loading/loading';
 import styles from './Settings.module.scss';
 import { useSelector } from 'react-redux';

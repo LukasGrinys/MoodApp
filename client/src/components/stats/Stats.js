@@ -6,8 +6,8 @@ import GraphCanvas from './GraphCanvas';
 import DaytimeGraph from './DaytimeGraph';
 import styles from './stats.module.css';
 import { countAverage, lastSevenDaysAverage } from '../../util/statsHelpers';
-import BackButton from '../Back/BackButton';
-import ErrorBox from '../ErrorBox/ErrorBox';
+import BackButton from '../Back';
+import ErrorBox from '../ErrorBox';
 import AverageBox from './AverageBox';
 
 const Stats = () => {

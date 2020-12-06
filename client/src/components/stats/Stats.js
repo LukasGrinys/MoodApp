@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getLogs, clearLogs } from './../../actions';
+import { getLogs, clearLogs } from './../../actions/logs/asyncActions';
 import Loading from '../Loading/loading';
 import GraphCanvas from './GraphCanvas';
 import DaytimeGraph from './DaytimeGraph';
@@ -15,8 +15,12 @@ const Stats = () => {
     const { user, logs } = useSelector( ({user, logs}) => {
         return { user, logs }
     });
-    const { id : userId } = user;
-    const { allLogs, fetchAllLogsError, isFetchingAllLogs } = logs; 
+    const userId = user && user.userData && user.userData.id;
+    const { 
+        logs : allLogs, 
+        error : fetchAllLogsError, 
+        isFetching : isFetchingAllLogs 
+    } = logs.allLogs; 
     
     useEffect( () => {
         if (userId) {
@@ -40,7 +44,7 @@ const Stats = () => {
 
     const sevenDayAverageObject = lastSevenDaysAverage(allLogs);
 
-    if (allLogs && Array.isArray(allLogs) && allLogs.length) {
+    if (allLogs && Array.isArray(allLogs)) {
         return (
             <Fragment>
                 <BackButton/>

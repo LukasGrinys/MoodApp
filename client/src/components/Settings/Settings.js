@@ -11,7 +11,14 @@ import { useSelector } from 'react-redux';
 import { routerRoutes } from '../../constants/routerRoutes';
 
 const Settings = () => {
-    const user = useSelector( ({user}) => user);
+    const user = useSelector( ({user}) => {
+        if (user && user.userData) {
+            return user.userData
+        };
+
+        return {}
+    });
+
     const { 
         email, 
         firstName, 

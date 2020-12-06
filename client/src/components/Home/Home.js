@@ -64,7 +64,8 @@ const Home = ({isAuth, firstName}) => {
 };
 
 const mapStateToProps = ({user}) => {
-    const { isAuth, firstName } = user;
+    const { isAuth, userData } = user;
+    const firstName = userData ? userData.firstName : '';
 
     return {
         isAuth,

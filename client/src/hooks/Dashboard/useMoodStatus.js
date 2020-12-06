@@ -2,12 +2,7 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 export const useMoodStatus = () => {
-    const { lastLogs, isFetchingLogs } = useSelector( ({logs}) => {
-        return {
-            lastLogs : logs.lastLogs,
-            isFetchingLogs : logs.isFetchingLogs
-        }
-    });
+    const { logs : lastLogs, isFetching : isFetchingLogs } = useSelector( ({logs}) => logs.lastLogs);
 
     const rating = useMemo( () => {
         if (!lastLogs || !Array.isArray(lastLogs) || !lastLogs.length) {

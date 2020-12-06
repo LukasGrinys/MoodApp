@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { formErrorMessages } from '../../constants/formErrorMessages';
-import { editUserDetails, clearEditUser } from '../../actions';
+import { editUserDetails, clearEditUser } from '../../actions/user/asyncActions';
 
 export const useEditAccount = ({
     firstName,
@@ -13,11 +13,21 @@ export const useEditAccount = ({
     const [isSubmitting, setIsSubmitting] = useState(false);
     const dispatch = useDispatch();
     const { 
-        id : userId,
-        isEditingUser,
-        editUserError,
-        editUserSuccess
-    } = useSelector( ({user}) => user);
+        userData,
+        editUserData
+    } = useSelector( ({user}) => {
+            return {
+                userData: user.userData || {},
+                editUserData: user.editUser || {}
+            }
+        }
+    );
+    const { id : userId } = userData;
+    const {
+        success : editUserSuccess,
+        error : editUserError,
+        isEditing : isEditingUser
+    } = editUserData;
 
     useEffect( () => {
         return () => {

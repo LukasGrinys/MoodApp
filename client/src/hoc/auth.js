@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { auth } from './../actions';
+import { auth } from './../actions/user/asyncActions';
 
 export default function(ComposedClass, redirect) {
     class AuthenticationCheck extends Component {

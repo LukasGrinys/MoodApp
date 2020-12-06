@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getLog, clearLog } from '../../actions';
+import { getLog, clearLog } from '../../actions/logs/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../Loading/loading';
 import BackButton from '../Back/BackButton';
@@ -9,7 +9,7 @@ import styles from './logview.module.css';
 
 const LogView = (props) => {
     const dispatch = useDispatch();
-    const { logData, isFetchingLog, getLogError } = useSelector( ({logs}) => logs);
+    const { logData, isFetching : isFetchingLog, error : getLogError } = useSelector( ({logs}) => logs.singleLog);
 
     useEffect( () => {
         if (
@@ -19,7 +19,6 @@ const LogView = (props) => {
         ) {
             dispatch(getLog(props.match.params.id));
         }
-
 
         return () => {
             dispatch(clearLog());

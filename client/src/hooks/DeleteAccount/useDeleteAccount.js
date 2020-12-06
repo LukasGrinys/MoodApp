@@ -6,8 +6,10 @@ import { formErrorMessages } from '../../constants/formErrorMessages';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { clearUserData } from '../../actions';
+import { clearUserData } from '../../actions/user/asyncActions';
 import { routerRoutes } from '../../constants/routerRoutes';
+import Cookie from 'universal-cookie';
+const cookie = new Cookie();
 
 export const useDeleteAccount = () => {
     const [deleteAccountStatus, setDeleteAccountStatus] = useState({
@@ -16,7 +18,7 @@ export const useDeleteAccount = () => {
         success: null
     });
     const { isDeleting, success, error } = deleteAccountStatus;
-    const userId = useSelector( ({user}) => user.id);
+    const userId = useSelector( ({user}) => user.userData.id);
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -27,6 +29,7 @@ export const useDeleteAccount = () => {
             }
             
             clearData();
+            cookie.remove('auth');
             history.push(routerRoutes.home);
         }
         // eslint-disable-next-line

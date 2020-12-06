@@ -8,12 +8,18 @@ import LastLogs from './LastLogs';
 import MoodStatus from './MoodStatus';
 import SettingsItem from './SettingsItem';
 import LogoutItem from './LogoutItem';
-import { getLastLogs } from '../../actions';
+import { getLastLogs } from '../../actions/logs/asyncActions';
 
 const Dashboard = () => {
     const darkTheme = useTheme();
     const isSignedIn = useSelector( ({user}) => user.isAuth );
-    const userId = useSelector( ({user}) => user.id );
+    const userId = useSelector( ({user}) => { 
+        if (user && user.userData && user.userData.id) {
+            return user.userData.id
+        } 
+
+        return null;
+    });
     const dispatch = useDispatch();
 
     useEffect( () => {
@@ -25,7 +31,7 @@ const Dashboard = () => {
         }
     }, [userId, dispatch]);
 
-    if (isSignedIn === undefined) {
+    if (isSignedIn === null) {
         return (
             <Loading/>
         )

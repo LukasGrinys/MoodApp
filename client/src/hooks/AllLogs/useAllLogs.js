@@ -1,6 +1,6 @@
 
 import { useCallback, useEffect, useState } from 'react';
-import { getLogs, clearLogs } from '../../actions';
+import { getLogs, clearLogs } from '../../actions/logs/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const useAllLogs = () => {
@@ -13,13 +13,13 @@ export const useAllLogs = () => {
     });
     const [ skipLogs, setSkipLogs ] = useState(3); 
 
-    const { id : userId } = user;
+    const userId = user && user.userData && user.userData.id;
     const { 
-        allLogs, 
-        isFetchingAllLogs, 
-        fetchAllLogsError,
+        logs : allLogs, 
+        isFetching : isFetchingAllLogs, 
+        error : fetchAllLogsError,
         noLogsLeft
-    } = logs;
+    } = logs.allLogs;
 
     useEffect( () => {
         if (userId) {

@@ -1,40 +1,145 @@
-export default function(state={}, action) {
-    const { payload, type } = action;
-    /* TODO : Create initial state object */
+import { actions } from '../actions/logs/actions';
+
+const initialState = {
+    canLog: null,
+    lastLogs : {
+        logs: [],
+        error: null,
+        isFetching: false
+    },
+    singleLog : {
+        logData : {},
+        error : null,
+        isFetching: false
+    },
+    allLogs : {
+        isFetching: false,
+        error: null,
+        logs: [],
+        noLogsLeft: false
+    },
+    postLog : {
+        isPosting : false,
+        success : null,
+        error : null
+    }
+}
+
+export default function(state = initialState, {payload, type}) {
     switch(type) {
-        case 'CAN_LOG' :
+        case actions.canLog.request :
             return {
                 ...state, 
+                canLog: null
+            };
+        case actions.canLog.receive :
+            return {
+                ...state,
                 canLog: payload
-            };
-        case 'GET_LAST_LOGS' : 
-            return {
-                ...state, 
-                ...payload
-            };
-        case 'GET_LOG' :
-            return {
-                ...state, 
-                ...payload
             }
-        case 'GET_LOGS' :
+        case actions.getLastLogs.request : 
             return {
                 ...state,
-                ...payload
+                lastLogs : {
+                    logs: [],
+                    error: null,
+                    isFetching: true
+                }
             }
-        case 'POST_LOG' :
+        case actions.getLastLogs.receive : 
             return {
                 ...state, 
-                ...payload
+                lastLogs : {
+                    ...payload
+                }
             }
-        case 'CLEAR_LOGS' :
+        case actions.getLastLogs.reset :
             return {
                 ...state,
-                lastLogs: [],
-                allLogs: []
+                lastLogs : {
+                    ...initialState.lastLogs
+                }
             }
-        case 'CLEAR_LAST_LOGS' :
-            return {...state, lastLogs: action.lastLogs}
+        case actions.getLog.request : 
+            return {
+                ...state,
+                singleLog : {
+                    isFetching : true,
+                    error : null,
+                    logData : {}
+                }
+            }
+        case actions.getLog.receive :
+            return {
+                ...state, 
+                singleLog : {
+                    ...payload  
+                }
+            }
+        case actions.getLog.reset :
+            return {
+                ...state,
+                singleLog : {
+                    ...initialState.singleLog
+                }
+            }
+        case actions.getLogs.request :
+            return {
+                ...state,
+                allLogs : {
+                    ...state.allLogs,
+                    isFetching: true,
+                    error: null
+                }
+            }
+        case actions.getLogs.receive :
+            return {
+                ...state,
+                allLogs : {
+                    ...state.allLogs,
+                    ...payload
+                }
+            }
+        case actions.getLogs.reset :
+            return {
+                ...state,
+                allLogs : {
+                    ...initialState.allLogs
+                }
+            }
+        case actions.postLog.request :
+            return {
+                ...state,
+                postLog : {
+                    isPosting : true,
+                    success: null,
+                    error : null
+                }
+            }
+        case actions.postLog.receive :
+            if (payload.success) {
+                return {
+                    ...state,
+                    canLog : false,
+                    postLog : {
+                        ...payload
+                    }
+                }
+            }
+
+            return {
+                ...state, 
+                postLog : {
+                    ...payload
+                }
+            }
+        case actions.postLog.reset : 
+            return {
+                ...state,
+                postLog : {
+                    ...initialState.postLog
+                }
+            }
         default:
             return state;
     }

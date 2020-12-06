@@ -1,8 +1,8 @@
 import React from 'react';
 import { Wrapper, Input, Label, Footer, ErrorMessage } from '../Forms/Forms';
-import Button from '../Button/Button';
-import ErrorBox from '../ErrorBox/ErrorBox';
-import SuccessBox from '../SuccessBox/SuccessBox';
+import Button from '../Button';
+import ErrorBox from '../ErrorBox';
+import SuccessBox from '../SuccessBox';
 import styles from './Settings.module.scss';
 import { useEditAccount } from '../../hooks/Settings/useEditAccount';
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { Wrapper, Input, Label, Footer, ErrorMessage } from '../Forms/Forms';
-import Button from '../Button/Button';
+import Button from '../Button';
 import styles from './Settings.module.scss';
 import { useChangePassword } from '../../hooks/Settings/useChangePassword';
-import ErrorBox from '../ErrorBox/ErrorBox';
-import SuccessBox from '../SuccessBox/SuccessBox';
+import ErrorBox from '../ErrorBox';
+import SuccessBox from '../SuccessBox';
 
 const ChangePassword = ({
     userId

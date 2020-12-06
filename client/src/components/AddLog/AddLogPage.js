@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { Wrapper, Heading, Label, Input, Footer } from '../Forms/Forms';
-import Button from '../Button/Button';
-import BackButton from '../Back/BackButton';
+import Button from '../Button';
+import BackButton from '../Back';
 import Loading from '../Loading/loading';
-import ErrorBox from '../ErrorBox/ErrorBox';
+import ErrorBox from '../ErrorBox';
 import FontAwesome from 'react-fontawesome';
 import styles from './AddLogPage.module.scss';
 import { useAddLog } from '../../hooks/AddLog/useAddLog';

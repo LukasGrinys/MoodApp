@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import BackButton from '../Back/BackButton';
 import { Wrapper, Heading, Label, Input, Footer, ErrorMessage } from '../Forms/Forms';
-import ErrorBox from '../ErrorBox/ErrorBox';
-import Button from '../Button/Button';
+import ErrorBox from '../ErrorBox';
+import Button from '../Button';
 import { useDeleteAccount } from '../../hooks/DeleteAccount/useDeleteAccount';
 
 const DeleteAccount = () => {

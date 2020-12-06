@@ -5,7 +5,7 @@ import styles from './LastLogs.module.scss';
 import LoadingNetItem from '../Loading/loadingNetItem';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useSelector } from 'react-redux';
-import Button from '../Button/Button';
+import Button from '../Button';
 import classNames from 'classnames';
 
 const LastLogs = () => {

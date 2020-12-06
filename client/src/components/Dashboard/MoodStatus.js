@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingNetItem from '../Loading/loadingNetItem';
 import { useTheme } from '../../contexts/ThemeContext';
-import Button from '../Button/Button';
+import Button from '../Button';
 import parentClasses from './Dashboard.module.scss';
 import styles from './MoodStatus.module.scss';
 import { useMoodStatus } from '../../hooks/Dashboard/useMoodStatus';

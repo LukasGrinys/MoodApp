@@ -13,7 +13,7 @@ export const useLoginForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const isAuth = useSelector( ({user}) => user.isAuth);
-    const loginError = useSelector( ({user}) => user.loginError);
+    const loginError = useSelector( ({user}) => user.authError !== 'Authentication error' ? user.authError : null);
 
     useEffect( () => {
         if (isAuth) {

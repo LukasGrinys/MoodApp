@@ -4,16 +4,25 @@ import * as yup from 'yup';
 import { formErrorMessages } from '../../constants/formErrorMessages';
 import { initialFormValues } from '../../constants/initialFormValues';
 import { useSelector, useDispatch } from 'react-redux';
-import { changePassword, clearChangePassword } from '../../actions';
+import { changePassword, clearChangePassword } from '../../actions/user/asyncActions';
 
 export const useChangePassword = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const dispatch = useDispatch();
     const { 
-        changePasswordSuccess, 
-        changePasswordError,
-        id : userId
-    } = useSelector( ({user}) => user);
+        userData,
+        changePasswordData
+    } = useSelector( ({user}) => { 
+        return {
+            userData : user.userData || {},
+            changePasswordData : user.changePassword || {}
+        }
+    });
+    const { id : userId } = userData;
+    const {
+        success : changePasswordSuccess, 
+        error : changePasswordError
+    } = changePasswordData;
 
     useEffect( () => {
         return () => {

@@ -3,14 +3,25 @@ import { initialFormValues } from '../../constants/initialFormValues';
 import * as yup from 'yup';
 import { formErrorMessages } from '../../constants/formErrorMessages';
 import { useFormik } from 'formik';
-import { createUser, loginUser } from '../../actions';
+import { createUser, loginUser, clearCreateUser } from '../../actions/user/asyncActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { routerRoutes } from '../../constants/routerRoutes';
+import { useHistory } from 'react-router-dom';
 
 export const useRegisterForm = () => {
     const [isSigningUp, setIsSigningUp] = useState(false);
     const dispatch = useDispatch();
-    const createUserError = useSelector( ({user}) => user.createUserError);
-    const createUserSuccess = useSelector( ({user}) => user.createUserSuccess);
+    const { createUserError, createUserSuccess } = useSelector( ({user}) => {
+        if (user && user.createUser) {
+            return {
+                createUserError : user.createUser.error,
+                createUserSuccess : user.createUser.success
+            }
+        }
+
+        return {}
+    });
+    const history = useHistory();
 
     const handleSignup = useCallback( async values => {
         const payload = {
@@ -71,9 +82,19 @@ export const useRegisterForm = () => {
             dispatch(loginUser({
                 email,
                 password
-            }));
+            })).then( () => {
+                history.push(routerRoutes.home);
+            });
         }
-    }, [values, createUserSuccess, dispatch])
+        // eslint-disable-next-line
+    }, [values, createUserSuccess]);
+
+    useEffect( () => {
+        return () => {
+            dispatch(clearCreateUser());
+        }
+        // eslint-disable-next-line
+    }, [dispatch])
 
     const controlEvents = {
         handleChange,

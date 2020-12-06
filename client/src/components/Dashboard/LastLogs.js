@@ -10,20 +10,15 @@ import classNames from 'classnames';
 
 const LastLogs = () => {
     const darkTheme = useTheme();
-    const { lastLogs, isFetchingLogs } = useSelector( ({logs}) => {
-        return {
-            lastLogs : logs.lastLogs,
-            isFetchingLogs : logs.isFetchingLogs
-        }
-    });
+    const { logs, isFetching } = useSelector( ({logs}) => logs.lastLogs );
 
     return (
         <div className={parentStyles.gridItem}>
             <h3 className={parentStyles.gridItemHeader}>Last logs</h3>
             {
-                isFetchingLogs ? (
+                isFetching ? (
                     <LoadingNetItem/>
-                ) : ( (!lastLogs || !lastLogs.length) ? (
+                ) : ( (!logs || !logs.length) ? (
                         <div className={styles.greyText}>
                             There are no logs at the moment <br/><br/>
                             Write Your first one, by pressing the green button at the top
@@ -34,7 +29,7 @@ const LastLogs = () => {
                             parentStyles.gridItemContent
                         )}> 
                             <div className={styles.logContainer}>
-                                { lastLogs.slice(0,3).map( (log, index) => {
+                                { logs.slice(0,3).map( (log, index) => {
                                     return (
                                         <div key={index} className={styles.logItem}>
                                             <div className={styles.logContent}>
@@ -68,7 +63,6 @@ const LastLogs = () => {
                         </div> )
                 )
             }
-            
         </div>
     )
 };

@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import { formErrorMessages } from '../../constants/formErrorMessages';
 import { routerRoutes } from '../../constants/routerRoutes';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../actions';
+import { loginUser } from '../../actions/user/asyncActions';
 
 export const useLoginForm = () => {
     const [ isLoggingIn, setIsLoggingIn ] = useState(false);

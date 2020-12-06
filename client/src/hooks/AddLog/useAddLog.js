@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { canUserLog, postLog, clearLogPost } from '../../actions';
+import { canUserLog, postLog, clearLogPost } from '../../actions/logs/asyncActions';
 import { useHistory } from 'react-router-dom';
 import { routerRoutes } from '../../constants/routerRoutes';
 import { getDate, getDaytime } from '../../util/dateHelpers';
 
 export const useAddLog = () => {
     const dispatch = useDispatch();
-    const userId = useSelector( ({user}) => user.id);
+    const userId = useSelector( ({user}) => user.userData.id);
     const { postLogSuccess, postLogError, canLog } = useSelector( ({logs}) => {
         return {
             postLogSuccess : logs.postLogSuccess,

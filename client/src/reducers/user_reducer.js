@@ -1,18 +1,66 @@
-export default function(state={}, {type, payload}) {
+import { actions } from '../actions/user/actions';
+
+const initialState = {
+    createUser : {
+        success : null,
+        error : null
+    },
+    isAuth: null,
+    authError: null,
+    userData: {
+        id: null,
+        email: null, 
+        firstName: '',
+        lastName: ''
+    },
+    editUser : {
+        isEditing: false,
+        success: null,
+        error: null
+    },
+    changePassword: {
+        isChangingPassword: false,
+        changePasswordError: null,
+        changePasswordSuccess: null
+    }
+}
+
+export default function(state = initialState, {type, payload}) {
     switch(type) {
-        case 'CREATE_USER':
+        case actions.createUser.request :
             return {
-                ...state, 
-                createUserSuccess: payload.createUserSuccess,
-                createUserError: payload.createUserError
+                ...state,
+                createUser : {
+                    success : null,
+                    error : null
+                }
             }
-        case 'LOGIN_USER' :
+        case actions.createUser.receive :
             return {
                 ...state, 
-                isAuth: payload.isAuth,
-                loginError: payload.error
-             }
-        case 'USER_AUTH' :
+                createUser : {
+                    ...payload
+                }
+            }
+        case actions.createUser.reset :
+            return {
+                ...state,
+                createUser : {
+                    ...initialState.createUser
+                }
+            }
+        case actions.loginUser.request :
+            return {
+                ...state,
+                isAuth: null,
+                authError: null
+            }
+        case actions.loginUser.receive:
+            return {
+                ...state, 
+                ...payload
+            }
+        case actions.userAuth :
             if (payload.error) {
                 return {
                     ...state, 
@@ -25,30 +73,67 @@ export default function(state={}, {type, payload}) {
                 ...state,
                 authError: null,
                 isAuth: true,
-                id: payload.id || null,
-                email: payload.email || null, 
-                firstName: payload.firstName || '',
-                lastName: payload.lastName || ''
+                userData: {
+                    id: payload.id || null,
+                    email: payload.email || null, 
+                    firstName: payload.firstName || '',
+                    lastName: payload.lastName || ''
+                }
             }
-        case 'CLEAR_USER' :
+        case actions.clearUserData :
             return {
                 ...state, 
-                authError: null,
-                isAuth: false,
-                id: null,
-                email: null, 
-                firstName: '',
-                lastName: ''
+                authError: initialState.authError,
+                isAuth: initialState.isAuth,
+                userData: {
+                    ...initialState.userData
+                }
             }
-        case 'EDIT_USER':
+        case actions.editUser.request :
             return {
                 ...state,
-                ...payload
+                editUser : {
+                    isEditing: true,
+                    success: null,
+                    error: null
+                }
             }
-        case 'CHANGE_PASSWORD' :
+        case actions.editUser.receive :
             return {
                 ...state,
-                ...payload
+                editUser : {
+                    ...payload
+                }
+            }
+        case actions.editUser.reset :
+            return {
+                ...state,
+                editUser : {
+                    ...initialState.editUser
+                }
+            }
+        case actions.changePassword.request :
+            return {
+                ...state,
+                changePassword : {
+                    isChanging: true,
+                    error: null,
+                    success: null
+                }
+            }
+        case actions.changePassword.receive :
+            return {
+                ...state,
+                changePassword : {
+                    ...payload
+                }
+            }
+        case actions.changePassword.reset : 
+            return {
+                ...state,
+                changePassword : {
+                    ...initialState.changePassword
+                }
             }
         default:
             return state;

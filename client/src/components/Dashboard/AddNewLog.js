@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import FontAwesome from 'react-fontawesome'
 import { connect } from 'react-redux';
-import { canUserLog } from '../../actions';
+import { canUserLog } from '../../actions/logs/asyncActions';
 import styles from './AddNewLog.module.scss';
 import LoadingNetItem from '../Loading/loadingNetItem';
 import { Link } from 'react-router-dom';
@@ -41,7 +41,7 @@ class AddNewLog extends Component {
     render(){
         const { canLog, darkTheme } = this.props;
 
-        if (canLog === undefined) {
+        if (canLog === null) {
             return <LoadingNetItem/>
         } 
 
@@ -69,7 +69,7 @@ class AddNewLog extends Component {
 };
 
 function mapStateToProps({logs, user}) {
-    const { id : userId } = user;
+    const userId = (user && user.userData && user.userData.id) ? user.userData.id : null;
     const { canLog } = logs; 
 
     return { canLog, userId }

@@ -17,7 +17,7 @@ const AllLogs = () => {
         loadMoreLogs 
     } = useAllLogs();
 
-    if (!allLogs) {
+    if (!allLogs || isFetchingAllLogs) {
         return <Loading/>
     }
 
@@ -69,6 +69,14 @@ const AllLogs = () => {
         )
     }
 
+    if (
+        allLogs && 
+        Array.isArray && 
+        !allLogs.length &&
+        !isFetchingAllLogs
+    ) {
+        return (<div>No logs found</div>)
+    }
 }
 
 export default AllLogs;

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { useEffect } from 'react';
 import FontAwesome from 'react-fontawesome'
 import { connect } from 'react-redux';
 import { canUserLog } from '../../actions/logs/asyncActions';
@@ -9,63 +9,66 @@ import { getDate, getDaytime } from '../../util/dateHelpers';
 import { daytimes } from '../../constants/daytimes';
 import { routerRoutes } from '../../constants/routerRoutes';
 import classNames from 'classnames';
+import { useDispatch } from 'react-redux';
 
-class AddNewLog extends Component {
-    componentWillMount() {
-        const date = getDate();
-        const timing = getDaytime();
-        this.props.dispatch(canUserLog(date, timing, this.props.userId))
+const returnTimeRemaining = () => {
+    let currentTiming = getDaytime();
+    let timeOfNextLog = 0;
+    
+    switch(currentTiming) {
+        case daytimes.morning:
+            timeOfNextLog = 13;
+            break;
+        case daytimes.afternoon :
+            timeOfNextLog = 20;
+            break;
+        case daytimes.evening :
+            timeOfNextLog = 7;
+            break;
+        default:
+            timeOfNextLog = 7;
     };
 
-    returnTimeRemaining() {
-        let currentTiming = getDaytime();
-        let timeOfNextLog = 0;
-        
-        switch(currentTiming) {
-            case daytimes.morning:
-                timeOfNextLog = 13;
-                break;
-            case daytimes.afternoon :
-                timeOfNextLog = 20;
-                break;
-            case daytimes.evening :
-                timeOfNextLog = 7;
-                break;
-            default:
-                timeOfNextLog = 7;
-        };
+    return `${timeOfNextLog}:00`
+}
 
-        return `${timeOfNextLog}:00`
-    }
+const AddNewLog = ({userId, canLog, darkTheme}) => {
+    const dispatch = useDispatch();
 
-    render(){
-        const { canLog, darkTheme } = this.props;
-
-        if (canLog === null) {
-            return <LoadingNetItem/>
-        } 
-
-        if (canLog && getDaytime() !== daytimes.night) {
-            return (
-                <Link to={routerRoutes.addNewLog}>
-                    <div className={classNames(
-                        styles.logbutton, 
-                        styles.available,
-                        darkTheme && styles.dark
-                        )}>
-                        <div className={styles.attentionBorder}/>
-                        <FontAwesome name="fas fa-plus" className={styles.floating}/> ADD LOG
-                    </div>
-                </Link> 
-            )
+    useEffect( () => {
+        if (userId) {
+            const date = getDate();
+            const timing = getDaytime();
+            
+            dispatch(canUserLog(date, timing, userId))
         }
+        // eslint-disable-next-line
+    }, [userId]);
 
+    if (canLog === null) {
+        return <LoadingNetItem/>
+    } 
+
+    if (canLog && getDaytime() !== daytimes.night) {
         return (
-            <div className={classNames(styles.logbutton, styles.unavailable)}>
-                Next log will be available at: {this.returnTimeRemaining()}
-            </div>
+            <Link to={routerRoutes.addNewLog}>
+                <div className={classNames(
+                    styles.logbutton, 
+                    styles.available,
+                    darkTheme && styles.dark
+                    )}>
+                    <div className={styles.attentionBorder}/>
+                    <FontAwesome name="fas fa-plus" className={styles.floating}/> ADD LOG
+                </div>
+            </Link> 
         )
     }
+
+    return (
+        <div className={classNames(styles.logbutton, styles.unavailable)}>
+            Next log will be available at: {returnTimeRemaining()}
+        </div>
+    )
 };
 
 function mapStateToProps({logs, user}) {

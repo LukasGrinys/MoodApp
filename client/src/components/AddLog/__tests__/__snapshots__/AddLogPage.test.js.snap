@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddLogPage UI Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <AddLogPage>
+    <Wrapper>
+      <div
+        className="formWrapper"
+      >
+        <Heading>
+          <h1
+            className="heading"
+          >
+            Add log
+          </h1>
+        </Heading>
+        <span>
+          How do you feel at the moment? Rate your mood:
+        </span>
+        <div
+          className="topSection"
+        >
+          <div
+            className="moodBox"
+          >
+            5
+          </div>
+          <div
+            className="inputLine"
+          >
+            <FontAwesome
+              className="thumb"
+              name="thumbs-down"
+              style={
+                Object {
+                  "color": "#800000",
+                }
+              }
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-thumbs-down thumb"
+                style={
+                  Object {
+                    "color": "#800000",
+                  }
+                }
+              />
+            </FontAwesome>
+            <input
+              max="10"
+              min="1"
+              onChange={[Function]}
+              type="range"
+              value={5}
+            />
+            <FontAwesome
+              className="thumb"
+              name="thumbs-up"
+              style={
+                Object {
+                  "color": "#16774f",
+                }
+              }
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-thumbs-up thumb"
+                style={
+                  Object {
+                    "color": "#16774f",
+                  }
+                }
+              />
+            </FontAwesome>
+          </div>
+          <span>
+            Average
+          </span>
+        </div>
+        <Label>
+          <span
+            className="label"
+          >
+            Describe your thoughts: (optional)
+          </span>
+        </Label>
+        <Input
+          controlEvents={
+            Object {
+              "handleChange": [Function],
+            }
+          }
+          name="message"
+          placeholder=""
+          type="textarea"
+          value=""
+        >
+          <textarea
+            className="textArea"
+            name="message"
+            onChange={[Function]}
+            placeholder=""
+            value=""
+          />
+        </Input>
+        <Footer>
+          <div
+            className="formFooter"
+          >
+            <Button
+              disabled={false}
+              handleClick={[Function]}
+            >
+              <button
+                className="button btnPrimary"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Submit
+              </button>
+            </Button>
+          </div>
+        </Footer>
+      </div>
+    </Wrapper>
+    <BackButton>
+      <div
+        className="container"
+      >
+        <div
+          className="button"
+          onClick={[Function]}
+        >
+          <FontAwesome
+            name="arrow-left"
+          >
+            <span
+              aria-hidden={true}
+              className="fa fa-arrow-left"
+            />
+          </FontAwesome>
+          <div
+            className="text"
+          >
+            Go back
+          </div>
+        </div>
+      </div>
+    </BackButton>
+  </AddLogPage>
+</Provider>
+`;
+
+exports[`AddLogPage: loading Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <AddLogPage>
+    <Loading>
+      <div
+        className="loadingScreen"
+      >
+        <div>
+          Loading
+        </div>
+        <br />
+        <div
+          className="barContainer"
+        >
+          <div
+            className="bar"
+          />
+          <div
+            className="bar delay1"
+          />
+          <div
+            className="bar delay2"
+          />
+        </div>
+      </div>
+    </Loading>
+  </AddLogPage>
+</Provider>
+`;

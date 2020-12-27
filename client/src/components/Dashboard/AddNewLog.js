@@ -11,7 +11,7 @@ import { routerRoutes } from '../../constants/routerRoutes';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
 
-const returnTimeRemaining = () => {
+export const returnTimeRemaining = () => {
     let currentTiming = getDaytime();
     let timeOfNextLog = 0;
     

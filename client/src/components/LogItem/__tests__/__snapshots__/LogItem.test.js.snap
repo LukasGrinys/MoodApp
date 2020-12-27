@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders properly 1`] = `
+<div
+  className="item"
+>
+  <div
+    className="top_line"
+  >
+    <div
+      className="rating_box"
+    >
+      10
+    </div>
+    <div>
+      <FontAwesome
+        className="icon"
+        name="hourglass"
+      />
+      Afternoon
+    </div>
+    <div
+      className="date"
+    >
+      <FontAwesome
+        className="icon"
+        name="calendar"
+      />
+      TEST-DATE
+    </div>
+  </div>
+  <div
+    className="text"
+  >
+    Test text
+  </div>
+</div>
+`;

@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Last logs item: has logs Renders properly 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <LastLogs>
+        <div
+          className="gridItem"
+        >
+          <h3
+            className="gridItemHeader"
+          >
+            Last logs
+          </h3>
+          <div
+            className="logSection gridItemContent"
+          >
+            <div
+              className="logContainer"
+            >
+              <div
+                className="logItem"
+                key="0"
+              >
+                <div
+                  className="logContent"
+                >
+                  <div
+                    className="ratingBox"
+                  >
+                    10
+                  </div>
+                  <div
+                    className="rightSection"
+                  >
+                    <div
+                      className="date"
+                    >
+                      TEST-DATE
+                    </div>
+                    <div
+                      className="text"
+                    >
+                      Test text
+                    </div>
+                  </div>
+                </div>
+                <Link
+                  className="link"
+                  to="/logs/001"
+                >
+                  <LinkAnchor
+                    className="link"
+                    href="/logs/001"
+                    navigate={[Function]}
+                  >
+                    <a
+                      className="link"
+                      href="/logs/001"
+                      onClick={[Function]}
+                    >
+                      Read more
+                    </a>
+                  </LinkAnchor>
+                </Link>
+              </div>
+            </div>
+            <Link
+              to="/logs"
+            >
+              <LinkAnchor
+                href="/logs"
+                navigate={[Function]}
+              >
+                <a
+                  href="/logs"
+                  onClick={[Function]}
+                >
+                  <Button>
+                    <button
+                      className="button btnPrimary"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      All Logs
+                    </button>
+                  </Button>
+                </a>
+              </LinkAnchor>
+            </Link>
+          </div>
+        </div>
+      </LastLogs>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`Last logs item: has no logs Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <LastLogs>
+    <div
+      className="gridItem"
+    >
+      <h3
+        className="gridItemHeader"
+      >
+        Last logs
+      </h3>
+      <div
+        className="greyText"
+      >
+        There are no logs at the moment 
+        <br />
+        <br />
+        Write Your first one, by pressing the green button at the top
+      </div>
+    </div>
+  </LastLogs>
+</Provider>
+`;
+
+exports[`Last logs item: loading Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <LastLogs>
+    <div
+      className="gridItem"
+    >
+      <h3
+        className="gridItemHeader"
+      >
+        Last logs
+      </h3>
+      <LoadingNetItem>
+        <div
+          className="loadingScreen"
+        >
+          <div
+            className="barContainer"
+          >
+            <div
+              className="bar"
+            />
+            <div
+              className="bar delay1"
+            />
+            <div
+              className="bar delay2"
+            />
+          </div>
+        </div>
+      </LoadingNetItem>
+    </div>
+  </LastLogs>
+</Provider>
+`;

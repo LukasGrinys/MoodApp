@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input field Renders propely 1`] = `
+<input
+  className="textInput"
+  name="Test"
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  type="text"
+  value=""
+/>
+`;
+
+exports[`Static elements renders properly Error renders properly 1`] = `
+<div
+  className="errorMessage"
+>
+  test
+</div>
+`;
+
+exports[`Static elements renders properly Footer renders properly 1`] = `
+<div
+  className="formFooter"
+>
+  test
+</div>
+`;
+
+exports[`Static elements renders properly Heading renders properly 1`] = `
+<h1
+  className="heading"
+>
+  test
+</h1>
+`;
+
+exports[`Static elements renders properly Label renders properly 1`] = `
+<span
+  className="label"
+>
+  test
+</span>
+`;

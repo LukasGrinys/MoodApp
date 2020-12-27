@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders properly 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <LogoutItem>
+      <div
+        className="gridItem shrink"
+      >
+        <h3
+          className="gridItemHeader"
+        >
+          Log out
+        </h3>
+        <div
+          className="flexCenter"
+        >
+          <Link
+            to="/logout"
+          >
+            <LinkAnchor
+              href="/logout"
+              navigate={[Function]}
+            >
+              <a
+                href="/logout"
+                onClick={[Function]}
+              >
+                <div
+                  className="logoutIconWrapper"
+                >
+                  <FontAwesome
+                    className="logoutIcon"
+                    name="sign-out"
+                  >
+                    <span
+                      aria-hidden={true}
+                      className="fa fa-sign-out logoutIcon"
+                    />
+                  </FontAwesome>
+                </div>
+              </a>
+            </LinkAnchor>
+          </Link>
+        </div>
+      </div>
+    </LogoutItem>
+  </Router>
+</BrowserRouter>
+`;

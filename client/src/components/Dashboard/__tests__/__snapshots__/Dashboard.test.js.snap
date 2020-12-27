@@ -1,0 +1,284 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard when loaded Renders properly 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Dashboard>
+        <div>
+          <Connect(AddNewLog)>
+            <AddNewLog
+              canLog={true}
+              dispatch={[Function]}
+              userId={null}
+            >
+              <Link
+                to="/addlog"
+              >
+                <LinkAnchor
+                  href="/addlog"
+                  navigate={[Function]}
+                >
+                  <a
+                    href="/addlog"
+                    onClick={[Function]}
+                  >
+                    <div
+                      className="logbutton available"
+                    >
+                      <div
+                        className="attentionBorder"
+                      />
+                      <FontAwesome
+                        className="floating"
+                        name="fas fa-plus"
+                      >
+                        <span
+                          aria-hidden={true}
+                          className="fa fa-fas fa-plus floating"
+                        />
+                      </FontAwesome>
+                       ADD LOG
+                    </div>
+                  </a>
+                </LinkAnchor>
+              </Link>
+            </AddNewLog>
+          </Connect(AddNewLog)>
+          <div
+            className="grid"
+          >
+            <h1
+              className="gridTop"
+            >
+              Your dashboard
+            </h1>
+            <LastLogs>
+              <div
+                className="gridItem"
+              >
+                <h3
+                  className="gridItemHeader"
+                >
+                  Last logs
+                </h3>
+                <div
+                  className="greyText"
+                >
+                  There are no logs at the moment 
+                  <br />
+                  <br />
+                  Write Your first one, by pressing the green button at the top
+                </div>
+              </div>
+            </LastLogs>
+            <MoodStatus>
+              <div
+                className="gridItem statusContainer"
+              >
+                <h3
+                  className="gridItemHeader"
+                >
+                  Latest mood status
+                </h3>
+                <div
+                  className="gridItemContent"
+                >
+                  <div
+                    className="statusBox"
+                  >
+                    N/A
+                  </div>
+                  <div
+                    className="statusText"
+                  />
+                  <Link
+                    to="/stats"
+                  >
+                    <LinkAnchor
+                      href="/stats"
+                      navigate={[Function]}
+                    >
+                      <a
+                        href="/stats"
+                        onClick={[Function]}
+                      >
+                        <Button>
+                          <button
+                            className="button btnPrimary"
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            Stats
+                          </button>
+                        </Button>
+                      </a>
+                    </LinkAnchor>
+                  </Link>
+                </div>
+              </div>
+            </MoodStatus>
+            <SettingsItem>
+              <div
+                className="gridItem shrink"
+              >
+                <h3
+                  className="gridItemHeader"
+                >
+                  Settings
+                </h3>
+                <div
+                  className="flexCenter"
+                >
+                  <div
+                    className="settingsIconWrapper"
+                  >
+                    <Link
+                      to="/settings"
+                    >
+                      <LinkAnchor
+                        href="/settings"
+                        navigate={[Function]}
+                      >
+                        <a
+                          href="/settings"
+                          onClick={[Function]}
+                        >
+                          <FontAwesome
+                            className="settingsIcon"
+                            name="cog"
+                          >
+                            <span
+                              aria-hidden={true}
+                              className="fa fa-cog settingsIcon"
+                            />
+                          </FontAwesome>
+                        </a>
+                      </LinkAnchor>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </SettingsItem>
+            <LogoutItem>
+              <div
+                className="gridItem shrink"
+              >
+                <h3
+                  className="gridItemHeader"
+                >
+                  Log out
+                </h3>
+                <div
+                  className="flexCenter"
+                >
+                  <Link
+                    to="/logout"
+                  >
+                    <LinkAnchor
+                      href="/logout"
+                      navigate={[Function]}
+                    >
+                      <a
+                        href="/logout"
+                        onClick={[Function]}
+                      >
+                        <div
+                          className="logoutIconWrapper"
+                        >
+                          <FontAwesome
+                            className="logoutIcon"
+                            name="sign-out"
+                          >
+                            <span
+                              aria-hidden={true}
+                              className="fa fa-sign-out logoutIcon"
+                            />
+                          </FontAwesome>
+                        </div>
+                      </a>
+                    </LinkAnchor>
+                  </Link>
+                </div>
+              </div>
+            </LogoutItem>
+          </div>
+        </div>
+      </Dashboard>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`Dashboard: loading Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Dashboard>
+    <Loading>
+      <div
+        className="loadingScreen"
+      >
+        <div>
+          Loading
+        </div>
+        <br />
+        <div
+          className="barContainer"
+        >
+          <div
+            className="bar"
+          />
+          <div
+            className="bar delay1"
+          />
+          <div
+            className="bar delay2"
+          />
+        </div>
+      </div>
+    </Loading>
+  </Dashboard>
+</Provider>
+`;

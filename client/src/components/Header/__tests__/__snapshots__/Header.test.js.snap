@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Initial header UI Renders properly 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Connect(Header)>
+        <Header
+          dispatch={[Function]}
+          isAuth={false}
+        >
+          <div
+            className="header"
+          >
+            <div
+              className="top"
+              style={Object {}}
+            >
+              <div
+                className="logo"
+              >
+                Moodapp
+              </div>
+              <ToggleButton
+                showNav={false}
+                toggleNav={[Function]}
+              >
+                <div
+                  className="bars"
+                >
+                  <FontAwesome
+                    name="bars"
+                    onClick={[Function]}
+                    style={
+                      Object {
+                        "color": "#f2f2f2",
+                        "fontSize": "1.5em",
+                        "padding": "2px",
+                        "transform": "rotate(180deg)",
+                        "transition": "0.5s",
+                      }
+                    }
+                  >
+                    <span
+                      aria-hidden={true}
+                      className="fa fa-bars"
+                      onClick={[Function]}
+                      style={
+                        Object {
+                          "color": "#f2f2f2",
+                          "fontSize": "1.5em",
+                          "padding": "2px",
+                          "transform": "rotate(180deg)",
+                          "transition": "0.5s",
+                        }
+                      }
+                    />
+                  </FontAwesome>
+                </div>
+              </ToggleButton>
+              <NightmodeButton>
+                <button
+                  className="nightmode_button"
+                >
+                  <FontAwesomeIcon
+                    border={false}
+                    className=""
+                    fixedWidth={false}
+                    flip={null}
+                    icon={
+                      Object {
+                        "icon": Array [
+                          512,
+                          512,
+                          Array [],
+                          "f186",
+                          "M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z",
+                        ],
+                        "iconName": "moon",
+                        "prefix": "fas",
+                      }
+                    }
+                    inverse={false}
+                    listItem={false}
+                    mask={null}
+                    pull={null}
+                    pulse={false}
+                    rotation={null}
+                    size={null}
+                    spin={false}
+                    style={
+                      Object {
+                        "fontSize": "1.5rem",
+                      }
+                    }
+                    swapOpacity={false}
+                    symbol={false}
+                    title=""
+                    transform={null}
+                  >
+                    <svg
+                      aria-hidden="true"
+                      className="svg-inline--fa fa-moon fa-w-16 "
+                      data-icon="moon"
+                      data-prefix="fas"
+                      focusable="false"
+                      role="img"
+                      style={
+                        Object {
+                          "fontSize": "1.5rem",
+                        }
+                      }
+                      viewBox="0 0 512 512"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"
+                        fill="currentColor"
+                        style={Object {}}
+                      />
+                    </svg>
+                  </FontAwesomeIcon>
+                  <div
+                    className="nightmode_button_caption"
+                  >
+                    Night mode
+                  </div>
+                </button>
+              </NightmodeButton>
+            </div>
+          </div>
+        </Header>
+      </Connect(Header)>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;

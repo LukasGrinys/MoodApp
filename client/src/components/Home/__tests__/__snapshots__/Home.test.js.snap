@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders loading screen if there is no auth data 1`] = `
+<ContextProvider
+  value={null}
+>
+  <Home
+    dispatch={[Function]}
+    firstName=""
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  />
+</ContextProvider>
+`;
+
+exports[`renders page if there is user auth data 1`] = `
+<Connect(Home)
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Home
+    dispatch={[Function]}
+    firstName=""
+    isAuth={false}
+    store={
+      Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      }
+    }
+  >
+    <div
+      className="wrapper"
+    >
+      <ScrollAnimation
+        animateIn="fadeInDown"
+        animateOnce={true}
+        animatePreScroll={true}
+        delay={0}
+        duration={1}
+        initiallyVisible={false}
+        offset={150}
+      />
+      <ScrollAnimation
+        animateIn="fadeInDown"
+        animateOnce={true}
+        animatePreScroll={true}
+        delay={1000}
+        duration={1}
+        initiallyVisible={false}
+        offset={75}
+      />
+      <ScrollAnimation
+        animateIn="fadeInDown"
+        animateOnce={true}
+        animatePreScroll={true}
+        delay={2000}
+        duration={1}
+        initiallyVisible={false}
+        offset={75}
+      />
+    </div>
+  </Home>
+</Connect(Home)>
+`;

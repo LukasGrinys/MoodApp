@@ -43,10 +43,15 @@
 }
 
 .nightmode_button {
+    background: none;
+    border: none;
+    color: $color-primary-white;
     width: 30px;
     opacity: 0.7;
+    outline: none;
     cursor: pointer;
     font-size: 25px;
+    font-family: 'Lato';
     position: absolute;
     top: 5px;
     right: 0;

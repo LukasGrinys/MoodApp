@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Initial LogView Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <LogView
+    match={
+      Object {
+        "params": Object {
+          "id": "testId",
+        },
+      }
+    }
+  >
+    <Loading>
+      <div
+        className="loadingScreen"
+      >
+        <div>
+          Loading
+        </div>
+        <br />
+        <div
+          className="barContainer"
+        >
+          <div
+            className="bar"
+          />
+          <div
+            className="bar delay1"
+          />
+          <div
+            className="bar delay2"
+          />
+        </div>
+      </div>
+    </Loading>
+  </LogView>
+</Provider>
+`;
+
+exports[`LogView after log data was fetched Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <LogView>
+    <div
+      className="pageWrapper"
+    >
+      <BackButton>
+        <div
+          className="container"
+        >
+          <div
+            className="button"
+            onClick={[Function]}
+          >
+            <FontAwesome
+              name="arrow-left"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-arrow-left"
+              />
+            </FontAwesome>
+            <div
+              className="text"
+            >
+              Go back
+            </div>
+          </div>
+        </div>
+      </BackButton>
+      <LogItem
+        date="TEST-DATE"
+        rating={10}
+        text="Test text"
+        timing="Afternoon"
+      >
+        <div
+          className="item"
+        >
+          <div
+            className="top_line"
+          >
+            <div
+              className="rating_box"
+            >
+              10
+            </div>
+            <div>
+              <FontAwesome
+                className="icon"
+                name="hourglass"
+              >
+                <span
+                  aria-hidden={true}
+                  className="fa fa-hourglass icon"
+                />
+              </FontAwesome>
+              Afternoon
+            </div>
+            <div
+              className="date"
+            >
+              <FontAwesome
+                className="icon"
+                name="calendar"
+              >
+                <span
+                  aria-hidden={true}
+                  className="fa fa-calendar icon"
+                />
+              </FontAwesome>
+              TEST-DATE
+            </div>
+          </div>
+          <div
+            className="text"
+          >
+            Test text
+          </div>
+        </div>
+      </LogItem>
+    </div>
+  </LogView>
+</Provider>
+`;

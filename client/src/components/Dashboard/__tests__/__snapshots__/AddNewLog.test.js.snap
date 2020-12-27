@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddNewLog button: Data loaded Renders properly: user can log 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <Connect(AddNewLog)>
+        <AddNewLog
+          canLog={true}
+          dispatch={[Function]}
+          userId={null}
+        >
+          <Link
+            to="/addlog"
+          >
+            <LinkAnchor
+              href="/addlog"
+              navigate={[Function]}
+            >
+              <a
+                href="/addlog"
+                onClick={[Function]}
+              >
+                <div
+                  className="logbutton available"
+                >
+                  <div
+                    className="attentionBorder"
+                  />
+                  <FontAwesome
+                    className="floating"
+                    name="fas fa-plus"
+                  >
+                    <span
+                      aria-hidden={true}
+                      className="fa fa-fas fa-plus floating"
+                    />
+                  </FontAwesome>
+                   ADD LOG
+                </div>
+              </a>
+            </LinkAnchor>
+          </Link>
+        </AddNewLog>
+      </Connect(AddNewLog)>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`AddNewLog button: Loading Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(AddNewLog)>
+    <AddNewLog
+      canLog={null}
+      dispatch={[Function]}
+      userId={null}
+    >
+      <LoadingNetItem>
+        <div
+          className="loadingScreen"
+        >
+          <div
+            className="barContainer"
+          >
+            <div
+              className="bar"
+            />
+            <div
+              className="bar delay1"
+            />
+            <div
+              className="bar delay2"
+            />
+          </div>
+        </div>
+      </LoadingNetItem>
+    </AddNewLog>
+  </Connect(AddNewLog)>
+</Provider>
+`;

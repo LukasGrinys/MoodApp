@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoodStatus with logs Renders properly 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <MoodStatus>
+        <div
+          className="gridItem statusContainer"
+        >
+          <h3
+            className="gridItemHeader"
+          >
+            Latest mood status
+          </h3>
+          <div
+            className="gridItemContent"
+          >
+            <div
+              className="statusBox"
+            >
+              9.0
+            </div>
+            <div
+              className="statusText"
+            >
+              Great
+            </div>
+            <Link
+              to="/stats"
+            >
+              <LinkAnchor
+                href="/stats"
+                navigate={[Function]}
+              >
+                <a
+                  href="/stats"
+                  onClick={[Function]}
+                >
+                  <Button>
+                    <button
+                      className="button btnPrimary"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Stats
+                    </button>
+                  </Button>
+                </a>
+              </LinkAnchor>
+            </Link>
+          </div>
+        </div>
+      </MoodStatus>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`MoodStatus without any logs Renders properly 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Provider
+      store={
+        Object {
+          "clearActions": [Function],
+          "dispatch": [Function],
+          "getActions": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+        }
+      }
+    >
+      <MoodStatus>
+        <div
+          className="gridItem statusContainer"
+        >
+          <h3
+            className="gridItemHeader"
+          >
+            Latest mood status
+          </h3>
+          <div
+            className="gridItemContent"
+          >
+            <div
+              className="statusBox"
+            >
+              N/A
+            </div>
+            <div
+              className="statusText"
+            />
+            <Link
+              to="/stats"
+            >
+              <LinkAnchor
+                href="/stats"
+                navigate={[Function]}
+              >
+                <a
+                  href="/stats"
+                  onClick={[Function]}
+                >
+                  <Button>
+                    <button
+                      className="button btnPrimary"
+                      onClick={[Function]}
+                      type="button"
+                    >
+                      Stats
+                    </button>
+                  </Button>
+                </a>
+              </LinkAnchor>
+            </Link>
+          </div>
+        </div>
+      </MoodStatus>
+    </Provider>
+  </Router>
+</BrowserRouter>
+`;
+
+exports[`MoodStatus: loading Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <MoodStatus>
+    <div
+      className="gridItem statusContainer"
+    >
+      <LoadingNetItem>
+        <div
+          className="loadingScreen"
+        >
+          <div
+            className="barContainer"
+          >
+            <div
+              className="bar"
+            />
+            <div
+              className="bar delay1"
+            />
+            <div
+              className="bar delay2"
+            />
+          </div>
+        </div>
+      </LoadingNetItem>
+    </div>
+  </MoodStatus>
+</Provider>
+`;

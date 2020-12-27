@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteAccount page UI Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <DeleteAccount>
+    <BackButton>
+      <div
+        className="container"
+      >
+        <div
+          className="button"
+          onClick={[Function]}
+        >
+          <FontAwesome
+            name="arrow-left"
+          >
+            <span
+              aria-hidden={true}
+              className="fa fa-arrow-left"
+            />
+          </FontAwesome>
+          <div
+            className="text"
+          >
+            Go back
+          </div>
+        </div>
+      </div>
+    </BackButton>
+    <Wrapper>
+      <div
+        className="formWrapper"
+      >
+        <ErrorBox>
+          <div
+            className="container"
+          >
+            <strong>
+              Warning: 
+            </strong>
+             deleting your account will permanently delete all your data, including all logs stored in the database.
+          </div>
+        </ErrorBox>
+        <br />
+        <Heading>
+          <h1
+            className="heading"
+          >
+            Delete account:
+          </h1>
+        </Heading>
+        <Label>
+          <span
+            className="label"
+          >
+            Enter your passsword:
+          </span>
+        </Label>
+        <Input
+          controlEvents={
+            Object {
+              "handleBlur": [Function],
+              "handleChange": [Function],
+            }
+          }
+          name="password"
+          placeholder=""
+          type="password"
+          value=""
+        >
+          <input
+            className="textInput"
+            name="password"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="password"
+            value=""
+          />
+        </Input>
+        <Label>
+          <span
+            className="label"
+          >
+            Confirm your password:
+          </span>
+        </Label>
+        <Input
+          controlEvents={
+            Object {
+              "handleBlur": [Function],
+              "handleChange": [Function],
+            }
+          }
+          name="confirmPassword"
+          placeholder=""
+          type="password"
+          value=""
+        >
+          <input
+            className="textInput"
+            name="confirmPassword"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="password"
+            value=""
+          />
+        </Input>
+        <Footer>
+          <div
+            className="formFooter"
+          >
+            <Button
+              disabled={false}
+              handleClick={[Function]}
+            >
+              <button
+                className="button btnPrimary"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                Delete account
+              </button>
+            </Button>
+          </div>
+        </Footer>
+      </div>
+    </Wrapper>
+  </DeleteAccount>
+</Provider>
+`;

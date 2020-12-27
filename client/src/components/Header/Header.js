@@ -6,11 +6,10 @@ import ToggleButton from './ToggleButton';
 import NightmodeButton from './NightmodeButton';
 import classNames from 'classnames';
 import { useHeader } from '../../hooks/Header/useHeader';
-import { useThemeUpdate, useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from '../../contexts/ThemeContext';
 
 const Header = ( {isAuth} ) => {
     const darkTheme = useTheme();
-    const updateTheme = useThemeUpdate();
     const {
         showNav,
         toggleNav
@@ -29,10 +28,7 @@ const Header = ( {isAuth} ) => {
                     showNav={showNav}
                     toggleNav={toggleNav}
                 />
-                <NightmodeButton
-                    updateTheme={updateTheme}
-                    darkTheme={darkTheme}
-                />
+                <NightmodeButton/>
             </div>
             {showNav && <NavBar toggleNav={toggleNav} isAuth={isAuth}/>}
         </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { auth } from './../actions/user/asyncActions';
+import Loading from '../components/Loading/loading';
 
 export default function(ComposedClass, redirect) {
     class AuthenticationCheck extends Component {
@@ -21,6 +22,12 @@ export default function(ComposedClass, redirect) {
         }
 
         render() {
+            const { user } = this.props;
+            
+            if (!user || (!user.isAuth && typeof user.isAuth !== 'boolean')) {
+                return <Loading/>
+            }
+
             return (
                 <ComposedClass 
                     {...this.props} 

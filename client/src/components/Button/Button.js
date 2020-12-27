@@ -16,7 +16,7 @@ const Button = ({
     children
 }) => {
     const darkTheme = useTheme();
-
+    
     const getButtonColorClass = (type) => {
         switch (type) {
             case 'primary':

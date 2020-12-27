@@ -1,0 +1,329 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AllLogs page: loading state Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <AllLogs>
+    <Loading>
+      <div
+        className="loadingScreen"
+      >
+        <div>
+          Loading
+        </div>
+        <br />
+        <div
+          className="barContainer"
+        >
+          <div
+            className="bar"
+          />
+          <div
+            className="bar delay1"
+          />
+          <div
+            className="bar delay2"
+          />
+        </div>
+      </div>
+    </Loading>
+  </AllLogs>
+</Provider>
+`;
+
+exports[`AllLogs page: logs found Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <AllLogs>
+    <div
+      className="pageWrapper"
+    >
+      <BackButton>
+        <div
+          className="container"
+        >
+          <div
+            className="button"
+            onClick={[Function]}
+          >
+            <FontAwesome
+              name="arrow-left"
+            >
+              <span
+                aria-hidden={true}
+                className="fa fa-arrow-left"
+              />
+            </FontAwesome>
+            <div
+              className="text"
+            >
+              Go back
+            </div>
+          </div>
+        </div>
+      </BackButton>
+      <h1>
+        All logs
+      </h1>
+      <div>
+        <LogItem
+          date="TEST-DATE"
+          key="0"
+          rating={10}
+          text="Test text"
+        >
+          <div
+            className="item"
+          >
+            <div
+              className="top_line"
+            >
+              <div
+                className="rating_box"
+              >
+                10
+              </div>
+              <div>
+                <FontAwesome
+                  className="icon"
+                  name="hourglass"
+                >
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-hourglass icon"
+                  />
+                </FontAwesome>
+              </div>
+              <div
+                className="date"
+              >
+                <FontAwesome
+                  className="icon"
+                  name="calendar"
+                >
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-calendar icon"
+                  />
+                </FontAwesome>
+                TEST-DATE
+              </div>
+            </div>
+            <div
+              className="text"
+            >
+              Test text
+            </div>
+          </div>
+        </LogItem>
+        <LogItem
+          date="TEST-DATE"
+          key="1"
+          rating={9}
+          text="Test text"
+        >
+          <div
+            className="item"
+          >
+            <div
+              className="top_line"
+            >
+              <div
+                className="rating_box"
+              >
+                9
+              </div>
+              <div>
+                <FontAwesome
+                  className="icon"
+                  name="hourglass"
+                >
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-hourglass icon"
+                  />
+                </FontAwesome>
+              </div>
+              <div
+                className="date"
+              >
+                <FontAwesome
+                  className="icon"
+                  name="calendar"
+                >
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-calendar icon"
+                  />
+                </FontAwesome>
+                TEST-DATE
+              </div>
+            </div>
+            <div
+              className="text"
+            >
+              Test text
+            </div>
+          </div>
+        </LogItem>
+        <LogItem
+          date="TEST-DATE"
+          key="2"
+          rating={8}
+          text="Test text"
+        >
+          <div
+            className="item"
+          >
+            <div
+              className="top_line"
+            >
+              <div
+                className="rating_box"
+              >
+                8
+              </div>
+              <div>
+                <FontAwesome
+                  className="icon"
+                  name="hourglass"
+                >
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-hourglass icon"
+                  />
+                </FontAwesome>
+              </div>
+              <div
+                className="date"
+              >
+                <FontAwesome
+                  className="icon"
+                  name="calendar"
+                >
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-calendar icon"
+                  />
+                </FontAwesome>
+                TEST-DATE
+              </div>
+            </div>
+            <div
+              className="text"
+            >
+              Test text
+            </div>
+          </div>
+        </LogItem>
+        <LogItem
+          date="TEST-DATE"
+          key="3"
+          rating={7}
+          text="Test text"
+        >
+          <div
+            className="item"
+          >
+            <div
+              className="top_line"
+            >
+              <div
+                className="rating_box"
+              >
+                7
+              </div>
+              <div>
+                <FontAwesome
+                  className="icon"
+                  name="hourglass"
+                >
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-hourglass icon"
+                  />
+                </FontAwesome>
+              </div>
+              <div
+                className="date"
+              >
+                <FontAwesome
+                  className="icon"
+                  name="calendar"
+                >
+                  <span
+                    aria-hidden={true}
+                    className="fa fa-calendar icon"
+                  />
+                </FontAwesome>
+                TEST-DATE
+              </div>
+            </div>
+            <div
+              className="text"
+            >
+              Test text
+            </div>
+          </div>
+        </LogItem>
+      </div>
+      <div
+        className="bottomSection"
+      >
+        <Button
+          handleClick={[Function]}
+        >
+          <button
+            className="button btnPrimary"
+            onClick={[Function]}
+            type="button"
+          >
+            Load more
+          </button>
+        </Button>
+      </div>
+    </div>
+  </AllLogs>
+</Provider>
+`;
+
+exports[`AllLogs page: no logs Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <AllLogs>
+    <div>
+      No logs found
+    </div>
+  </AllLogs>
+</Provider>
+`;

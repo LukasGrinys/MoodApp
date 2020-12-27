@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders properly 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <SettingsItem>
+      <div
+        className="gridItem shrink"
+      >
+        <h3
+          className="gridItemHeader"
+        >
+          Settings
+        </h3>
+        <div
+          className="flexCenter"
+        >
+          <div
+            className="settingsIconWrapper"
+          >
+            <Link
+              to="/settings"
+            >
+              <LinkAnchor
+                href="/settings"
+                navigate={[Function]}
+              >
+                <a
+                  href="/settings"
+                  onClick={[Function]}
+                >
+                  <FontAwesome
+                    className="settingsIcon"
+                    name="cog"
+                  >
+                    <span
+                      aria-hidden={true}
+                      className="fa fa-cog settingsIcon"
+                    />
+                  </FontAwesome>
+                </a>
+              </LinkAnchor>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </SettingsItem>
+  </Router>
+</BrowserRouter>
+`;

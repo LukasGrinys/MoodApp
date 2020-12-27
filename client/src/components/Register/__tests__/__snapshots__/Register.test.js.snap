@@ -1,0 +1,218 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register page UI renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Register>
+    <Wrapper>
+      <div
+        className="formWrapper"
+      >
+        <Heading>
+          <h1
+            className="heading"
+          >
+            Sign Up
+          </h1>
+        </Heading>
+        <form>
+          <Label>
+            <span
+              className="label"
+            >
+              Enter your first name
+            </span>
+          </Label>
+          <Input
+            controlEvents={
+              Object {
+                "handleBlur": [Function],
+                "handleChange": [Function],
+              }
+            }
+            name="firstName"
+            placeholder=""
+            type="text"
+            value=""
+          >
+            <input
+              className="textInput"
+              name="firstName"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </Input>
+          <Label>
+            <span
+              className="label"
+            >
+              Enter your last name
+            </span>
+          </Label>
+          <Input
+            controlEvents={
+              Object {
+                "handleBlur": [Function],
+                "handleChange": [Function],
+              }
+            }
+            name="lastName"
+            placeholder=""
+            type="text"
+            value=""
+          >
+            <input
+              className="textInput"
+              name="lastName"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="text"
+              value=""
+            />
+          </Input>
+          <Label>
+            <span
+              className="label"
+            >
+              Enter your email:
+            </span>
+          </Label>
+          <Input
+            controlEvents={
+              Object {
+                "handleBlur": [Function],
+                "handleChange": [Function],
+              }
+            }
+            name="email"
+            placeholder=""
+            type="email"
+            value=""
+          >
+            <input
+              className="textInput"
+              name="email"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="email"
+              value=""
+            />
+          </Input>
+          <Label>
+            <span
+              className="label"
+            >
+              Enter your password:
+            </span>
+          </Label>
+          <Input
+            controlEvents={
+              Object {
+                "handleBlur": [Function],
+                "handleChange": [Function],
+              }
+            }
+            name="password"
+            placeholder=""
+            type="password"
+            value=""
+          >
+            <input
+              className="textInput"
+              name="password"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </Input>
+          <Label>
+            <span
+              className="label"
+            >
+              Confirm your password:
+            </span>
+          </Label>
+          <Input
+            controlEvents={
+              Object {
+                "handleBlur": [Function],
+                "handleChange": [Function],
+              }
+            }
+            name="confirmPassword"
+            placeholder=""
+            type="password"
+            value=""
+          >
+            <input
+              className="textInput"
+              name="confirmPassword"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </Input>
+          <Footer>
+            <div
+              className="formFooter"
+            >
+              <Button
+                color="primary"
+                disabled={false}
+                handleClick={[Function]}
+              >
+                <button
+                  className="button btnPrimary"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Sign up
+                </button>
+              </Button>
+            </div>
+          </Footer>
+        </form>
+      </div>
+    </Wrapper>
+    <BackButton>
+      <div
+        className="container"
+      >
+        <div
+          className="button"
+          onClick={[Function]}
+        >
+          <FontAwesome
+            name="arrow-left"
+          >
+            <span
+              aria-hidden={true}
+              className="fa fa-arrow-left"
+            />
+          </FontAwesome>
+          <div
+            className="text"
+          >
+            Go back
+          </div>
+        </div>
+      </div>
+    </BackButton>
+  </Register>
+</Provider>
+`;

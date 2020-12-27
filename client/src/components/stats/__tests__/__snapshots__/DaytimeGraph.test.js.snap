@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders properly 1`] = `
+<div
+  className="daytime_container"
+>
+  <p>
+    <strong>
+      Your mood throughout the day:
+    </strong>
+  </p>
+  <div
+    className="daytime_canvas"
+  >
+    <svg
+      height="100%"
+      overflow="hidden"
+      width="100%"
+    >
+      <polyline
+        points="1,60 300,60"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,120 300,120"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,180 300,180"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,240 300,240"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,300 300,300"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+    </svg>
+    <div
+      className="y_axis_number_daytime"
+      style={
+        Object {
+          "top": "-12px",
+        }
+      }
+    >
+      10
+    </div>
+    <div
+      className="y_axis_number_daytime"
+      style={
+        Object {
+          "left": "-15px",
+          "top": "48px",
+        }
+      }
+    >
+      8
+    </div>
+    <div
+      className="y_axis_number_daytime"
+      style={
+        Object {
+          "left": "-15px",
+          "top": "108px",
+        }
+      }
+    >
+      6
+    </div>
+    <div
+      className="y_axis_number_daytime"
+      style={
+        Object {
+          "left": "-15px",
+          "top": "168px",
+        }
+      }
+    >
+      4
+    </div>
+    <div
+      className="y_axis_number_daytime"
+      style={
+        Object {
+          "left": "-15px",
+          "top": "228px",
+        }
+      }
+    >
+      2
+    </div>
+    <div
+      className="daytime_bottom_line"
+    >
+      <div
+        className="daytime_time"
+      >
+        7:00
+      </div>
+      <div
+        className="daytime_time"
+        style={
+          Object {
+            "left": "33%",
+          }
+        }
+      >
+        13:00
+      </div>
+      <div
+        className="daytime_time"
+        style={
+          Object {
+            "left": "66%",
+          }
+        }
+      >
+        20:00
+      </div>
+      <div
+        className="daytime_time"
+        style={
+          Object {
+            "left": "100%",
+          }
+        }
+      >
+        00:00
+      </div>
+      <img
+        alt="Morning"
+        className=""
+        src={Object {}}
+        style={
+          Object {
+            "left": "13%",
+            "padding": "2px",
+          }
+        }
+      />
+      <img
+        alt="Afternoon"
+        className=""
+        src={Object {}}
+        style={
+          Object {
+            "left": "48%",
+          }
+        }
+      />
+      <img
+        alt="Evenining"
+        className=""
+        src={Object {}}
+        style={
+          Object {
+            "left": "82%",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;

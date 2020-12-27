@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders properly 1`] = `
+<BrowserRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <NavBar
+      isAuth={true}
+      toggleNav={[MockFunction]}
+    >
+      <div>
+        <div
+          className="navBar"
+        >
+          <Link
+            key="0"
+            to="/"
+          >
+            <LinkAnchor
+              href="/"
+              navigate={[Function]}
+            >
+              <a
+                href="/"
+                onClick={[Function]}
+              >
+                <div
+                  className="navItem"
+                  onClick={[MockFunction]}
+                >
+                  <FontAwesome
+                    name="home"
+                  >
+                    <span
+                      aria-hidden={true}
+                      className="fa fa-home"
+                    />
+                  </FontAwesome>
+                   
+                  Home
+                </div>
+              </a>
+            </LinkAnchor>
+          </Link>
+          <Link
+            key="2"
+            to="/logout"
+          >
+            <LinkAnchor
+              href="/logout"
+              navigate={[Function]}
+            >
+              <a
+                href="/logout"
+                onClick={[Function]}
+              >
+                <div
+                  className="navItem"
+                  onClick={[MockFunction]}
+                >
+                  <FontAwesome
+                    name="sign-out"
+                  >
+                    <span
+                      aria-hidden={true}
+                      className="fa fa-sign-out"
+                    />
+                  </FontAwesome>
+                   
+                  Log Out
+                </div>
+              </a>
+            </LinkAnchor>
+          </Link>
+          <Link
+            key="3"
+            to="/register"
+          >
+            <LinkAnchor
+              href="/register"
+              navigate={[Function]}
+            >
+              <a
+                href="/register"
+                onClick={[Function]}
+              >
+                <div
+                  className="navItem"
+                  onClick={[MockFunction]}
+                >
+                  <FontAwesome
+                    name="user-plus"
+                  >
+                    <span
+                      aria-hidden={true}
+                      className="fa fa-user-plus"
+                    />
+                  </FontAwesome>
+                   
+                  Sign Up
+                </div>
+              </a>
+            </LinkAnchor>
+          </Link>
+          <Link
+            key="4"
+            to="/dashboard"
+          >
+            <LinkAnchor
+              href="/dashboard"
+              navigate={[Function]}
+            >
+              <a
+                href="/dashboard"
+                onClick={[Function]}
+              >
+                <div
+                  className="navItem"
+                  onClick={[MockFunction]}
+                >
+                  <FontAwesome
+                    name="book"
+                  >
+                    <span
+                      aria-hidden={true}
+                      className="fa fa-book"
+                    />
+                  </FontAwesome>
+                   
+                  Your Dashboard
+                </div>
+              </a>
+            </LinkAnchor>
+          </Link>
+          <Link
+            key="5"
+            to="/settings"
+          >
+            <LinkAnchor
+              href="/settings"
+              navigate={[Function]}
+            >
+              <a
+                href="/settings"
+                onClick={[Function]}
+              >
+                <div
+                  className="navItem"
+                  onClick={[MockFunction]}
+                >
+                  <FontAwesome
+                    name="cog"
+                  >
+                    <span
+                      aria-hidden={true}
+                      className="fa fa-cog"
+                    />
+                  </FontAwesome>
+                   
+                  Settings
+                </div>
+              </a>
+            </LinkAnchor>
+          </Link>
+        </div>
+        <div
+          className="navBarMask"
+          onClick={[MockFunction]}
+        />
+      </div>
+    </NavBar>
+  </Router>
+</BrowserRouter>
+`;

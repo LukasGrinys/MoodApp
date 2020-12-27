@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login form UI renders correctly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Login>
+    <Wrapper>
+      <div
+        className="formWrapper"
+      >
+        <Heading>
+          <h1
+            className="heading"
+          >
+            Log In
+          </h1>
+        </Heading>
+        <form>
+          <Label>
+            <span
+              className="label"
+            >
+              Enter your email: 
+            </span>
+          </Label>
+          <Input
+            controlEvents={
+              Object {
+                "handleBlur": [Function],
+                "handleChange": [Function],
+              }
+            }
+            name="email"
+            placeholder=""
+            type="email"
+            value=""
+          >
+            <input
+              className="textInput"
+              name="email"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="email"
+              value=""
+            />
+          </Input>
+          <Label>
+            <span
+              className="label"
+            >
+              Enter your password:
+            </span>
+          </Label>
+          <Input
+            controlEvents={
+              Object {
+                "handleBlur": [Function],
+                "handleChange": [Function],
+              }
+            }
+            name="password"
+            placeholder=""
+            type="password"
+            value=""
+          >
+            <input
+              className="textInput"
+              name="password"
+              onBlur={[Function]}
+              onChange={[Function]}
+              type="password"
+              value=""
+            />
+          </Input>
+          <Footer>
+            <div
+              className="formFooter"
+            >
+              <Button
+                color="primary"
+                disabled={false}
+                handleClick={[Function]}
+              >
+                <button
+                  className="button btnPrimary"
+                  disabled={false}
+                  onClick={[Function]}
+                  type="button"
+                >
+                  Log In
+                </button>
+              </Button>
+            </div>
+          </Footer>
+        </form>
+      </div>
+    </Wrapper>
+  </Login>
+</Provider>
+`;

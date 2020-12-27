@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountDetails: initial UI Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <AccountDetails
+    email="test@mail.com"
+    firstName="Test"
+    lastName="Testington"
+  >
+    <Wrapper>
+      <div
+        className="formWrapper"
+      >
+        <div>
+          <strong>
+            User: 
+          </strong>
+           
+          test@mail.com
+        </div>
+        <br />
+        <h3
+          className="miniHeader"
+        >
+          Edit details:
+        </h3>
+        <Label>
+          <span
+            className="label"
+          >
+            First name:
+          </span>
+        </Label>
+        <Input
+          controlEvents={
+            Object {
+              "handleBlur": [Function],
+              "handleChange": [Function],
+            }
+          }
+          name="firstName"
+          placeholder=""
+          type="text"
+          value="Test"
+        >
+          <input
+            className="textInput"
+            name="firstName"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="text"
+            value="Test"
+          />
+        </Input>
+        <Label>
+          <span
+            className="label"
+          >
+            Last name:
+          </span>
+        </Label>
+        <Input
+          controlEvents={
+            Object {
+              "handleBlur": [Function],
+              "handleChange": [Function],
+            }
+          }
+          name="lastName"
+          placeholder=""
+          type="text"
+          value="Testington"
+        >
+          <input
+            className="textInput"
+            name="lastName"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="text"
+            value="Testington"
+          />
+        </Input>
+        <Footer>
+          <div
+            className="formFooter"
+          >
+            <Button
+              handleClick={[Function]}
+            >
+              <button
+                className="button btnPrimary"
+                onClick={[Function]}
+                type="button"
+              >
+                Save changes
+              </button>
+            </Button>
+          </div>
+        </Footer>
+      </div>
+    </Wrapper>
+  </AccountDetails>
+</Provider>
+`;

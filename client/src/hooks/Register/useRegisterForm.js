@@ -79,12 +79,16 @@ export const useRegisterForm = () => {
         if (createUserSuccess) {
             const { email, password } = values;
 
-            dispatch(loginUser({
-                email,
-                password
-            })).then( () => {
+            const handleSuccess = async () => {
+                await dispatch(loginUser({
+                    email,
+                    password
+                }));
+
                 history.push(routerRoutes.home);
-            });
+            }
+
+            handleSuccess();
         }
         // eslint-disable-next-line
     }, [values, createUserSuccess]);

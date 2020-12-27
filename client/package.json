@@ -30,7 +30,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -46,8 +46,35 @@
   },
   "proxy": "http://localhost:3001",
   "devDependencies": {
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "@testing-library/react-hooks": "^3.7.0",
+    "babel-jest": "^24.9.0",
+    "babel-polyfill": "^6.26.0",
     "brotli-webpack-plugin": "^1.1.0",
     "compression-webpack-plugin": "^4.0.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "enzyme-to-json": "^3.6.1",
+    "identity-obj-proxy": "^3.0.0",
+    "ignore-styles": "^5.0.1",
+    "jest": "^24.9.0",
+    "react-test-renderer": "^17.0.1",
+    "redux-mock-store": "^1.5.4",
+    "regenerator-runtime": "^0.13.7",
     "webpack-bundle-analyzer": "^3.8.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "identity-obj-proxy"
+    },
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFilesAfterEnv": ["./setupTests.js"]
   }
 }

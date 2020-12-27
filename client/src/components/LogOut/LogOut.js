@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
+import React, { useEffect } from 'react';
 import Loading from '../Loading/loading';
-import { connect } from 'react-redux';
 import { logOut } from '../../actions/user/asyncActions';
+import { useDispatch } from 'react-redux';
 
-class LogOut extends Component {
-    UNSAFE_componentWillMount(){
-        this.props.dispatch(logOut());
-    }
+const LogOut = () => {
+    const dispatch = useDispatch();
 
-    render(){
-        return <Loading/>
-    }
+    useEffect( () => {
+        dispatch(logOut());
+    }, [])
+
+    return <Loading/>
 };
 
-export default connect(null)(LogOut);
+export default LogOut;

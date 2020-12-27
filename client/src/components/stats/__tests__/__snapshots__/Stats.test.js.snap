@@ -1,0 +1,551 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stats with logs fetched Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Stats>
+    <BackButton>
+      <div
+        className="container"
+      >
+        <div
+          className="button"
+          onClick={[Function]}
+        >
+          <FontAwesome
+            name="arrow-left"
+          >
+            <span
+              aria-hidden={true}
+              className="fa fa-arrow-left"
+            />
+          </FontAwesome>
+          <div
+            className="text"
+          >
+            Go back
+          </div>
+        </div>
+      </div>
+    </BackButton>
+    <div
+      className="container"
+    >
+      <h1>
+        User stats
+      </h1>
+      <div
+        className="first_block"
+      >
+        <div
+          className="average_block"
+        >
+          <p>
+            <strong>
+              Your average mood:
+            </strong>
+          </p>
+          <AverageBox>
+            <div
+              className="averageBox"
+            >
+              8.5
+            </div>
+          </AverageBox>
+          <div
+            className="small_text_box"
+          >
+            Retrieved from the last 100 logs
+          </div>
+        </div>
+        <div
+          className="average_block"
+        >
+          <b>
+            7 day mood:
+          </b>
+          <AverageBox>
+            <div
+              className="averageBox"
+            >
+              8.5
+            </div>
+          </AverageBox>
+          <div
+            className="small_text_box"
+          >
+            Counted from the last 7 active days from 
+            <br />
+            TEST-DATE
+             to 
+            TEST-DATE
+          </div>
+        </div>
+      </div>
+      <GraphCanvas
+        logs={
+          Array [
+            Object {
+              "date": "TEST-DATE",
+              "id": "001",
+              "rating": 10,
+              "text": "Test text",
+            },
+            Object {
+              "date": "TEST-DATE",
+              "id": "002",
+              "rating": 9,
+              "text": "Test text",
+            },
+            Object {
+              "date": "TEST-DATE",
+              "id": "003",
+              "rating": 8,
+              "text": "Test text",
+            },
+            Object {
+              "date": "TEST-DATE",
+              "id": "004",
+              "rating": 7,
+              "text": "Test text",
+            },
+          ]
+        }
+      >
+        <div
+          className="graph_container"
+        >
+          <p>
+            <strong>
+              Your mood graph
+            </strong>
+          </p>
+          <div
+            className="graph_canvas"
+          >
+            <div
+              className="y_axis_number"
+            >
+              10
+            </div>
+            <div
+              className="y_axis_number"
+              style={
+                Object {
+                  "transform": "translate(10px, 100px)",
+                }
+              }
+            >
+              5
+            </div>
+            <div
+              className="y_axis_number"
+              style={
+                Object {
+                  "transform": "translate(10px, 200px)",
+                }
+              }
+            >
+              0
+            </div>
+            <svg
+              height="100%"
+              width="100%"
+            >
+              <polyline
+                points="1,20 490,20"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,40 490,40"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,60 490,60"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,80 490,80"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,100 490,100"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,120 490,120"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,140 490,140"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,160 490,160"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,180 490,180"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,200 490,200"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <ReturnGraph
+                points="0,20 0,40 0,60 0,80 "
+              >
+                <polyline
+                  className="graph_stroke"
+                  points="0,20 0,40 0,60 0,80 "
+                />
+              </ReturnGraph>
+            </svg>
+          </div>
+          <div>
+            From 
+            TEST-DATE
+             to 
+            TEST-DATE
+          </div>
+        </div>
+      </GraphCanvas>
+      <DaytimeGraph
+        logs={
+          Array [
+            Object {
+              "date": "TEST-DATE",
+              "id": "001",
+              "rating": 10,
+              "text": "Test text",
+            },
+            Object {
+              "date": "TEST-DATE",
+              "id": "002",
+              "rating": 9,
+              "text": "Test text",
+            },
+            Object {
+              "date": "TEST-DATE",
+              "id": "003",
+              "rating": 8,
+              "text": "Test text",
+            },
+            Object {
+              "date": "TEST-DATE",
+              "id": "004",
+              "rating": 7,
+              "text": "Test text",
+            },
+          ]
+        }
+      >
+        <div
+          className="daytime_container"
+        >
+          <p>
+            <strong>
+              Your mood throughout the day:
+            </strong>
+          </p>
+          <div
+            className="daytime_canvas"
+          >
+            <svg
+              height="100%"
+              overflow="hidden"
+              width="100%"
+            >
+              <polyline
+                points="1,60 300,60"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,120 300,120"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,180 300,180"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,240 300,240"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+              <polyline
+                points="1,300 300,300"
+                style={
+                  Object {
+                    "fill": "none",
+                    "stroke": "#cccccc",
+                    "strokeWidth": "1",
+                  }
+                }
+              />
+            </svg>
+            <div
+              className="y_axis_number_daytime"
+              style={
+                Object {
+                  "top": "-12px",
+                }
+              }
+            >
+              10
+            </div>
+            <div
+              className="y_axis_number_daytime"
+              style={
+                Object {
+                  "left": "-15px",
+                  "top": "48px",
+                }
+              }
+            >
+              8
+            </div>
+            <div
+              className="y_axis_number_daytime"
+              style={
+                Object {
+                  "left": "-15px",
+                  "top": "108px",
+                }
+              }
+            >
+              6
+            </div>
+            <div
+              className="y_axis_number_daytime"
+              style={
+                Object {
+                  "left": "-15px",
+                  "top": "168px",
+                }
+              }
+            >
+              4
+            </div>
+            <div
+              className="y_axis_number_daytime"
+              style={
+                Object {
+                  "left": "-15px",
+                  "top": "228px",
+                }
+              }
+            >
+              2
+            </div>
+            <div
+              className="daytime_bottom_line"
+            >
+              <div
+                className="daytime_time"
+              >
+                7:00
+              </div>
+              <div
+                className="daytime_time"
+                style={
+                  Object {
+                    "left": "33%",
+                  }
+                }
+              >
+                13:00
+              </div>
+              <div
+                className="daytime_time"
+                style={
+                  Object {
+                    "left": "66%",
+                  }
+                }
+              >
+                20:00
+              </div>
+              <div
+                className="daytime_time"
+                style={
+                  Object {
+                    "left": "100%",
+                  }
+                }
+              >
+                00:00
+              </div>
+              <img
+                alt="Morning"
+                className=""
+                src={Object {}}
+                style={
+                  Object {
+                    "left": "13%",
+                    "padding": "2px",
+                  }
+                }
+              />
+              <img
+                alt="Afternoon"
+                className=""
+                src={Object {}}
+                style={
+                  Object {
+                    "left": "48%",
+                  }
+                }
+              />
+              <img
+                alt="Evenining"
+                className=""
+                src={Object {}}
+                style={
+                  Object {
+                    "left": "82%",
+                  }
+                }
+              />
+            </div>
+          </div>
+        </div>
+      </DaytimeGraph>
+    </div>
+  </Stats>
+</Provider>
+`;
+
+exports[`Stats: loading data Renders properly 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Stats>
+    <Loading>
+      <div
+        className="loadingScreen"
+      >
+        <div>
+          Loading
+        </div>
+        <br />
+        <div
+          className="barContainer"
+        >
+          <div
+            className="bar"
+          />
+          <div
+            className="bar delay1"
+          />
+          <div
+            className="bar delay2"
+          />
+        </div>
+      </div>
+    </Loading>
+  </Stats>
+</Provider>
+`;

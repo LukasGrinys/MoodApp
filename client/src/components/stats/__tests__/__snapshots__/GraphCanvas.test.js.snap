@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders properly 1`] = `
+<div
+  className="graph_container"
+>
+  <p>
+    <strong>
+      Your mood graph
+    </strong>
+  </p>
+  <div
+    className="graph_canvas"
+  >
+    <div
+      className="y_axis_number"
+    >
+      10
+    </div>
+    <div
+      className="y_axis_number"
+      style={
+        Object {
+          "transform": "translate(10px, 100px)",
+        }
+      }
+    >
+      5
+    </div>
+    <div
+      className="y_axis_number"
+      style={
+        Object {
+          "transform": "translate(10px, 200px)",
+        }
+      }
+    >
+      0
+    </div>
+    <svg
+      height="100%"
+      width="100%"
+    >
+      <polyline
+        points="1,20 490,20"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,40 490,40"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,60 490,60"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,80 490,80"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,100 490,100"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,120 490,120"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,140 490,140"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,160 490,160"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,180 490,180"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <polyline
+        points="1,200 490,200"
+        style={
+          Object {
+            "fill": "none",
+            "stroke": "#cccccc",
+            "strokeWidth": "1",
+          }
+        }
+      />
+      <ReturnGraph
+        points="0,20 0,40 0,60 0,80 "
+      />
+    </svg>
+  </div>
+  <div>
+    From 
+    TEST-DATE
+     to 
+    TEST-DATE
+  </div>
+</div>
+`;

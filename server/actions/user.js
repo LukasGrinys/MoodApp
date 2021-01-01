@@ -57,11 +57,11 @@ const loginUser = async (email, password) => {
     try {
         const user = await findUserByEmail(email);
         if (!user || user.error || !user.data) return {
-            error: user.error ? user.error : 'Error : Could not find user'
+            error: user.error ? user.error : 'User not found'
         }
         
         const isMatch = await comparePassword(password, user.data.password);
-        if (!isMatch) return { error : 'Passwords do not match'}
+        if (!isMatch) return { error : 'Wrong password'}
 
         const { error, token } = generateToken(user.data.id);
         if (error || !token) return {error: 'Error: could not generate new token'};

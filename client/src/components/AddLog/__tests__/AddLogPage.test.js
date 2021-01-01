@@ -162,5 +162,14 @@ describe('AddLogPage logic', () => {
 
     test('Button should be disabled after submitting log', () => {
         expect(wrapper.find('button').prop('disabled')).toBeTruthy();
+    });
+
+    test('Pressing enter key submits log', () => {
+        wrapper.find('textarea').simulate('keypress', {key: 'Enter'});
+
+        setTimeout( () => {
+            expect(postLog).toHaveBeenCalledTimes(1);
+            done();
+        }, 0)
     })
 });

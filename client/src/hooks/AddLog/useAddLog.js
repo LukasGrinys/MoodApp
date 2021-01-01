@@ -4,6 +4,7 @@ import { canUserLog, postLog, clearLogPost } from '../../actions/logs/asyncActio
 import { useHistory } from 'react-router-dom';
 import { routerRoutes } from '../../constants/routerRoutes';
 import { getDate, getDaytime } from '../../util/dateHelpers';
+import { useEnterKey } from '../useEnterKey';
 
 export const useAddLog = () => {
     const dispatch = useDispatch();
@@ -50,6 +51,10 @@ export const useAddLog = () => {
         };
 
     }, [userId, moodRating, message, dispatch]);
+
+    useEnterKey( () => {
+        handleAddLog();
+    })
 
     useEffect( () => {
         if (postLogSuccess) {

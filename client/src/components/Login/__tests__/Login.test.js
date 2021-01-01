@@ -215,4 +215,15 @@ describe('Login form logic', () => {
             done();
         }, 0)
     });
+
+    test('Pressing enter key invokes form submission', () => {
+        const handleSubmit = jest.fn();
+
+        wrapper.simulate('keypress', {key: 'Enter'});
+
+        setTimeout( () => {
+            expect(handleSubmit).toHaveBeenCalledTimes(1);
+            done();
+        }, 0)
+    })
 });

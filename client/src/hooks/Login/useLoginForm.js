@@ -7,6 +7,7 @@ import { formErrorMessages } from '../../constants/formErrorMessages';
 import { routerRoutes } from '../../constants/routerRoutes';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../actions/user/asyncActions';
+import { useEnterKey } from '../useEnterKey';
 
 export const useLoginForm = () => {
     const [ isLoggingIn, setIsLoggingIn ] = useState(false);
@@ -36,11 +37,16 @@ export const useLoginForm = () => {
             .required(formErrorMessages.required)
     });
 
-    const handleLogin = useCallback( async (values) => {
+    const handleLogin = useCallback( async values => {
         setIsLoggingIn(true);
         await dispatch(loginUser(values))
         setIsLoggingIn(false);
-    }, [dispatch])
+        // eslint-disable-next-line
+    }, [values]);
+
+    useEnterKey( () => {
+        handleSubmit();
+    });
 
     const {
         values,
@@ -53,7 +59,8 @@ export const useLoginForm = () => {
     } = useFormik({
         initialValues,
         validationSchema,
-        onSubmit: handleLogin
+        onSubmit: handleLogin,
+        validateOnMount: true
     });
 
     const controlEvents = {

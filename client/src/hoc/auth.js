@@ -23,8 +23,8 @@ export default function(ComposedClass, redirect) {
 
         render() {
             const { user } = this.props;
-            
-            if (!user || (!user.isAuth && typeof user.isAuth !== 'boolean')) {
+
+            if (!user || (user.isAuth === null && window.location.pathname !== '/login' ) ) {
                 return <Loading/>
             }
 

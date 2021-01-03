@@ -3,6 +3,9 @@ const COLLECTION_NAMES = {
     logs : 'logs'
 }
 
+const BATCH_SIZE = 10;
+
 module.exports = {
-    COLLECTION_NAMES
+    COLLECTION_NAMES,
+    BATCH_SIZE
 }

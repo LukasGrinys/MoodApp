@@ -1,5 +1,5 @@
 const { db, FieldValue } = require('../database/firebase');
-const { COLLECTION_NAMES } = require('../database/constants');
+const { COLLECTION_NAMES, BATCH_SIZE } = require('../database/constants');
 
 const { doesLogExist } = require('../util/helpers');
 const { validator } = require('../util/validator');
@@ -118,9 +118,40 @@ const canLog = async ({date, timing, userId}) => {
     }
 }
 
+const deleteAllLogsByUser = async id => {
+    const collectionRef = db.collection(COLLECTION_NAMES.logs);
+    const query = collectionRef.where('userId', '==', id).limit(BATCH_SIZE);
+      
+    return new Promise((resolve, reject) => {
+        deleteQueryBatch(query, resolve).catch(reject);
+    });
+}
+
+const deleteQueryBatch = async (query, resolve) => {
+    const snapshot = await query.get();
+    const batchSize = snapshot.size;
+
+
+    if (batchSize === 0) {
+      resolve();
+      return;
+    }
+
+    const batch = db.batch();
+    snapshot.docs.forEach((doc) => {
+      batch.delete(doc.ref);
+    });
+    await batch.commit();
+  
+    process.nextTick(() => {
+      deleteQueryBatch(query, resolve);
+    });
+}
+
 module.exports = {
     postLog,
     getLog,
     getLogs,
-    canLog
+    canLog,
+    deleteAllLogsByUser
 }

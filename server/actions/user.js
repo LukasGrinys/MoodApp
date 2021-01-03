@@ -10,7 +10,10 @@ const {
     findUserByToken,
     deleteToken
 } = require('../util/helpers');
-
+const {
+    deleteAllLogsByUser
+} = require('./log');
+ 
 const { validator } = require('../util/validator');
 const userSchema = require('../schemas/userSchema');
 
@@ -180,11 +183,11 @@ const deleteUser = async (id, password) => {
         const isMatch = await comparePassword(password, userData.password);
         if (!isMatch) return { error : 'Wrong password'}
 
+        await deleteAllLogsByUser(id);
         await db.collection(COLLECTION_NAMES.users).doc(id).delete();
 
         return { success : true }
     } catch (error) {
-        console.log({error})
         return { error }
     }
 }

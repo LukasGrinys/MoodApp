@@ -1,5 +1,5 @@
 const firebaseAdmin = require('firebase-admin');
-const serviceAccount = process.env.NODE_ENV !== 'production' ? require('./config.json') : require('./serviceAccount');
+const serviceAccount = process.env.NODE_ENV !== 'production' ? require('./devAccount') : require('./serviceAccount');
 
 firebaseAdmin.initializeApp({
     credential: firebaseAdmin.credential.cert(serviceAccount)

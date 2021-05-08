@@ -29,78 +29,10 @@ const {
   canLog
 } = require('./actions/log')
 
-// Routes
-if (process.env.NODE_ENV === 'production') {  
-    app.get('/login', function(req, res) {
-        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
-          if (err) {
-            res.status(500).send(err);
-          }
-        })
-    })
-    app.get('/register', function(req, res) {
-        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
-          if (err) {
-            res.status(500).send(err);
-          }
-        })
-    })
-    app.get('/dashboard', function(req, res) {
-        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
-          if (err) {
-            res.status(500).send(err);
-          }
-        })
-    })
-    app.get('/addlog', function(req, res) {
-        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
-          if (err) {
-            res.status(500).send(err);
-          }
-        })
-    })
-    app.get('/logs', function(req, res) {
-        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
-          if (err) {
-            res.status(500).send(err);
-          }
-        })
-    })
-    app.get('/logs/:id', function(req, res) {
-        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
-          if (err) {
-            res.status(500).send(err);
-          }
-        })
-    })
-    app.get('/logout', function(req, res) {
-        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
-          if (err) {
-            res.status(500).send(err);
-          }
-        })
-    })
-    app.get('/settings', function(req, res) {
-        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
-          if (err) {
-            res.status(500).send(err);
-          }
-        })
-    })
-    app.get('/stats', function(req, res) {
-        res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
-          if (err) {
-            res.status(500).send(err);
-          }
-        })
-    })
-}
-
 // API routes //
 // USER ROUTES //
 
 // API AUTH
-
 app.get('/api/auth', auth, (req, res) => {
   res.json({
       isAuth: true,
@@ -200,6 +132,15 @@ app.post('/api/canLog', auth, async(req, res) => {
     const { error, data } = await canLog({date, timing, userId});
     if (error || !data) return res.send({error : error || 'Error : Could not check if user can log' })
     res.status(200).send({data});
+});
+
+// SERVE index.html 
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '/../client/build/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    })
 })
 
 app.listen(config.PORT, () => {

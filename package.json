@@ -7,7 +7,8 @@
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install:all": "npm install && npm install --prefix client"
   },
   "engines": {
     "node": "10.16.3"

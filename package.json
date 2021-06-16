@@ -8,7 +8,8 @@
     "server": "nodemon server/server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "install:all": "npm install && npm install --prefix client"
+    "install:all": "npm install && npm install --prefix client",
+    "build:client": "npm run build --prefix client"
   },
   "engines": {
     "node": "10.16.3"
@@ -18,7 +19,6 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.19.0",
-    "concurrently": "^5.0.2",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "firebase": "^7.24.0",
@@ -26,7 +26,7 @@
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.2",
-    "webpack-bundle-analyzer": "^3.8.0"
+    "concurrently": "^6.2.0",
+    "nodemon": "^2.0.2"
   }
 }

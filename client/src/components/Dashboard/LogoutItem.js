@@ -5,7 +5,8 @@ import { routerRoutes } from '../../constants/routerRoutes';
 import parentClasses from './Dashboard.module.scss';
 import styles from './LogoutItem.module.scss';
 import classNames from 'classnames';
-import FontAwesome from 'react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const LogoutItem = () => {
     const darkTheme = useTheme();
@@ -19,7 +20,7 @@ const LogoutItem = () => {
             <div className={parentClasses.flexCenter}>
                 <Link to={routerRoutes.logout}>
                     <div className={styles.logoutIconWrapper}> 
-                        <FontAwesome name="sign-out" className={classNames(
+                        <FontAwesomeIcon icon={faSignOutAlt} className={classNames(
                             styles.logoutIcon,
                             darkTheme && styles.dark
                         )}/>

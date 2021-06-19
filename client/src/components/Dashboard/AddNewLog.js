@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import FontAwesome from 'react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { connect } from 'react-redux';
 import { canUserLog } from '../../actions/logs/asyncActions';
 import styles from './AddNewLog.module.scss';
@@ -58,7 +59,7 @@ const AddNewLog = ({userId, canLog, darkTheme}) => {
                     darkTheme && styles.dark
                     )}>
                     <div className={styles.attentionBorder}/>
-                    <FontAwesome name="fas fa-plus" className={styles.floating}/> ADD LOG
+                    <FontAwesomeIcon icon={faPlus} className={styles.floating}/> ADD LOG
                 </div>
             </Link> 
         )

@@ -1,14 +1,15 @@
 import React from 'react';
-import FontAwesome from 'react-fontawesome';
 import styles from './Header.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes, faBars } from '@fortawesome/free-solid-svg-icons';
 
 const ToggleButton = ({showNav, toggleNav}) => {
     return (
         <div className={styles.bars}>
             {
-                 showNav ?
-                 <FontAwesome
-                     name="close"
+                showNav ?
+                    <FontAwesomeIcon
+                        icon={faTimes}
                      onClick={toggleNav}
                      style={{
                          fontSize: '1.5em',
@@ -19,8 +20,8 @@ const ToggleButton = ({showNav, toggleNav}) => {
                      }}
                  />
              :
-                 <FontAwesome
-                     name="bars"
+                 <FontAwesomeIcon
+                     icon={faBars}
                      onClick={toggleNav}
                      style={{
                          fontSize: '1.5em',

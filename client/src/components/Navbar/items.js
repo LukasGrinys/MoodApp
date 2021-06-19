@@ -1,36 +1,38 @@
+import { faHome, faSignInAlt, faSignOutAlt, faUserPlus, faCog, faBook } from '@fortawesome/free-solid-svg-icons';
+
 export const items = [
     {
-        iconName: "home",
+        iconName: faHome,
         path: "/",
         text: "Home",
         isAuth: null
     },
     {
-        iconName: "sign-in",
+        iconName: faSignInAlt,
         path: "/login",
         text: "Log In",
         isAuth: false
     },
     {
-        iconName: "sign-out",
+        iconName: faSignOutAlt,
         path: "/logout",
         text: "Log Out",
         isAuth: true
     },
     {
-        iconName: "user-plus",
+        iconName: faUserPlus,
         path: "/register",
         text: "Sign Up",
         isAuth: null
     },
     {
-        iconName: "book",
+        iconName: faBook,
         path: "/dashboard",
         text: "Your Dashboard",
         isAuth: true
     },
     {
-        iconName: "cog",
+        iconName: faCog,
         path: "/settings",
         text: "Settings",
         isAuth: true

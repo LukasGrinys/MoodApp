@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './NavBar.module.scss';
 import { items } from './items';
 import { useTheme } from '../../contexts/ThemeContext';
-import FontAwesome from 'react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 
 const NavBar = ({isAuth, toggleNav}) => {
@@ -15,7 +15,7 @@ const NavBar = ({isAuth, toggleNav}) => {
                 styles.navItem,
                 darkTheme && styles.nightmode
                 )} onClick={toggleNav}>
-                <FontAwesome name={item.iconName}/> {item.text}
+                <FontAwesomeIcon icon={item.iconName}/> {item.text}
             </div> 
         </Link>
     )

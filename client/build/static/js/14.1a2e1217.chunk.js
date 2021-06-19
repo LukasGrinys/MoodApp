@@ -1,0 +1,1 @@
+(this.webpackJsonpclient=this.webpackJsonpclient||[]).push([[14],{192:function(t,e,c){"use strict";c.r(e);var n=c(0),i=c.n(n),u=c(28),a=c(39),s=c(22),r=function(){var t=Object(s.c)();return Object(n.useEffect)((function(){t(Object(a.i)())}),[]),i.a.createElement(u.a,null)};e.default=r}}]);

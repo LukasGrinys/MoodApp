@@ -8,6 +8,7 @@ const LogOut = () => {
 
     useEffect( () => {
         dispatch(logOut());
+    // eslint-disable-next-line
     }, [])
 
     return <Loading/>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './logItem.module.css';
-import FontAwesome from 'react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHourglass, faCalendar } from '@fortawesome/free-solid-svg-icons';
 
 const LogItem = ({date, timing, text, rating}) => {
     return (
@@ -10,11 +11,11 @@ const LogItem = ({date, timing, text, rating}) => {
                     {rating}
                 </div>
                 <div>
-                    <FontAwesome name="hourglass" className={styles.icon}/>
+                    <FontAwesomeIcon icon={faHourglass} className={styles.icon}/>
                     {timing}
                 </div>
                 <div className={styles.date}>
-                    <FontAwesome name="calendar" className={styles.icon}/>
+                    <FontAwesomeIcon icon={faCalendar} className={styles.icon}/>
                     {date}
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './BackButton.module.scss';
-import FontAwesome from 'react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useTheme } from '../../contexts/ThemeContext';
 import classNames from 'classnames';
 
@@ -16,7 +17,7 @@ const BackButton = () => {
                 )} 
                 onClick={ () => {window.history.back()}}
             >
-                <FontAwesome name="arrow-left"/>
+                <FontAwesomeIcon icon={faArrowLeft}/>
                 <div className={styles.text}>
                     Go back
                 </div>

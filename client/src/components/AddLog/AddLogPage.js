@@ -4,7 +4,8 @@ import Button from '../Button';
 import BackButton from '../Back';
 import Loading from '../Loading/loading';
 import ErrorBox from '../ErrorBox';
-import FontAwesome from 'react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsDown, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import styles from './AddLogPage.module.scss';
 import { useAddLog } from '../../hooks/AddLog/useAddLog';
 
@@ -36,9 +37,9 @@ const AddLogPage = () => {
                             {moodRating}
                         </div>
                         <div className={styles.inputLine}>
-                            <FontAwesome 
+                            <FontAwesomeIcon
                                 className={styles.thumb} 
-                                name="thumbs-down" 
+                                icon={faThumbsDown}
                                 style={{color: "#800000"}}
                             />
                             <input 
@@ -48,9 +49,9 @@ const AddLogPage = () => {
                                 max="10" 
                                 value={moodRating}
                             />
-                            <FontAwesome 
+                            <FontAwesomeIcon
                                 className={styles.thumb} 
-                                name="thumbs-up" 
+                                icon={faThumbsUp}
                                 style={{color: "#16774f"}}
                             />
                         </div>

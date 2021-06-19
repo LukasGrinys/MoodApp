@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import NavBar from '../Navbar/NavBar';
 import ToggleButton from './ToggleButton';
 import NightmodeButton from './NightmodeButton';
+import Logo from '../Logo';
 import classNames from 'classnames';
 import { useHeader } from '../../hooks/Header/useHeader';
 import { useTheme } from '../../contexts/ThemeContext';
@@ -21,8 +22,8 @@ const Header = ( {isAuth} ) => {
                 className={classNames(styles.top, darkTheme && styles.nightMode)} 
                 style={darkTheme ? {backgroundColor: "#2F2F2F"} : {}}
             >
-                <div className={styles.logo}>
-                    Moodapp
+                <div className={styles.logoContainer}>
+                    <Logo className={styles.logo} showWhite={true}/>
                 </div>
                 <ToggleButton
                     showNav={showNav}
